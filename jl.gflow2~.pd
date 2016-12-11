@@ -191,7 +191,7 @@
 #X obj 339 393 outlet~ grain2;
 #X obj 524 152 symbol \$1;
 #X obj 524 130 loadbang;
-#X obj 524 174 route symbol;
+#X msg 524 173 \$1;
 #X connect 0 0 14 0;
 #X connect 0 1 15 0;
 #X connect 1 0 4 0;

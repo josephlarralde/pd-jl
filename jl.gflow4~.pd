@@ -279,6 +279,9 @@
 #X obj 220 409 outlet~ grain2;
 #X obj 276 440 outlet~ grain3;
 #X obj 382 473 outlet~ grain4;
+#X obj 498 185 loadbang;
+#X obj 498 207 symbol \$1;
+#X msg 498 228 \$1;
 #X connect 0 0 14 0;
 #X connect 0 1 15 0;
 #X connect 0 2 16 0;
@@ -297,3 +300,6 @@
 #X connect 11 0 2 1;
 #X connect 12 0 2 2;
 #X connect 13 0 1 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 20 0 0 3;
