@@ -267,7 +267,7 @@
 #X obj 144 177 t f f;
 #X obj 207 277 *;
 #X obj 207 300 / 44.1;
-#X floatatom 109 232 5 0 0 0 - - -, f 5;
+#X floatatom 109 232 5 0 0 0 - - -;
 #X obj 318 64 inlet gsize;
 #X obj 402 64 inlet pitch;
 #X obj 483 64 inlet table;
@@ -281,7 +281,7 @@
 #X obj 382 473 outlet~ grain4;
 #X obj 498 185 loadbang;
 #X obj 498 207 symbol \$1;
-#X msg 498 228 \$1;
+#X msg 498 228 set \$1;
 #X connect 0 0 14 0;
 #X connect 0 1 15 0;
 #X connect 0 2 16 0;
