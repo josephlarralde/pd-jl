@@ -11,7 +11,7 @@
 #X obj 217 315 line~;
 #X msg 217 292 \$1 10;
 #X obj 220 272 hsl 128 15 0 1 0 0 empty empty volume -2 -8 0 10 -262144
--1 -1 0 0;
+-1 -1 6200 0;
 #X obj 126 429 dac~ 1 2;
 #X obj 77 195 jl.gshot~ gshot;
 #X msg 48 135 1;
