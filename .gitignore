@@ -1,3 +1,10 @@
 **/.DS_Store
 **/Thumbs.db
 
+helpfiles/tests/*
+
+src/*
+!src/dependencies/*
+!src/externals/*
+!src/Makefile
+!src/build.sh
