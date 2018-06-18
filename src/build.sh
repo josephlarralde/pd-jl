@@ -18,7 +18,7 @@ mkdir $JLDIR"/src";
 cp -r ./* $JLDIR"/src";
 
 # or
-# modify the makefile to install binaries in ~/Documents/Pd/externals, switch JLDIR
+# modify the makefile to install binaries in ~/Documents/Pd/externals, switch JLDIR above
 # and comment the lines that copy the sources
 
 # then you can run some test patch after build :
