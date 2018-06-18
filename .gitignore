@@ -1,6 +1,9 @@
 **/.DS_Store
 **/Thumbs.db
 
+# this one is generated
+jl/
+
 abstractions/tests/*
 
 src/*

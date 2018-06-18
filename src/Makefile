@@ -9,7 +9,8 @@ stut~.class.sources = externals/stut~.cpp dependencies/jl.cpp.lib/dsp/effects/St
 datafiles =
 
 # update path to reflect your environment
-PDLIBDIR="/Users/larralde/Documents/Pd/externals"
+# PDLIBDIR="/Users/larralde/Documents/Pd/externals"
+PDLIBDIR=".."
 
 # include Makefile.pdlibbuilder from submodule directory 'pd-lib-builder'
 # update path to reflect your environment
