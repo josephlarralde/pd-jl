@@ -1,3 +1,3 @@
 # jl.pd.lib
 
-#### library of abstractions for pure-data vanilla
+#### a collection of externals and abstractions for pure-data vanilla
