@@ -9,8 +9,6 @@
  * for legal issues please see the file LICENSE.txt
  */
 
-// WORK IN PROGRESS ...
-
 #include "m_pd.h"
 #include "../dependencies/jl.cpp.lib/dsp/effects/Stut.h"
 

@@ -1,7 +1,7 @@
 **/.DS_Store
 **/Thumbs.db
 
-helpfiles/tests/*
+abstractions/tests/*
 
 src/*
 !src/dependencies/*
