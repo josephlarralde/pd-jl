@@ -1,14 +1,16 @@
 # library name
 lib.name = jl
 
+EXT=src/externals
+DEP=src/dependencies
+ABS=abstractions
+HLP=helpfiles
+
 # input source files
-gbend~.class.sources = externals/gbend~.cpp dependencies/jl.cpp.lib/dsp/sampler/Gbend.cpp
-stut~.class.sources = externals/stut~.cpp dependencies/jl.cpp.lib/dsp/effects/Stut.cpp
+gbend~.class.sources = $(EXT)/gbend~.cpp $(DEP)/jl.cpp.lib/dsp/sampler/Gbend.cpp
+stut~.class.sources = $(EXT)/stut~.cpp $(DEP)/jl.cpp.lib/dsp/effects/Stut.cpp
 
 # all extra files to be included in binary distribution of the library
-ABS=../abstractions
-HLP=../helpfiles
-
 datafiles = \
 $(ABS)/equalgainsplit~.pd \
 $(ABS)/equalgainmerge~.pd \
@@ -39,9 +41,19 @@ $(ABS)/scale.pd
 
 # update path to reflect your environment
 # PDLIBDIR="/Users/larralde/Documents/Pd/externals"
-PDLIBDIR=".."
+PDLIBDIR="."
 
 # include Makefile.pdlibbuilder from submodule directory 'pd-lib-builder'
 # update path to reflect your environment
-PDLIBBUILDER_DIR=dependencies/pd-lib-builder/
+PDLIBBUILDER_DIR=$(DEP)/pd-lib-builder/
 include $(PDLIBBUILDER_DIR)/Makefile.pdlibbuilder
+
+source:
+	rm -rf ./jl;
+	mkdir jl;
+	cp Makefile ./jl;
+	cp -r ./abstractions ./jl/abstractions;
+	cp -r ./helpfiles ./jl/helpfiles;
+	cp -r ./src ./jl/src;
+	cd jl;
+	(find . -name ".git" && find . -name ".gitignore" && find . -name ".gitmodules") | xargs rm -rf;
