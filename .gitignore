@@ -4,6 +4,8 @@
 # this one is generated
 jl/
 
+archive/
+
 abstractions/tests/*
 
 src/*

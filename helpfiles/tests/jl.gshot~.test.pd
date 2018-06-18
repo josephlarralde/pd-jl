@@ -1,0 +1,39 @@
+#N canvas 369 135 407 489 10;
+#X obj 238 164 table gshot;
+#X obj 239 109 soundfiler;
+#X obj 239 65 openpanel;
+#X obj 239 45 bng 15 250 50 0 empty empty load_a_soundfile 17 7 0 10
+-262144 -1 -1;
+#X msg 239 87 read -resize \$1 gshot;
+#X obj 48 105 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 145 392 *~;
+#X obj 217 315 line~;
+#X msg 217 292 \$1 10;
+#X obj 220 272 hsl 128 15 0 1 0 0 empty empty volume -2 -8 0 10 -262144
+-1 -1 0 0;
+#X obj 126 429 dac~ 1 2;
+#X obj 77 195 jl.gshot~ gshot;
+#X msg 48 135 1;
+#X msg 292 372 \; pd dsp \$1;
+#X obj 292 349 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 77 136 0;
+#X msg 120 136 pitch \$1;
+#X floatatom 120 105 5 0 0 0 - - -, f 5;
+#X connect 1 0 11 2;
+#X connect 2 0 4 0;
+#X connect 3 0 2 0;
+#X connect 4 0 1 0;
+#X connect 5 0 12 0;
+#X connect 6 0 10 0;
+#X connect 6 0 10 1;
+#X connect 7 0 6 1;
+#X connect 8 0 7 0;
+#X connect 9 0 8 0;
+#X connect 11 0 6 0;
+#X connect 12 0 11 0;
+#X connect 14 0 13 0;
+#X connect 15 0 11 0;
+#X connect 16 0 11 0;
+#X connect 17 0 16 0;

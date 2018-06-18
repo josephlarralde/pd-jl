@@ -1,3 +1,13 @@
 # jl.pd.lib
 
 #### a collection of externals and abstractions for pure-data vanilla
+
+To install the library on your machine, first clone this repository :
+`git clone --recursive https://github.com/josephlarralde/jl.pd.lib.git`
+
+Then go to `src/` and run `make install`
+By default this creates a `jl` directory at the root of this folder, that you
+can copy somewhere and add to pd's paths list.
+Or you can specify your own install location (`PDLIBDIR`) in `src/Makefile`.
+
+This library should be available soon via pd's integrated package manager `deken`.
