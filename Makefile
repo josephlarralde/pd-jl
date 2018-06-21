@@ -48,6 +48,8 @@ PDLIBDIR="."
 PDLIBBUILDER_DIR=$(DEP)/pd-lib-builder/
 include $(PDLIBBUILDER_DIR)/Makefile.pdlibbuilder
 
+# found here
+# https://stackoverflow.com/questions/4822321/remove-all-git-files-from-a-directory
 source:
 	rm -rf ./jl;
 	mkdir jl;
