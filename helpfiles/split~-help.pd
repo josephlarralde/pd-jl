@@ -1,0 +1,36 @@
+#N canvas 0 23 677 429 10;
+#X text 501 371 see also :;
+#X obj 52 100 phasor~ 300;
+#X obj 80 305 *~;
+#X obj 162 246 line~;
+#X msg 162 226 \$1 10;
+#X obj 80 327 dac~ 1 2;
+#X obj 165 207 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X text 272 285 - rightmost inlet :;
+#X obj 571 371 jl/merge~;
+#X obj 80 219 jl/split~;
+#X obj 131 304 *~;
+#X obj 162 100 osc~ 1;
+#X obj 162 120 *~ 0.5;
+#X obj 162 140 +~ 0.5;
+#X text 44 29 split~ - joseph larralde \, 2018;
+#X text 273 138 split (pan) an audio signal using a sqrt transfer function
+to compute the internal unmixing factors \, resulting in a pretty much
+constant power of the output signal.;
+#X text 272 263 - leftmost inlet : the signal to pan;
+#X text 392 285 a panning value between 0 (pan left);
+#X text 392 299 and 1 (pan right);
+#X text 272 318 - outlets : the panned stereo signal;
+#X connect 1 0 9 0;
+#X connect 2 0 5 0;
+#X connect 3 0 2 1;
+#X connect 3 0 10 1;
+#X connect 4 0 3 0;
+#X connect 6 0 4 0;
+#X connect 9 0 2 0;
+#X connect 9 1 10 0;
+#X connect 10 0 5 1;
+#X connect 11 0 12 0;
+#X connect 12 0 13 0;
+#X connect 13 0 9 1;

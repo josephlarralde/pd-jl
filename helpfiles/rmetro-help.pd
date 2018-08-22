@@ -1,0 +1,46 @@
+#N canvas 0 23 640 433 10;
+#X text 44 29 rmetro - joseph larralde \, 2018;
+#X obj 58 182 jl/rmetro 120;
+#X obj 58 88 tgl 36 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X text 210 121 arguments : <base period (ms)> <max randomly added
+(ms)>;
+#X text 339 251 (the factor of a power function applied to;
+#X floatatom 83 128 5 0 0 0 - - -, f 5;
+#X floatatom 108 146 5 0 0 0 - - -, f 5;
+#X floatatom 133 164 5 0 0 0 - - -, f 5;
+#X floatatom 133 261 5 0 0 0 - - -, f 5;
+#X floatatom 95 285 5 0 0 0 - - -, f 5;
+#X obj 58 321 bng 36 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 220 179 - leftmost inlet : on/off (0/1);
+#X text 220 238 - rightmost inlet : the randomness distribution factor
+;
+#X text 220 359 - center outlet : duration since previous tick (ms)
+;
+#X text 282 134 <randomness distribution factor (default : 1)>;
+#X text 209 159 The 4 inlets are waiting for the following number values
+:;
+#X text 220 195 - center left inlet : base period of the metro (ms)
+;
+#X text 220 211 - center right inlet : maximum random value added to
+base;
+#X text 358 223 period on each tick (ms);
+#X text 210 311 The 3 outlets output the following values on each tick
+(respecting the usual right to left order) :;
+#X text 220 343 - leftmost outlet : bang !;
+#X text 220 375 - rightmost outlet : duration until next tick (ms)
+;
+#X text 340 264 a normalized random value which is then;
+#X text 340 277 scaled to the [0 \, <max randomly added>];
+#X text 340 290 interval);
+#X text 210 70 rmetro (short for random metro) is based on the vanilla
+metro object \, providing additional "period randomness" and "period
+randomness distribution" parameters.;
+#X connect 1 0 10 0;
+#X connect 1 1 9 0;
+#X connect 1 2 8 0;
+#X connect 2 0 1 0;
+#X connect 5 0 1 1;
+#X connect 6 0 1 2;
+#X connect 7 0 1 3;

@@ -29,7 +29,7 @@ typedef struct _stut_tilde {
 
 //============================================================================//
 
-class PdStut : public Stut {
+class PdStut : public jl::Stut {
 private:
   t_stut_tilde *x;
 

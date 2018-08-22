@@ -1,15 +1,9 @@
 **/.DS_Store
 **/Thumbs.db
 
-# this one is generated
+# this one might be generated here
 jl/
 
 archive/
 
-abstractions/tests/*
-
-src/*
-!src/dependencies/*
-!src/externals/*
-!src/Makefile
-!src/build.sh
+helpfiles/tests/*

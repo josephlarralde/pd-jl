@@ -1,0 +1,97 @@
+#N canvas 0 23 852 489 10;
+#X text 44 29 feedfm~ - joseph larralde \, 2018;
+#X floatatom 65 94 5 0 0 2 frequency - -, f 5;
+#X obj 148 352 *~;
+#X obj 169 329 line~;
+#X obj 172 290 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X msg 169 309 \$1 10;
+#X obj 131 386 dac~ 1 2;
+#X floatatom 65 125 5 0 0 2 carrier_ratio - -, f 5;
+#X floatatom 66 156 5 0 0 2 modulator_ratio - -, f 5;
+#X floatatom 233 94 5 0 0 2 fixed_modulator_frequency - -, f 5;
+#X floatatom 233 125 5 0 0 2 fixed_modulator_index - -, f 5;
+#X text 435 157 The 4 leftmost inlets \, from left to right \, correspond
+to the following DX7 operator parameters :;
+#X text 446 189 - leftmost inlet : base frequency;
+#X text 446 205 - second inlet : carrier ratio (most of the time 1)
+;
+#X text 446 221 - third inlet : modulator ratio (integer multiples
+of the;
+#X text 541 233 carrier ratio generate harmonic spectra);
+#X text 436 272 The 2 next inlets correspond to the constant modulation
+parameters :;
+#X text 446 304 - fifth inlet : fixed modulator frequency;
+#X text 446 320 - sixth inlet : fixed modulator index;
+#X obj 126 258 jl/feedfm~;
+#X floatatom 279 194 5 0 0 2 feedback - -, f 5;
+#X floatatom 67 187 5 0 0 2 modulation_index - -, f 5;
+#X text 435 74 feedfm~ (short for feedback frequency modulation) is
+a vanilla implementation of something in between a DX7 operator and
+a very basic frequency modulation synthesizer \, allowing to use all
+the parameters from both approaches on the same pair of oscillators
+\, e.g. using the modulator as timbre control and the fixed modulator
+as a vibrato.;
+#N canvas 159 48 546 366 wobble-example 0;
+#X msg 300 78 0.75;
+#X floatatom 239 59 5 0 0 0 - - -, f 5;
+#X obj 239 98 *~ 0.5;
+#X obj 221 266 *~;
+#X obj 286 221 line~;
+#X obj 289 182 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X msg 286 201 \$1 10;
+#X obj 204 300 dac~ 1 2;
+#X obj 152 204 jl/feedfm~;
+#X obj 98 84 loadbang;
+#X msg 98 116 1;
+#X msg 127 116 0.51;
+#X floatatom 69 153 5 0 0 0 - - -, f 5;
+#X obj 239 78 osc~ 2.66;
+#X obj 239 118 +~ 0.5;
+#X msg 69 116 90;
+#X obj 239 137 *~ 2;
+#X text 287 111 an LFO controlling the modulator index;
+#X text 36 63 some nice bass sound settings;
+#X connect 0 0 13 1;
+#X connect 1 0 13 0;
+#X connect 2 0 14 0;
+#X connect 3 0 7 0;
+#X connect 3 0 7 1;
+#X connect 4 0 3 1;
+#X connect 5 0 6 0;
+#X connect 6 0 4 0;
+#X connect 8 0 3 0;
+#X connect 9 0 10 0;
+#X connect 9 0 11 0;
+#X connect 9 0 15 0;
+#X connect 10 0 8 1;
+#X connect 11 0 8 2;
+#X connect 12 0 8 0;
+#X connect 13 0 2 0;
+#X connect 14 0 16 0;
+#X connect 15 0 12 0;
+#X connect 16 0 8 3;
+#X restore 439 406 pd wobble-example;
+#X obj 403 45 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 403 436 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 446 248 - fourth inlet : modulator index;
+#X text 436 341 The rightmost inlet is a feedback control inlet. It
+generates some unstable sounds \, and if set high enough will produce
+interesting white noises.;
+#X connect 1 0 19 0;
+#X connect 2 0 6 0;
+#X connect 2 0 6 1;
+#X connect 3 0 2 1;
+#X connect 4 0 5 0;
+#X connect 5 0 3 0;
+#X connect 7 0 19 1;
+#X connect 8 0 19 2;
+#X connect 9 0 19 4;
+#X connect 10 0 19 5;
+#X connect 19 0 2 0;
+#X connect 20 0 19 6;
+#X connect 21 0 19 3;
+#X connect 24 0 25 0;

@@ -1,0 +1,465 @@
+#N canvas 0 23 1099 728 10;
+#X text 592 331 input messages :;
+#X text 592 515 output value (right outlet) :;
+#X text 598 563 - 2 on sample looping after reaching selection end
+;
+#X text 598 435 - fado <duration (ms)> : fade-out duration (default
+5ms);
+#X text 598 421 - fadi <duration (ms)> : fade-in duration (default
+5ms);
+#X text 598 461 - interrupt <duration (ms)> : interrupt fade-out duration
+;
+#X text 944 461 (default 5ms);
+#X text 598 535 - 0 on sample stopping with the stop message;
+#X text 598 549 - 1 on sample reaching selection end and stopping;
+#N canvas 330 48 441 311 about-fades 0;
+#X text 41 52 - the fade-in duration (fadi);
+#X text 41 68 - the fade-out duration (fado);
+#X text 41 84 - the interrupt fade duration (interrupt);
+#X text 41 101 - the release fade duration (release);
+#X text 41 124 The fade-in is always applied at the start of a slice
+\, and the fade-out at its end \, or before if the stop message is
+called. If the sum of their durations exceeds the slice's duration
+\, they are scaled down until they fit it.;
+#X text 41 175 The interrupt fade is applied anytime a bang is received
+to shut the current audio going out (input thru or current slice) \,
+and when the envelope reaches zero the new slice starts looping and
+fading-in. In a complementary manner \, the release fade is applied
+whenever a looping slice stops and lets the audio input pass through
+again : right after the fade-out reaches zero \, the interrupt fade
+starts on the passed through input.;
+#X text 41 31 stut~ has 4 distinct fade parameters to play with :;
+#X restore 598 647 pd about-fades;
+#X obj 543 26 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 543 677 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 594 250 cnv 15 80 25 empty empty REFERENCE 5 12 0 12 -233017
+-66577 0;
+#X text 598 448 - fade <duration (ms)> : shortcut for fadi AND fado
+;
+#X text 77 46 stut~ - joseph larralde \, 2018;
+#X obj 87 330 jl/stut~ 5000;
+#X text 592 288 argument : internal buffer duration in ms (default
+1000ms);
+#X text 592 309 input signal : audio input to be stutted;
+#X text 598 379 - duration <slice duration (ms)> : duration of a slice
+;
+#X text 598 351 - bang : start stutting using actual parameters;
+#X text 598 393 - slices <number of slices> :;
+#X text 779 393 number of slices to play on bang;
+#X text 779 406 -1 means infinite slices;
+#X text 598 365 - stop : stop stutting and pass audio through;
+#X text 916 474 (default 5ms);
+#X text 592 494 output signal : the stutted or passed through audio
+input;
+#X text 598 474 - release <duration (ms)> : release fade-in duration
+;
+#X obj 369 477 s to-stut;
+#X obj 96 309 r to-stut;
+#X obj 87 421 *~;
+#X obj 66 452 dac~ 1 2;
+#X obj 115 396 line~;
+#X msg 115 377 \$1 10;
+#X obj 118 357 hsl 128 16 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X msg 335 369 stop;
+#X obj 181 240 spigot;
+#X obj 237 138 tgl 35 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 372 369 hsl 128 16 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X msg 369 449 duration \$1;
+#X obj 317 369 bng 16 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 359 101 500 487 beatbox 0;
+#N canvas 305 172 450 300 kick 0;
+#X obj 185 220 *~;
+#X obj 217 182 line~;
+#X obj 271 115 delay 10;
+#X obj 327 115 delay 20;
+#X obj 217 16 inlet;
+#X obj 217 37 t b b;
+#X msg 327 84 stop;
+#X obj 185 255 outlet~;
+#X obj 112 92 osc~ 90;
+#X msg 327 138 0 400;
+#X obj 112 116 *~ 0.75;
+#X msg 217 115 1 10;
+#X msg 271 139 0.25 10;
+#X connect 0 0 7 0;
+#X connect 1 0 0 1;
+#X connect 2 0 12 0;
+#X connect 3 0 9 0;
+#X connect 4 0 5 0;
+#X connect 5 0 3 0;
+#X connect 5 0 2 0;
+#X connect 5 0 11 0;
+#X connect 5 1 6 0;
+#X connect 6 0 3 0;
+#X connect 6 0 2 0;
+#X connect 8 0 10 0;
+#X connect 9 0 1 0;
+#X connect 10 0 0 0;
+#X connect 11 0 1 0;
+#X connect 12 0 1 0;
+#X restore 106 204 pd kick;
+#X obj 106 328 *~;
+#X obj 275 206 vsl 15 64 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 6300 0;
+#X obj 157 328 *~;
+#X obj 326 206 vsl 15 64 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 6300 0;
+#N canvas 305 172 450 300 snare 0;
+#X obj 185 220 *~;
+#X obj 217 182 line~;
+#X obj 217 16 inlet;
+#X obj 217 37 t b b;
+#X msg 310 84 stop;
+#X obj 185 255 outlet~;
+#X obj 83 81 noise~;
+#X msg 254 139 0.2 10;
+#X msg 311 138 0 150;
+#X obj 83 104 bp~ 1200 3;
+#X msg 217 115 1 5;
+#X obj 254 115 delay 5;
+#X obj 310 115 delay 15;
+#X obj 83 126 *~ 0.75;
+#X connect 0 0 5 0;
+#X connect 1 0 0 1;
+#X connect 2 0 3 0;
+#X connect 3 0 10 0;
+#X connect 3 0 11 0;
+#X connect 3 0 12 0;
+#X connect 3 1 4 0;
+#X connect 4 0 11 0;
+#X connect 4 0 12 0;
+#X connect 6 0 9 0;
+#X connect 7 0 1 0;
+#X connect 8 0 1 0;
+#X connect 9 0 13 0;
+#X connect 10 0 1 0;
+#X connect 11 0 7 0;
+#X connect 12 0 8 0;
+#X connect 13 0 0 0;
+#X restore 157 204 pd snare;
+#X obj 157 184 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 106 184 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 214 328 *~;
+#X obj 381 206 vsl 15 64 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 6300 0;
+#X obj 214 184 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 305 172 450 300 hh 0;
+#X obj 185 220 *~;
+#X obj 217 182 line~;
+#X msg 217 115 1 10;
+#X obj 254 115 delay 10;
+#X obj 217 16 inlet;
+#X obj 217 37 t b b;
+#X msg 310 84 stop;
+#X obj 185 255 outlet~;
+#X obj 85 67 noise~;
+#X msg 254 139 0.3 20;
+#X msg 310 138 0 100;
+#X obj 310 115 delay 30;
+#X obj 85 91 bp~ 9000 13;
+#X obj 85 113 *~ 0.05;
+#X connect 0 0 7 0;
+#X connect 1 0 0 1;
+#X connect 2 0 1 0;
+#X connect 3 0 9 0;
+#X connect 4 0 5 0;
+#X connect 5 0 3 0;
+#X connect 5 0 2 0;
+#X connect 5 0 11 0;
+#X connect 5 1 6 0;
+#X connect 6 0 3 0;
+#X connect 6 0 11 0;
+#X connect 8 0 12 0;
+#X connect 9 0 1 0;
+#X connect 10 0 1 0;
+#X connect 11 0 10 0;
+#X connect 12 0 13 0;
+#X connect 13 0 0 0;
+#X restore 214 204 pd hh;
+#X obj 326 140 loadbang;
+#X msg 326 160 1, f 4;
+#X obj 123 134 unpack f f f;
+#X obj 106 161 sel 1;
+#X obj 157 161 sel 1;
+#X obj 214 161 sel 1;
+#X obj 123 98 inlet;
+#X obj 157 409 outlet~;
+#X obj 157 385 *~ 1.2;
+#X connect 0 0 1 0;
+#X connect 1 0 20 0;
+#X connect 2 0 1 1;
+#X connect 3 0 20 0;
+#X connect 4 0 3 1;
+#X connect 5 0 3 0;
+#X connect 6 0 5 0;
+#X connect 7 0 0 0;
+#X connect 8 0 20 0;
+#X connect 9 0 8 1;
+#X connect 10 0 11 0;
+#X connect 11 0 8 0;
+#X connect 12 0 13 0;
+#X connect 13 0 9 0;
+#X connect 13 0 4 0;
+#X connect 13 0 2 0;
+#X connect 14 0 15 0;
+#X connect 14 1 16 0;
+#X connect 14 2 17 0;
+#X connect 15 0 7 0;
+#X connect 16 0 6 0;
+#X connect 17 0 10 0;
+#X connect 18 0 14 0;
+#X connect 20 0 19 0;
+#X restore 87 281 pd beatbox;
+#N canvas 0 23 440 516 sequencer 0;
+#X obj 175 133 metro;
+#X obj 188 182 f;
+#X obj 188 224 t f f;
+#X obj 238 203 + 1;
+#X obj 188 203 % 16;
+#X floatatom 165 256 5 0 0 0 - - -, f 5;
+#X obj 175 86 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 244 86 5 0 0 0 - - -, f 5;
+#X obj 113 346 % 8;
+#X obj 159 339 % 8;
+#X obj 159 321 + 4;
+#X obj 214 340 % 1;
+#X msg 213 153 0;
+#X obj 244 181 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 213 133 sel 0;
+#X obj 113 365 == 0;
+#X obj 159 358 == 0;
+#X obj 214 359 == 0;
+#X obj 131 409 pack f f f;
+#X obj 131 433 outlet;
+#X obj 175 42 inlet;
+#X obj 244 42 inlet;
+#X obj 347 431 outlet;
+#X obj 95 385 +;
+#X obj 82 324 t f f;
+#X obj 75 359 == 7;
+#X obj 165 276 t f f f f;
+#X connect 0 0 1 0;
+#X connect 1 0 4 0;
+#X connect 2 0 5 0;
+#X connect 2 1 3 0;
+#X connect 3 0 1 1;
+#X connect 4 0 2 0;
+#X connect 5 0 26 0;
+#X connect 6 0 0 0;
+#X connect 6 0 14 0;
+#X connect 7 0 0 1;
+#X connect 8 0 15 0;
+#X connect 9 0 16 0;
+#X connect 10 0 9 0;
+#X connect 11 0 17 0;
+#X connect 12 0 1 1;
+#X connect 12 0 13 0;
+#X connect 14 0 12 0;
+#X connect 15 0 23 1;
+#X connect 16 0 18 1;
+#X connect 17 0 18 2;
+#X connect 18 0 19 0;
+#X connect 20 0 6 0;
+#X connect 21 0 7 0;
+#X connect 23 0 18 0;
+#X connect 24 0 25 0;
+#X connect 24 1 8 0;
+#X connect 25 0 23 0;
+#X connect 26 0 24 0;
+#X connect 26 1 10 0;
+#X connect 26 2 11 0;
+#X connect 26 3 22 0;
+#X restore 87 179 pd sequencer;
+#X obj 71 117 tgl 35 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 156 140 5 0 0 0 - - -, f 5;
+#X msg 91 605 fadi \$1;
+#X msg 145 605 fado \$1;
+#X msg 199 605 fade \$1;
+#X floatatom 91 586 5 0 0 0 - - -, f 5;
+#X floatatom 145 586 5 0 0 0 - - -, f 5;
+#X floatatom 199 586 5 0 0 0 - - -, f 5;
+#X floatatom 265 586 5 0 0 0 - - -, f 5;
+#X msg 265 605 interrupt \$1;
+#X floatatom 349 586 5 0 0 0 - - -, f 5;
+#X msg 349 605 release \$1;
+#X obj 145 650 s to-stut;
+#X msg 181 280 duration \$1 \, slices \$2 \, bang;
+#X obj 306 647 s to-stut;
+#X text 278 147 < stut !;
+#X msg 96 233 0 1 1;
+#X msg 96 213 set \$1 \$2 \$3;
+#X obj 156 159 t f f;
+#X msg 344 429 slices -1 \, bang;
+#X obj 369 389 * 200;
+#X obj 369 409 + 1;
+#X msg 317 477 0 1 0;
+#X text 592 50 stut~ is what is commonly named a stutter effect. It
+is very close to a looper effect (and could be used as such) \, but
+its purpose is to allow to "freeze" some audio signal in a short loop
+at any moment and play this loop for a specific number of times \,
+or loop until it gets stopped manually. The loop size can be changed
+dynamically. It is updated on first bang for the first loop \, then
+on each loop end for the next loop.;
+#X obj 317 496 s to-beatbox;
+#X text 199 558 all fade values;
+#N canvas 582 197 366 371 compute-params 0;
+#X obj 123 224 swap;
+#X obj 123 204 t f f;
+#X obj 123 264 pack f f;
+#X obj 123 244 /;
+#X obj 212 122 * 2;
+#X obj 123 144 sel 0;
+#X obj 123 124 % 2;
+#X obj 123 184 + 1;
+#X obj 123 46 inlet;
+#X obj 212 46 inlet;
+#X obj 123 306 outlet;
+#X text 195 163 < 1 to 4 slices;
+#X obj 123 164 random 6;
+#X connect 0 0 3 0;
+#X connect 0 1 3 1;
+#X connect 1 0 0 0;
+#X connect 1 1 2 1;
+#X connect 2 0 10 0;
+#X connect 3 0 2 0;
+#X connect 4 0 0 1;
+#X connect 5 0 12 0;
+#X connect 6 0 5 0;
+#X connect 7 0 1 0;
+#X connect 8 0 6 0;
+#X connect 9 0 4 0;
+#X connect 12 0 7 0;
+#X restore 181 260 pd compute-params;
+#X obj 96 260 r to-beatbox;
+#X obj 156 102 loadbang;
+#X msg 156 121 240;
+#X text 329 339 playing with the duration :;
+#X obj 317 409 t b b;
+#N canvas 170 48 769 473 my-favourite-psychotropic-audio-effect 0;
+#X obj 94 278 jl/stut~ 5000;
+#X obj 180 278 jl/stut~ 5000;
+#X obj 46 95 adc~ 1;
+#X obj 221 379 *~;
+#X obj 186 413 dac~ 1 2;
+#X obj 242 346 line~;
+#X msg 242 326 \$1 10;
+#X obj 245 307 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X obj 195 379 *~;
+#X obj 237 31 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 293 194 pack f f;
+#X obj 293 114 + 1;
+#X msg 293 234 duration \$1 \, slices \$2 \, bang;
+#X obj 183 194 pack f f;
+#X obj 183 114 + 1;
+#X msg 183 214 duration \$1 \, slices \$2 \, bang;
+#X obj 183 94 random 10;
+#X obj 293 94 random 10;
+#X obj 183 74 jl/rmetro 120 500;
+#X obj 293 74 jl/rmetro 120 500;
+#X obj 183 134 t f f;
+#X obj 293 134 t f f;
+#X obj 183 154 swap;
+#X obj 183 174 /;
+#X obj 293 154 swap;
+#X obj 293 174 /;
+#X text 383 307 < beware of larsens and consider using a headphone
+before raising this volume slider;
+#X text 256 30 < enable effect;
+#X connect 0 0 8 0;
+#X connect 1 0 3 0;
+#X connect 2 0 0 0;
+#X connect 2 0 1 0;
+#X connect 3 0 4 1;
+#X connect 5 0 3 1;
+#X connect 5 0 8 1;
+#X connect 6 0 5 0;
+#X connect 7 0 6 0;
+#X connect 8 0 4 0;
+#X connect 9 0 18 0;
+#X connect 9 0 19 0;
+#X connect 10 0 12 0;
+#X connect 11 0 21 0;
+#X connect 12 0 1 0;
+#X connect 13 0 15 0;
+#X connect 14 0 20 0;
+#X connect 15 0 0 0;
+#X connect 16 0 14 0;
+#X connect 17 0 11 0;
+#X connect 18 0 16 0;
+#X connect 18 1 22 1;
+#X connect 19 0 17 0;
+#X connect 19 1 24 1;
+#X connect 20 0 22 0;
+#X connect 20 1 13 1;
+#X connect 21 0 24 0;
+#X connect 21 1 10 1;
+#X connect 22 0 23 0;
+#X connect 22 1 23 1;
+#X connect 23 0 13 0;
+#X connect 24 0 25 0;
+#X connect 24 1 25 1;
+#X connect 25 0 10 0;
+#X restore 701 647 pd my-favourite-psychotropic-audio-effect;
+#X text 592 151 The number of slices and the duration of the first
+slice must be determined before the bang message is sent. In the beatbox
+example on the left \, the pulsation's period is known in advance and
+is used to expand the rhythmic base with eighth-notes \, triplets \,
+etc.;
+#X connect 10 0 11 0;
+#X connect 15 0 29 0;
+#X connect 28 0 15 0;
+#X connect 29 0 30 0;
+#X connect 29 0 30 1;
+#X connect 31 0 29 1;
+#X connect 32 0 31 0;
+#X connect 33 0 32 0;
+#X connect 34 0 27 0;
+#X connect 35 0 68 0;
+#X connect 36 0 35 1;
+#X connect 37 0 62 0;
+#X connect 38 0 27 0;
+#X connect 39 0 73 0;
+#X connect 40 0 15 0;
+#X connect 41 0 40 0;
+#X connect 41 0 59 0;
+#X connect 41 1 35 0;
+#X connect 42 0 41 0;
+#X connect 43 0 60 0;
+#X connect 44 0 54 0;
+#X connect 45 0 54 0;
+#X connect 46 0 54 0;
+#X connect 47 0 44 0;
+#X connect 48 0 45 0;
+#X connect 49 0 46 0;
+#X connect 50 0 51 0;
+#X connect 51 0 56 0;
+#X connect 52 0 53 0;
+#X connect 53 0 56 0;
+#X connect 55 0 15 0;
+#X connect 59 0 58 0;
+#X connect 60 0 41 1;
+#X connect 60 1 68 1;
+#X connect 61 0 27 0;
+#X connect 62 0 63 0;
+#X connect 63 0 38 0;
+#X connect 64 0 66 0;
+#X connect 68 0 55 0;
+#X connect 69 0 40 0;
+#X connect 70 0 71 0;
+#X connect 71 0 43 0;
+#X connect 73 0 64 0;
+#X connect 73 1 61 0;

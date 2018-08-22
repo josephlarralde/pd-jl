@@ -23,6 +23,7 @@ typedef struct _gbend_tilde {
 
   t_object x_obj;
   t_symbol *x_arrayname;
+  float x_arraysr;
 
   int x_npoints; // samples in buffer
   float *x_vec; // ref on the actual buffer (null if 0)
@@ -31,9 +32,7 @@ typedef struct _gbend_tilde {
   int x_next_npoints;
   float *x_next_vec;
 
-  float x_f; // this is used in setup function
-
-  // float arrayms;
+  float x_f; // this is used in setup function for signal inlet
 
   //************** ADDED ***************//
 
@@ -41,16 +40,13 @@ typedef struct _gbend_tilde {
   t_outlet *x_out;
   t_outlet *f_out;
 
-  // float w_msr;
-  // long w_blk;
-
 } t_gbend_tilde;
 
 //============================================================================//
 
 // example of class derived from Gbend to use the callbacks in pure data :
 
-class PdGbend : public Gbend {
+class PdGbend : public jl::Gbend {
 private:
   t_gbend_tilde *x;
 
@@ -76,27 +72,22 @@ public:
 
 //============================================================================//
 
-void gbend_tilde_set(t_gbend_tilde *x, t_symbol *s) {
+void gbend_tilde_set(t_gbend_tilde *x, t_symbol *s, t_floatarg f) {
   x->x_arrayname = s;
+  x->x_arraysr = (f > 0) ? f : sys_getsr();
   t_garray *a;
 
   if (!(a = (t_garray *)pd_findbyclass(x->x_arrayname, garray_class))) {
     if (*s->s_name) {
       pd_error(x, "gbend~: %s: no such array", x->x_arrayname->s_name);
     }
-
     x->x_next_vec = 0;
   } else if (!garray_getfloatarray(a, &x->x_next_npoints, &x->x_next_vec)) {
     pd_error(x, "%s: bad template for gbend~", x->x_arrayname->s_name);
     x->x_next_vec = 0;
   } else {
-    // HERE WE GET LENGTH OF ARRAY
-    // LET'S CALCULATE IN MILLISECONDS ... AND RETURN IT THRU RIGHT OUTLET.
     garray_usedindsp(a);
-
-    // we assume the buffer has the same sampling rate as pd
-    // @todo: find out how to get the sampling rate of a buffer
-    x->player->setBuffer(x->x_next_vec, x->x_next_npoints, sys_getsr());
+    x->player->setBuffer(x->x_next_vec, x->x_next_npoints, x->x_arraysr);
   }
 }
 
@@ -167,8 +158,9 @@ t_int *gbend_tilde_perform(t_int *w) {
 }
 
 void gbend_tilde_dsp(t_gbend_tilde *x, t_signal **sp) {
+  
   gbend_tilde_setsr(x, sys_getsr());
-  gbend_tilde_set(x, x->x_arrayname);
+  gbend_tilde_set(x, x->x_arrayname, x->x_arraysr);
 
   dsp_add(gbend_tilde_perform, 4, x,
           sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
@@ -185,6 +177,7 @@ void *gbend_tilde_new(t_symbol *s) {
   t_gbend_tilde *x = (t_gbend_tilde *)pd_new(gbend_tilde_class);
 
   x->x_arrayname = s;
+  x->x_arraysr = sys_getsr();
   //if(x->x_arrayname == gensym("")) post("no table affected");
 
   x->x_vec = 0;
@@ -194,7 +187,7 @@ void *gbend_tilde_new(t_symbol *s) {
   x->player->setObject(x);
 
   gbend_tilde_setsr(x, sys_getsr());
-  gbend_tilde_set(x, s);
+  gbend_tilde_set(x, x->x_arrayname, x->x_arraysr);
 
   x->x_out = outlet_new(&x->x_obj, &s_signal);
   x->f_out = outlet_new(&x->x_obj, &s_float);
@@ -228,7 +221,7 @@ void gbend_tilde_setup(void) {
 
   class_addbang(gbend_tilde_class, gbend_tilde_bang);
   class_addmethod(gbend_tilde_class, (t_method)gbend_tilde_dsp, gensym("dsp"), A_NULL);
-  class_addmethod(gbend_tilde_class, (t_method)gbend_tilde_set, gensym("set"), A_SYMBOL, 0);
+  class_addmethod(gbend_tilde_class, (t_method)gbend_tilde_set, gensym("set"), A_DEFSYM, A_DEFFLOAT, 0);
   class_addmethod(gbend_tilde_class, (t_method)gbend_tilde_stop, gensym("stop"), A_NULL);
   class_addmethod(gbend_tilde_class, (t_method)gbend_tilde_pitch, gensym("pitch"), A_DEFFLOAT, 0);
   class_addmethod(gbend_tilde_class, (t_method)gbend_tilde_fade, gensym("fade"), A_DEFFLOAT, 0);

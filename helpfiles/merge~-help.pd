@@ -1,0 +1,39 @@
+#N canvas 0 23 677 429 10;
+#X obj 571 371 jl/split~;
+#X text 501 371 see also :;
+#X obj 36 90 phasor~ 300;
+#X obj 191 90 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X floatatom 196 110 5 0 0 0 - - -, f 5;
+#X obj 115 303 *~;
+#X obj 161 263 line~;
+#X msg 161 243 \$1 10;
+#X obj 95 342 dac~ 1 2;
+#X obj 164 224 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X obj 188 149 line~;
+#X msg 188 130 \$1 10;
+#X text 44 29 merge~ - joseph larralde \, 2018;
+#X text 272 263 - leftmost and center inlets : the two signals to mix
+;
+#X text 272 318 - outlet : the mixed signal;
+#X text 272 285 - rightmost inlet :;
+#X text 392 299 only) and 1 (right signal only);
+#X text 392 285 a crossfade value between 0 (left signal;
+#X text 273 138 merge (mix) two audio signals using a sqrt transfer
+function to compute the internal mixing factors \, resulting in a pretty
+much constant power of the output signal.;
+#X obj 85 214 jl/merge~;
+#X obj 110 90 phasor~ 303;
+#X connect 2 0 19 0;
+#X connect 3 0 4 0;
+#X connect 3 0 11 0;
+#X connect 5 0 8 0;
+#X connect 5 0 8 1;
+#X connect 6 0 5 1;
+#X connect 7 0 6 0;
+#X connect 9 0 7 0;
+#X connect 10 0 19 2;
+#X connect 11 0 10 0;
+#X connect 19 0 5 0;
+#X connect 20 0 19 1;
