@@ -1,0 +1,196 @@
+#N canvas 0 23 1119 651 10;
+#X msg 377 487 attack \$1;
+#X floatatom 377 467 5 0 0 0 - - -, f 5;
+#X floatatom 443 467 5 0 0 0 - - -, f 5;
+#X msg 443 487 release \$1;
+#X floatatom 314 467 5 0 0 0 - - -, f 5;
+#X msg 314 487 ratio \$1;
+#X floatatom 480 512 5 0 0 0 - - -, f 5;
+#X msg 480 532 knee \$1;
+#X floatatom 412 512 5 0 0 0 - - -, f 5;
+#X msg 412 532 makeup \$1;
+#X obj 377 407 loadbang;
+#X msg 314 437 2;
+#X msg 377 437 1;
+#X msg 443 437 200;
+#X obj 128 298 jl/flatten~;
+#X obj 150 361 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X floatatom 147 343 5 0 0 0 - - -, f 5;
+#N canvas 0 23 450 300 snapshot 0;
+#X obj 111 136 snapshot~;
+#X obj 181 100 metro 10;
+#X obj 181 81 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 181 43 loadbang;
+#X msg 181 62 1;
+#X obj 111 70 inlet~;
+#X obj 111 164 outlet;
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 3 0 4 0;
+#X connect 4 0 2 0;
+#X connect 5 0 0 0;
+#X restore 147 324 pd snapshot;
+#X obj 113 325 *~;
+#X obj 63 450 jl/merge~;
+#X obj 63 546 *~;
+#X obj 63 573 dac~ 1 2;
+#X obj 104 478 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X msg 101 496 \$1 10;
+#X obj 101 515 line~;
+#X obj 377 574 s to-flatten;
+#X obj 128 274 r to-flatten;
+#N canvas 0 23 441 429 distort 0;
+#X obj 164 180 abs~;
+#X obj 143 292 *~;
+#X obj 128 260 /~;
+#X obj 143 227 clip~ 1e-09 1;
+#X obj 88 81 *~ 1;
+#X obj 174 260 pow~ 1;
+#X obj 88 59 inlet~;
+#X obj 143 346 outlet~;
+#X obj 227 160 line~ 1;
+#X msg 227 141 \$1 10;
+#X obj 227 121 clip 1e-09 1;
+#X obj 227 79 swap 1;
+#X obj 227 101 -;
+#X obj 227 58 inlet;
+#X text 232 227 < avoid division by zero;
+#X connect 0 0 3 0;
+#X connect 0 0 5 0;
+#X connect 1 0 7 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 1;
+#X connect 4 0 2 0;
+#X connect 4 0 0 0;
+#X connect 5 0 1 1;
+#X connect 6 0 4 0;
+#X connect 8 0 5 1;
+#X connect 9 0 8 0;
+#X connect 10 0 9 0;
+#X connect 11 0 12 0;
+#X connect 11 1 12 1;
+#X connect 12 0 10 0;
+#X connect 13 0 11 0;
+#X restore 113 248 pd distort;
+#X obj 173 229 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X obj 354 199 soundfiler;
+#X obj 354 158 openpanel;
+#X obj 354 136 bng 15 250 50 0 empty empty load_sample_in_table_flatten-table
+0 -8 0 10 -262144 -1 -1;
+#X obj 354 245 / 44.1;
+#X obj 411 218 expr $f1 * 0.001;
+#X msg 354 265 end \$1;
+#X obj 363 225 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 63 248 *~ 1;
+#X obj 63 96 bng 50 250 50 0 empty empty empty 17 7 0 10 -262144 -258113
+-1;
+#X msg 116 96 stop;
+#X obj 130 413 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X msg 127 431 \$1 10;
+#X obj 127 450 line~;
+#X obj 354 331 table flatten-table;
+#X msg 354 178 read -resize \$1 flatten-table;
+#X obj 63 172 jl/gbend~ flatten-table;
+#X obj 354 304 s to-flatten-gbend;
+#X text 185 211 distortion factor;
+#X obj 602 21 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 602 604 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 649 313 cnv 15 80 25 empty empty REFERENCE 5 12 0 12 -233017
+-66577 0;
+#X text 645 114 This object is meant to help a signal's dB envelope
+match another one's. It was designed for dry/wet sections of audio
+effects where the wet amplitude is much higher than the dry's \, as
+is the case for waveshaper distortions such as the one in the patch
+on the left.;
+#X text 168 395 dry/wet;
+#X text 54 44 flatten~ - joseph larralde \, 2018;
+#X text 647 358 input signals :;
+#X text 653 378 - left :;
+#X text 653 392 - right : slave signal fed into the internal side chain
+;
+#X text 709 378 master signal controlling the compression threshold
+;
+#X text 336 385 compression parameters :;
+#X text 653 432 - ratio <ratio [1 \, +infinity[> : the compression
+ratio;
+#X text 653 446 - attack <duration (ms)> : the attack time;
+#X text 653 460 - release <duration (ms)> : the release time;
+#X text 653 488 - knee <knee width (dB)> : compression smoothing;
+#X text 653 474 - makeup <gain (dB)> : the output gain offset;
+#X text 647 509 output signal :;
+#X text 647 412 input messages (the same as in any compression plugin)
+:;
+#X text 745 509 the amplitude factor to apply to the source to compress
+;
+#X obj 649 218 jl/sidechain~;
+#X obj 131 136 r to-flatten-gbend;
+#X msg 426 264 loop 1;
+#X obj 426 244 loadbang;
+#X text 646 181 For more details about the compression algorithm used
+in flatten~ \, see :;
+#X text 645 59 flatten~ is similar to sidechain~ \, except the threshold
+parameter which is instead computed internally at the audio rate from
+a master signal. A slave signal is then fed into an internal side chain
+to get the desired amplitude value.;
+#X connect 0 0 25 0;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 3 0 25 0;
+#X connect 4 0 5 0;
+#X connect 5 0 25 0;
+#X connect 6 0 7 0;
+#X connect 7 0 25 0;
+#X connect 8 0 9 0;
+#X connect 9 0 25 0;
+#X connect 10 0 11 0;
+#X connect 10 0 12 0;
+#X connect 10 0 13 0;
+#X connect 11 0 4 0;
+#X connect 12 0 1 0;
+#X connect 13 0 2 0;
+#X connect 14 0 17 0;
+#X connect 14 0 18 1;
+#X connect 16 0 15 0;
+#X connect 17 0 16 0;
+#X connect 18 0 19 1;
+#X connect 19 0 20 0;
+#X connect 20 0 21 0;
+#X connect 20 0 21 1;
+#X connect 22 0 23 0;
+#X connect 23 0 24 0;
+#X connect 24 0 20 1;
+#X connect 26 0 14 0;
+#X connect 27 0 14 1;
+#X connect 27 0 18 0;
+#X connect 28 0 27 1;
+#X connect 29 0 32 0;
+#X connect 29 1 33 0;
+#X connect 30 0 43 0;
+#X connect 31 0 30 0;
+#X connect 32 0 34 0;
+#X connect 33 0 32 1;
+#X connect 34 0 45 0;
+#X connect 35 0 32 0;
+#X connect 36 0 14 0;
+#X connect 36 0 19 0;
+#X connect 37 0 44 0;
+#X connect 38 0 44 0;
+#X connect 39 0 40 0;
+#X connect 40 0 41 0;
+#X connect 41 0 19 2;
+#X connect 43 0 29 0;
+#X connect 44 0 27 0;
+#X connect 44 0 36 0;
+#X connect 47 0 48 0;
+#X connect 67 0 44 0;
+#X connect 68 0 45 0;
+#X connect 69 0 68 0;

@@ -17,14 +17,20 @@ flatten~.class.sources = $(EXT)/flatten~.cpp $(DEP)/jl.cpp.lib/dsp/effects/Compr
 datafiles = \
 $(HLP)/gbend~-help.pd \
 $(HLP)/stut~-help.pd \
+$(HLP)/sidechain~-help.pd \
+$(HLP)/flatten~-help.pd \
 $(ABS)/split~.pd \
 $(HLP)/split~-help.pd \
-$(HLP)/merge~-help.pd \
 $(ABS)/merge~.pd \
+$(HLP)/merge~-help.pd \
 $(ABS)/feedfm~.pd \
 $(HLP)/feedfm~-help.pd \
 $(ABS)/rmetro.pd \
 $(HLP)/rmetro-help.pd \
+$(ABS)/lr2ms~.pd \
+$(HLP)/lr2ms~-help.pd \
+$(ABS)/ms2lr~.pd \
+$(HLP)/ms2lr~-help.pd \
 # $(ABS)/gdelay.unit~.pd \
 # $(ABS)/gdelay~.pd \
 # $(ABS)/gflow2~.pd \
@@ -58,7 +64,7 @@ source:
 	rm -rf ./jl;
 	mkdir jl;
 	cp Makefile ./jl;
-	# cp -r ./abstractions ./jl/abstractions;
+	cp -r ./abstractions ./jl/abstractions;
 	cp -r ./helpfiles ./jl/helpfiles;
 	cp -r ./src ./jl/src;
 	cd jl;

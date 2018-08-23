@@ -4,6 +4,9 @@
 # this one might be generated here
 jl/
 
-archive/
-
 helpfiles/tests/*
+
+*.pd_darwin
+*.pd_linux
+*.dll
+*.o
