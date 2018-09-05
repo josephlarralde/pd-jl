@@ -157,10 +157,6 @@ void sidechain_tilde_dsp(t_sidechain_tilde *x, t_signal **sp) {
 //======================= CONSTRUCTOR / DESTRUCTOR ===========================//
 
 void *sidechain_tilde_new(t_symbol *s, int argc, t_atom *argv) {
-  /*
-   * call the "constructor" of the parent-class
-   * this will reserve enough memory to hold "t_sidechain_tilde"
-   */
   t_sidechain_tilde *x = (t_sidechain_tilde *)pd_new(sidechain_tilde_class);
 
   x->sidechain = new PdSideChain();
@@ -193,8 +189,8 @@ void sidechain_tilde_setup(void) {
     (t_method)sidechain_tilde_free,                   /* the object's destructor */
     sizeof(t_sidechain_tilde),                        /* the size of the data-space */
     CLASS_DEFAULT,                                   /* a normal pd object */
-    A_GIMME,                                         /* arg type (default nb of channels) */
-    0);                                              /* no creation arguments ? */
+    A_GIMME,                                         /* creation arg(s) type(s) */
+    0);                                              /* end creation arguments */
 
   // class_addbang(sidechain_tilde_class, sidechain_tilde_bang);
   class_addmethod(sidechain_tilde_class, (t_method)sidechain_tilde_dsp, gensym("dsp"), A_NULL);

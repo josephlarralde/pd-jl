@@ -1,0 +1,138 @@
+#N canvas 0 23 1064 552 10;
+#X obj 50 288 jl/magnetize;
+#X msg 80 225 pattern 2 1 4 1 4;
+#X obj 53 122 hsl 128 15 0 24 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X msg 59 184 magnetism \$1;
+#X obj 62 165 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X obj 81 358 mtof;
+#X obj 81 378 phasor~;
+#X obj 142 358 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X obj 103 448 *~;
+#X obj 139 397 line~;
+#X msg 139 377 \$1 10;
+#X obj 82 480 dac~ 1 2;
+#X obj 81 398 *~ 0.05;
+#X obj 50 143 + 48;
+#X obj 80 205 loadbang;
+#X obj 53 329 hsl 128 15 0 24 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X obj 50 309 - 48;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array magnetize-curve 100 float 3;
+#A 0 0 0.010101 0.020202 0.030303 0.040404 0.0505051 0.0606061 0.0707071
+0.0808081 0.0909091 0.10101 0.111111 0.121212 0.131313 0.141414 0.151515
+0.161616 0.171717 0.181818 0.191919 0.20202 0.212121 0.222222 0.232323
+0.242424 0.252525 0.262626 0.272727 0.282828 0.292929 0.30303 0.313131
+0.323232 0.333333 0.343434 0.353535 0.363636 0.373737 0.383838 0.393939
+0.40404 0.414141 0.424242 0.434343 0.444444 0.454545 0.464646 0.474748
+0.484848 0.494949 0.50505 0.515152 0.525253 0.535354 0.545455 0.555556
+0.565657 0.575758 0.585859 0.59596 0.606061 0.616162 0.626263 0.636364
+0.646465 0.656566 0.666667 0.676768 0.686869 0.69697 0.707071 0.717172
+0.727273 0.737374 0.747475 0.757576 0.767677 0.777778 0.787879 0.79798
+0.808081 0.818182 0.828283 0.838384 0.848485 0.858586 0.868687 0.878788
+0.888889 0.89899 0.909091 0.919192 0.929293 0.939394 0.949495 0.959596
+0.969697 0.979798 0.989899 1;
+#X coords 0 1 100 0 100 100 1 0 0;
+#X restore 484 177 graph;
+#X obj 315 239 until;
+#X msg 315 217 100;
+#X obj 315 265 f;
+#X obj 340 265 + 1;
+#X msg 345 217 0;
+#X obj 315 198 t b b;
+#X obj 315 179 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 315 285 t f f;
+#X obj 358 141 t b f;
+#X obj 315 425 tabwrite magnetize-curve;
+#X obj 315 367 jl/magnetize;
+#X msg 385 303 pattern 2 1 4 1 4;
+#X obj 385 284 loadbang;
+#X msg 385 259 magnetism \$1;
+#X obj 361 122 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X text 37 30 magnetize - joseph larralde \, 2018;
+#X obj 315 327 * 12;
+#X obj 315 388 / 12;
+#X msg 385 323 pattern 1 2;
+#X obj 315 305 / 99;
+#X text 659 45 magnetize takes an interval pattern and applies it as
+a transfer function \, allowing to interpolate between linear (identity)
+and stair-step transfer functions. It is designed to make an input
+value progressively "stick" to a musical scale (but could be used for
+other purposes) \, hence the name magnetize.;
+#X text 659 123 The pattern is considered to be cyclic \, and is repeated
+infinitely in both directions (below and above). Typically \, for dealing
+with occidental scales \, one would use patterns which total size (the
+sum of all intervals) is 12 \, or an integer divisor of 12 \, thus
+generating scales over 12 semitones and preserving the octave coherence.
+;
+#X text 659 202 By default the pattern is applied with an offset of
+zero on the input value \, but this can be changed by setting the "root"
+parameter. Note that as the pattern loops \, all the values resulting
+from the following equation are equivalent for any signed integer value
+of i : (root + i * patternsize);
+#X obj 663 281 cnv 15 80 25 empty empty REFERENCE 5 12 0 12 -233017
+-66577 0;
+#X text 661 317 messages :;
+#X text 667 334 - pattern <list_of_positive_integer_intervals>;
+#X text 667 348 - root <offset (float)>;
+#X text 667 362 - magnetism <normalized_interpolation_value>;
+#X text 661 381 input : a float value to map;
+#X text 661 400 output : the mapped value;
+#X text 399 341 etc ...;
+#X obj 612 27 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 612 508 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 47 100 listen to the difference :;
+#X text 354 86 visualize the transfer function;
+#X text 354 99 over an octave :;
+#X msg 99 265 root \$1;
+#X floatatom 99 246 5 0 0 0 - - -, f 5;
+#X text 47 86 try various settings and;
+#X connect 0 0 5 0;
+#X connect 0 0 16 0;
+#X connect 1 0 0 0;
+#X connect 2 0 13 0;
+#X connect 3 0 0 0;
+#X connect 4 0 3 0;
+#X connect 5 0 6 0;
+#X connect 6 0 12 0;
+#X connect 7 0 10 0;
+#X connect 8 0 11 0;
+#X connect 8 0 11 1;
+#X connect 9 0 8 1;
+#X connect 10 0 9 0;
+#X connect 12 0 8 0;
+#X connect 13 0 0 0;
+#X connect 14 0 1 0;
+#X connect 16 0 15 0;
+#X connect 18 0 20 0;
+#X connect 19 0 18 0;
+#X connect 20 0 21 0;
+#X connect 20 0 25 0;
+#X connect 21 0 20 1;
+#X connect 22 0 20 1;
+#X connect 23 0 19 0;
+#X connect 23 1 22 0;
+#X connect 24 0 23 0;
+#X connect 25 0 37 0;
+#X connect 25 1 27 1;
+#X connect 26 0 24 0;
+#X connect 26 1 31 0;
+#X connect 28 0 35 0;
+#X connect 29 0 28 0;
+#X connect 30 0 29 0;
+#X connect 31 0 28 0;
+#X connect 32 0 26 0;
+#X connect 34 0 28 0;
+#X connect 35 0 27 0;
+#X connect 36 0 28 0;
+#X connect 37 0 34 0;
+#X connect 49 0 50 0;
+#X connect 54 0 0 0;
+#X connect 55 0 54 0;

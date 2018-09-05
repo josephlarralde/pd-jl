@@ -1,0 +1,127 @@
+#N canvas 0 23 1058 650 10;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array mapcurve 100 float 3;
+#A 0 0 0.010101 0.020202 0.030303 0.040404 0.050505 0.0606061 0.0707071
+0.0808081 0.0909091 0.10101 0.111111 0.121212 0.131313 0.141414 0.151515
+0.161616 0.171717 0.181818 0.191919 0.20202 0.212121 0.222222 0.232323
+0.242424 0.252525 0.262626 0.272727 0.282828 0.292929 0.30303 0.313131
+0.323232 0.333333 0.343434 0.353535 0.363636 0.373737 0.383838 0.393939
+0.40404 0.414141 0.424242 0.434343 0.444444 0.454545 0.464646 0.474747
+0.484848 0.494949 0.50505 0.515152 0.525253 0.535354 0.545455 0.555556
+0.565657 0.575758 0.585859 0.59596 0.606061 0.616162 0.626263 0.636364
+0.646465 0.656566 0.666667 0.676768 0.686869 0.69697 0.707071 0.717172
+0.727273 0.737374 0.747475 0.757576 0.767677 0.777778 0.787879 0.79798
+0.808081 0.818182 0.828283 0.838384 0.848485 0.858586 0.868687 0.878788
+0.888889 0.89899 0.909091 0.919192 0.929293 0.939394 0.949495 0.959596
+0.969697 0.979798 0.989899 1;
+#X coords 0 1 100 0 100 100 1 0 0;
+#X restore 278 196 graph;
+#X obj 64 286 until;
+#X msg 64 264 100;
+#X obj 64 312 f;
+#X obj 103 312 + 1;
+#X msg 94 264 0;
+#X obj 64 245 t b b;
+#X obj 64 226 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 64 332 t f f;
+#X floatatom 193 145 5 0 1e+12 0 - - -, f 5;
+#X floatatom 118 144 5 0 0 0 - - -, f 5;
+#X obj 193 164 t b f;
+#X obj 118 164 t b f;
+#X msg 145 327 xfactor \$1;
+#X msg 220 327 sfactor \$1;
+#X obj 108 410 tabwrite mapcurve;
+#X obj 146 506 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X obj 146 549 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 12700 0;
+#X obj 143 527 jl/map 0 127 127 0;
+#X text 100 478 input and output bounds can be inverted :;
+#X text 51 97 see how the xfactor and sfactor parameters affect the
+transfer function :;
+#X text 42 43 map - joseph larralde \, 2018;
+#X obj 459 165 cnv 15 80 25 empty empty REFERENCE 5 12 0 12 -233017
+-66577 0;
+#X obj 419 21 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 419 609 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 458 39 map is similar to max's scale object. It maps an input
+interval to an output interval and provides two parameters that allow
+to reshape the transfer function \, which is linear when both parameters
+have a value of zero.;
+#X text 458 91 When the transfer function is linear \, the output value
+is not clipped if the input value goes out of the specified input bounds.
+However \, due to mathematical constraints \, if any of the reshaping
+parameters has a non zero value \, the output values are clipped to
+the specified output bounds.;
+#X text 463 232 - 2 arguments : <min_input> <max_input>;
+#X text 463 246 - 3 arguments : <min_input> <max_input> <max_output>
+;
+#X text 463 260 - 4 arguments : <min_input> <max_input>;
+#X text 704 260 <min_output> <max_output>;
+#X obj 108 385 jl/map 0 99 0 1;
+#X text 463 274 - 5 arguments : <min_input> <max_input>;
+#X text 704 287 <min_output> <max_output> <xfactor> <sfactor>;
+#X text 704 274 <min_output> <max_output> <xfactor>;
+#X text 463 218 - 1 argument : <max_input>;
+#X text 457 201 arguments :;
+#X text 457 308 default values :;
+#X text 463 324 - <min_input> : 0;
+#X text 463 338 - <max_input> : 1;
+#X text 463 352 - <min_output> : 0;
+#X text 463 366 - <max_output> : 1;
+#X text 463 379 - <xfactor> : 0;
+#X text 463 393 - <sfactor> : 0;
+#X text 457 414 inlets (from left to right) :;
+#X text 463 287 - 6 arguments : <min_input> <max_input>;
+#X text 463 443 - <min_input>;
+#X text 463 457 - <max_input>;
+#X text 463 471 - <min_output>;
+#X text 463 485 - <max_output>;
+#X text 463 430 - input value to map (and other messages);
+#X text 264 280 |;
+#X text 264 268 |;
+#X text 264 256 |;
+#X text 264 244 |;
+#X text 264 296 0 --------------> 99;
+#X text 264 233 |;
+#X text 264 221 |;
+#X text 264 209 |;
+#X text 264 203 ^;
+#X text 264 189 1;
+#X text 458 527 messages :;
+#X text 824 542 (defaulting to zero);
+#X text 463 542 - bang : compute output value according to last input
+value;
+#X text 463 556 - xfactor <factor_value (]-inf \, +inf[) :;
+#X text 715 572 depending on the factor's sign;
+#X text 463 588 - sfactor <factor_value ([0 \, +inf[) :;
+#X text 691 588 make the transfer function look more or less like a
+"S";
+#X text 710 557 "tamp" values left or right \,;
+#X text 458 506 outlet : mapped value;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 3 0 4 0;
+#X connect 3 0 8 0;
+#X connect 4 0 3 1;
+#X connect 5 0 3 1;
+#X connect 6 0 2 0;
+#X connect 6 1 5 0;
+#X connect 7 0 6 0;
+#X connect 8 0 31 0;
+#X connect 8 1 15 1;
+#X connect 9 0 11 0;
+#X connect 10 0 12 0;
+#X connect 11 0 7 0;
+#X connect 11 1 14 0;
+#X connect 12 0 7 0;
+#X connect 12 1 13 0;
+#X connect 13 0 31 0;
+#X connect 14 0 31 0;
+#X connect 16 0 18 0;
+#X connect 18 0 17 0;
+#X connect 23 0 24 0;
+#X connect 31 0 15 0;

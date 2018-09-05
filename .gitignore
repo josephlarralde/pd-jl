@@ -1,7 +1,8 @@
 **/.DS_Store
 **/Thumbs.db
 
-# this one might be generated here
+# these ones might be generated here
+build/
 jl/
 
 helpfiles/tests/*

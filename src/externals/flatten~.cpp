@@ -173,8 +173,8 @@ void flatten_tilde_setup(void) {
     (t_method)flatten_tilde_free,                   /* the object's destructor */
     sizeof(t_flatten_tilde),                        /* the size of the data-space */
     CLASS_DEFAULT,                                   /* a normal pd object */
-    A_GIMME,                                         /* arg type (todo ?) */
-    0);                                              /* ? */
+    A_GIMME,                                         /* creation arg(s) type(s) */
+    0);                                              /* end creation args */
 
   // class_addbang(flatten_tilde_class, flatten_tilde_bang);
   class_addmethod(flatten_tilde_class, (t_method)flatten_tilde_dsp, gensym("dsp"), A_NULL);

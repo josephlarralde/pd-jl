@@ -1,4 +1,4 @@
-#N canvas 0 22 720 483 10;
+#N canvas 0 23 720 483 10;
 #N canvas 179 29 954 760 hardware_hann_grann 0;
 #X obj 429 645 hip~ 5;
 #X floatatom 137 164 0 0 2 0 - - -;
@@ -74,7 +74,7 @@
 #X obj 805 464 clip~ 0 1;
 #X obj 363 545 tabread4~ \$1;
 #X obj 623 551 tabread4~ \$1;
-#X obj 318 122 jl.mtosf;
+#X obj 318 122 jl/mtosf;
 #X connect 0 0 25 0;
 #X connect 1 0 40 0;
 #X connect 1 0 33 0;
@@ -159,7 +159,7 @@
 #X obj 271 313 *;
 #X obj 304 264 line 0;
 #X obj 298 216 / 999;
-#X obj 267 129 jl.rmetro 100;
+#X obj 267 129 jl/rmetro 100;
 #X connect 0 0 1 0;
 #X connect 1 0 14 0;
 #X connect 2 0 7 1;
@@ -179,7 +179,7 @@
 #X obj 144 177 t f f;
 #X obj 207 277 *;
 #X obj 207 300 / 44.1;
-#X floatatom 109 232 5 0 0 0 - - -;
+#X floatatom 109 232 5 0 0 0 - - -, f 5;
 #X obj 318 64 inlet gsize;
 #X obj 402 64 inlet pitch;
 #X obj 483 64 inlet table;
