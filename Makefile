@@ -45,12 +45,7 @@ $(HLP)/gdelay~-help.pd \
 $(ABS)/gflow-unit~.pd \
 $(ABS)/gflow~.pd \
 $(HLP)/gflow~-help.pd \
-# $(ABS)/gflow2~.pd \
-# $(ABS)/gflow4~.pd \
-# $(HLP)/gdelay~-help.pd \
-# $(HLP)/gflow2~-help.pd \
-# $(HLP)/gflow4~-help.pd \
-
+# $(ABS)/jl-objects.pd \
 # $(ABS)/keynote.pd \
 # $(HLP)/keynote-help.pd \
 # $(ABS)/q-keyboard.pd \
@@ -58,8 +53,11 @@ $(HLP)/gflow~-help.pd \
 
 # update path to reflect your environment
 # PDLIBDIR="/Users/larralde/Documents/Pd/externals"
-PDLIBDIR="./build"
+PDLIBDIR="./build/darwin"
+# PDLIBDIR="./build/win32"
 # PDLIBDIR="."
+
+SRCOUT=./build/source/jl
 
 # include Makefile.pdlibbuilder from submodule directory 'pd-lib-builder'
 # update path to reflect your environment
@@ -69,11 +67,14 @@ include $(PDLIBBUILDER_DIR)/Makefile.pdlibbuilder
 # found here
 # https://stackoverflow.com/questions/4822321/remove-all-git-files-from-a-directory
 source:
-	rm -rf ./jl;
-	mkdir jl;
-	cp Makefile ./jl;
-	cp -r ./abstractions ./jl/abstractions;
-	cp -r ./helpfiles ./jl/helpfiles;
-	cp -r ./src ./jl/src;
-	cd jl;
-	(find . -name ".git" && find . -name ".gitignore" && find . -name ".gitmodules") | xargs rm -rf;
+	rm -rf "$(SRCOUT)";
+	mkdir "$(SRCOUT)";
+	cp Makefile "$(SRCOUT)";
+	mkdir "$(SRCOUT)/patches";
+	cp $(datafiles) "$(SRCOUT)/patches";
+
+	# cp -r ./abstractions ./jl/abstractions;
+	# cp -r ./helpfiles ./jl/helpfiles;
+
+	cp -r ./src "$(SRCOUT)/src";
+	(find $(SRCOUT) -name ".git" && find $(SRCOUT) -name ".gitignore" && find $(SRCOUT) -name ".gitmodules") | xargs rm -rf;
