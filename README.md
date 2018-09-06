@@ -8,7 +8,7 @@ To install the library on your machine, first clone this repository :
 
 Then run `make install`, and eventually `make clean`
 
-By default this creates a `build/<your_platform>/jl` directory at the root of this folder that you can copy somewhere and / or add to pd's paths list.
+By default this creates a `build/<your_platform>/jl` directory at the root of this folder that you can copy somewhere and/or add to pd's paths list.
 Or you can specify your own install location by changing the `PDLIBDIR` var in
 `Makefile`.
 
