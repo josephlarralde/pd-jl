@@ -41,8 +41,10 @@ $(HLP)/mtosf-help.pd \
 $(ABS)/gpan-unit~.pd \
 $(ABS)/gdelay-unit~.pd \
 $(ABS)/gdelay~.pd \
+$(HLP)/gdelay~-help.pd \
 $(ABS)/gflow-unit~.pd \
 $(ABS)/gflow~.pd \
+$(HLP)/gflow~-help.pd \
 # $(ABS)/gflow2~.pd \
 # $(ABS)/gflow4~.pd \
 # $(HLP)/gdelay~-help.pd \
