@@ -52,9 +52,9 @@
 #X obj 363 414 line~;
 #X msg 363 394 \$1 5;
 #X obj 219 325 s \$0-table;
-#X obj 493 541 s \$0-voices;
+#X obj 495 96 s \$0-voices;
 #X obj 108 177 t f f;
-#X obj 493 521 f \$1;
+#X obj 495 76 f \$1;
 #N canvas 104 90 550 391 route-env-parameters 0;
 #X obj 90 54 inlet;
 #X obj 69 296 s \$0-env-shorten;
@@ -103,7 +103,7 @@
 #X connect 7 0 5 0;
 #X restore 141 522 pd all-instances-loaded;
 #X obj 141 541 s \$0-loadbang;
-#X obj 493 501 r \$0-loadbang;
+#X obj 495 56 r \$0-loadbang;
 #X obj 108 105 f;
 #X obj 145 105 f;
 #X obj 182 105 f;
@@ -124,6 +124,9 @@
 #X obj 354 269 moses 1;
 #X obj 192 466 clone jl/gflow-unit~ \$1 \$0 \$2;
 #X obj 210 488 clone jl/gpan-unit~ \$1 \$0, f 26;
+#X obj 135 197 s \$0-scroll;
+#X obj 474 480 r \$0-scroll;
+#X obj 474 521 outlet scroll;
 #X connect 0 0 2 0;
 #X connect 0 1 2 1;
 #X connect 1 0 23 0;
@@ -149,6 +152,7 @@
 #X connect 19 0 17 0;
 #X connect 20 0 19 0;
 #X connect 23 0 2 0;
+#X connect 23 1 53 0;
 #X connect 24 0 22 0;
 #X connect 28 0 18 0;
 #X connect 28 1 9 0;
@@ -192,3 +196,4 @@
 #X connect 52 0 30 0;
 #X connect 52 1 6 0;
 #X connect 52 2 7 0;
+#X connect 54 0 55 0;
