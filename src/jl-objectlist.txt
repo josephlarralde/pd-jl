@@ -1,0 +1,15 @@
+feedfm~	FM operator with one carrier and two modulator oscillators
+flatten~	compress a signal using another signal to drive the threshold
+gbend~	sample player utility
+gdelay~	granular delay
+gflow~	synchronous granular sample player
+lr2ms~	left-right to mid-side signal encoding
+magnetize	map an input value onto a repeating interval pattern
+map	interval mapper with transfer functions
+merge~	mix two input signals with approximate constant power
+ms2lr~	mid-side to left-right signal decoding
+mtosf	MIDI offset to playing speed factor converter
+rmetro	metro wrapped with randomness
+sidechain~	sidechain component to build dynamic range compressors
+split~	pan an input signal to a stereo output with approximate constant power
+stut~	stutter effect
