@@ -1,0 +1,10 @@
+#N canvas 0 23 450 300 10;
+#X obj 55 134 jl/mtosf;
+#X floatatom 55 101 5 0 0 0 - - -, f 5;
+#X floatatom 55 166 5 0 0 0 - - -, f 5;
+#X text 38 38 mtosf - joseph larralde \, 2018;
+#X text 116 134 really just [exp($f1*0.057762265)];
+#X text 50 207 convert a relative semitone value to the speedup factor
+to apply to a sample so that it gets detuned from this value;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
