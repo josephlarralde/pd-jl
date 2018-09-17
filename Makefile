@@ -18,6 +18,7 @@ magnetize.class.sources = $(EXT)/magnetize.cpp
 
 # all extra files to be included in binary distribution of the library
 datafiles = \
+$(ABS)/jl-objects.pd \
 $(HLP)/gbend~-help.pd \
 $(HLP)/stut~-help.pd \
 $(HLP)/sidechain~-help.pd \

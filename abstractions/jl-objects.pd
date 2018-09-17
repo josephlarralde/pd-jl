@@ -1,0 +1,36 @@
+#N canvas 11 27 543 633 10;
+#X obj 67 114 jl/gbend~;
+#X obj 67 241 jl/sidechain~;
+#X obj 67 274 jl/flatten~;
+#X obj 67 306 jl/map, f 11;
+#X obj 67 339 jl/magnetize;
+#X obj 67 374 jl/split~;
+#X obj 67 411 jl/merge~;
+#X obj 67 446 jl/lr2ms~;
+#X obj 67 480 jl/ms2lr~;
+#X obj 52 40 bng 15 250 50 0 empty empty list_of_all_jl_objects 17
+7 0 10 -262144 -1 -1;
+#X obj 52 575 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 67 83 jl/feedfm~;
+#X obj 68 513 jl/mtosf;
+#X obj 68 545 jl/rmetro;
+#X text 146 83 FM synthesis unit;
+#X text 144 112 pitch bendable sample player;
+#X text 144 144 synchronous granular synthesizer;
+#X text 147 176 synchronous granular delay;
+#X text 133 209 stutter effect;
+#X text 165 240 sidechain unit for dynamic range compression;
+#X text 153 273 sidechain unit with external threshold input;
+#X text 152 306 interval mapper;
+#X text 159 339 pattern mapper;
+#X text 137 410 equal gain mixer;
+#X text 137 374 equal gain splitter (aka panner);
+#X text 138 446 stereo to MS encoding;
+#X text 139 480 MS to stereo decoding;
+#X text 133 513 compute speed rate from relative semitone value;
+#X text 140 545 metro wrapper with randomization parameters;
+#X obj 67 145 jl/gflow~;
+#X obj 67 177 jl/gdelay~;
+#X obj 67 209 jl/stut~;
+#X connect 9 0 10 0;
