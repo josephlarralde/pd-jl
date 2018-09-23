@@ -82,6 +82,10 @@ public:
   PdSideChain() :
   rampDuration(10) {
     setSamplingRate(44100);
+    rMakeUp.ramp(0);
+    rThreshold.ramp(0);
+    rRatio.ramp(1);
+    rKnee.ramp(0);
   }
 
   ~PdSideChain() {}

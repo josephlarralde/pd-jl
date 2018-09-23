@@ -82,6 +82,9 @@ public:
   PdFlattener() :
   rampDuration(10) {
     setSamplingRate(44100);
+    rMakeUp.ramp(0);
+    rRatio.ramp(1);
+    rKnee.ramp(0);
   }
 
   ~PdFlattener() {}
