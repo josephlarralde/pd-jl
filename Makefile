@@ -46,7 +46,9 @@ $(HLP)/gdelay~-help.pd \
 $(ABS)/gflow-unit~.pd \
 $(ABS)/gflow~.pd \
 $(HLP)/gflow~-help.pd \
-# $(ABS)/jl-objects.pd \
+$(ABS)/pulse.pd \
+# $(HLP)/pulse-help.pd \
+# $(ABS)/symcat.pd \
 # $(ABS)/keynote.pd \
 # $(HLP)/keynote-help.pd \
 # $(ABS)/q-keyboard.pd \
