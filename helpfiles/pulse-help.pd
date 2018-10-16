@@ -1,19 +1,19 @@
-#N canvas 0 23 620 417 10;
-#X obj 92 226 jl/pulse 500;
-#X obj 64 134 tgl 32 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#N canvas 0 23 665 428 10;
+#X obj 114 208 jl/pulse 500;
+#X obj 86 116 tgl 32 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 92 247 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 220 171 snapshot~;
-#X obj 281 138 metro 10;
-#X obj 281 118 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 114 229 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 265 131 snapshot~;
+#X obj 327 96 metro 10;
+#X obj 327 76 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 92 320 timer;
-#X obj 92 300 t b b;
-#X obj 95 340 hsl 128 15 0 999 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 11012 1;
-#X msg 161 191 1000;
-#X msg 131 191 100;
+#X obj 114 330 timer;
+#X obj 114 310 t b b;
+#X obj 117 350 hsl 128 15 0 999 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 1271 1;
+#X msg 183 173 1000;
+#X msg 153 173 100;
 #X text 61 40 pulse - joseph larralde \, 2018;
 #X text 220 239 same as metro \, but the next bang is rescheduled anytime
 the right input value changes \, according to the "phase" of the moment
@@ -22,10 +22,10 @@ of the value change (between previous and next bang).;
 to metro allows to pass immediately from a very slow frequency to a
 fast one \, avoiding the need to wait for the next bang for the period
 to be updated \, as is the case with metro.;
-#X obj 223 212 hsl 128 15 0 999 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 10529 1;
-#X obj 220 190 jl/map -1 1 10 999;
-#X obj 220 122 osc~ 0.1;
+#X obj 268 172 hsl 128 15 0 999 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 12689 1;
+#X obj 265 150 jl/map -1 1 10 999;
+#X obj 265 82 osc~ 0.1;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 2 0 7 0;
