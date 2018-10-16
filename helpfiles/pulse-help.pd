@@ -1,0 +1,42 @@
+#N canvas 0 23 620 417 10;
+#X obj 92 226 jl/pulse 500;
+#X obj 64 134 tgl 32 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 92 247 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 220 171 snapshot~;
+#X obj 281 138 metro 10;
+#X obj 281 118 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 92 320 timer;
+#X obj 92 300 t b b;
+#X obj 95 340 hsl 128 15 0 999 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 11012 1;
+#X msg 161 191 1000;
+#X msg 131 191 100;
+#X text 61 40 pulse - joseph larralde \, 2018;
+#X text 220 239 same as metro \, but the next bang is rescheduled anytime
+the right input value changes \, according to the "phase" of the moment
+of the value change (between previous and next bang).;
+#X text 220 281 by acting like a pulse oscillator \, this alternative
+to metro allows to pass immediately from a very slow frequency to a
+fast one \, avoiding the need to wait for the next bang for the period
+to be updated \, as is the case with metro.;
+#X obj 223 212 hsl 128 15 0 999 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 10529 1;
+#X obj 220 190 jl/map -1 1 10 999;
+#X obj 220 122 osc~ 0.1;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 2 0 7 0;
+#X connect 3 0 15 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 0;
+#X connect 6 0 8 0;
+#X connect 7 0 6 0;
+#X connect 7 1 6 1;
+#X connect 9 0 0 1;
+#X connect 10 0 0 1;
+#X connect 15 0 0 1;
+#X connect 15 0 14 0;
+#X connect 16 0 3 0;
