@@ -87,18 +87,22 @@ void tonnetz_bang(t_tonnetz *x) {
 
 void tonnetz_root(t_tonnetz *x, t_floatarg f) {
   x->tonnetz->setRoot(static_cast<int>(f));
+  tonnetz_bang(x);
 }
 
 void tonnetz_major(t_tonnetz *x, t_floatarg f) {
   x->tonnetz->setMajor(f != 0);
+  tonnetz_bang(x);
 }
 
 void tonnetz_interval(t_tonnetz *x, t_floatarg f) {
   x->tonnetz->setInterval(static_cast<unsigned int>(f));
+  tonnetz_bang(x);
 }
 
 void tonnetz_transpose(t_tonnetz *x, t_floatarg f) {
   x->tonnetz->transpose(static_cast<int>(f));
+  tonnetz_bang(x);
 }
 
 void tonnetz_mode(t_tonnetz *x, t_symbol *s) {
