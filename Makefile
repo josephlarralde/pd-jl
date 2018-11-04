@@ -15,6 +15,7 @@ sidechain~.class.sources = $(EXT)/sidechain~.cpp $(DEP)/jl.cpp.lib/dsp/effects/C
 flatten~.class.sources = $(EXT)/flatten~.cpp $(DEP)/jl.cpp.lib/dsp/effects/Compress.cpp
 map.class.sources = $(EXT)/map.cpp
 magnetize.class.sources = $(EXT)/magnetize.cpp
+tonnetz.class.sources = $(EXT)/tonnetz.cpp
 
 # all extra files to be included in binary distribution of the library
 datafiles = \
@@ -61,6 +62,9 @@ PDLIBDIR="./build/darwin"
 # PDLIBDIR="."
 
 SRCOUT=./build/source/jl
+
+# this is needed for initializer lists
+cflags = -std=c++11
 
 # include Makefile.pdlibbuilder from submodule directory 'pd-lib-builder'
 # update path to reflect your environment

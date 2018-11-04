@@ -13,3 +13,4 @@ rmetro	metro wrapped with randomness
 sidechain~	sidechain component to build dynamic range compressors
 split~	pan an input signal to a stereo output with approximate constant power
 stut~	stutter effect
+tonnetz generate successive scale patterns by navigating through tonnetz
