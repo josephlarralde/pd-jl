@@ -112,12 +112,16 @@ void *magnetize_new(t_symbol *s, int argc, t_atom *argv) {
   return (void *)x;
 }
 
+void *magnetize_free(t_magnetize *x) {
+  delete x->map;
+}
+
 extern "C" {
 
 void magnetize_setup(void) {
   magnetize_class = class_new(gensym("magnetize"),
                         (t_newmethod)magnetize_new,
-                        0,
+                        (t_method)magnetize_free,
                         sizeof(t_magnetize),
                         CLASS_DEFAULT,
                         A_GIMME,

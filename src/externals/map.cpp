@@ -152,12 +152,16 @@ void *map_new(t_symbol *s, int argc, t_atom *argv) {
   return (void *)x;
 }
 
+void *map_free(t_map *x) {
+  delete x->map;
+}
+
 extern "C" {
 
 void map_setup(void) {
   map_class = class_new(gensym("map"),
                         (t_newmethod)map_new,
-                        0,
+                        (t_method)map_free,
                         sizeof(t_map),
                         CLASS_DEFAULT,
                         A_GIMME,
