@@ -1,0 +1,16 @@
+#N canvas 0 23 207 151 10;
+#N canvas 0 23 434 251 META 0;
+#X text 26 116 AUTHOR Joseph Larralde <joseph.larralde@gmail.com>,
+f 59;
+#X text 26 99 LICENSE BSD-3-Clause, f 59;
+#X text 26 65 VERSION 0.1.0, f 59;
+#X text 26 48 LIBRARY jl, f 59;
+#X text 26 133 HELP_PATCHES_AUTHOR Joseph Larralde, f 59;
+#X text 26 150 WEBSITE https://github.com/josephlarralde/jl.pd.lib
+, f 59;
+#X text 26 14 KEYWORDS audio synthesis effects interval mapping, f
+59;
+#X text 26 82 RELEASE_DATE November 5th 2018, f 59;
+#X text 26 31 DESCRIPTION audio synthesis and effects plus some utilities
+;
+#X restore 79 63 pd META;

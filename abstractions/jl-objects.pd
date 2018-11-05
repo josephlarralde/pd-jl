@@ -1,4 +1,4 @@
-#N canvas 11 27 543 633 10;
+#N canvas 11 27 541 718 10;
 #X obj 67 114 jl/gbend~;
 #X obj 67 241 jl/sidechain~;
 #X obj 67 274 jl/flatten~;
@@ -10,7 +10,7 @@
 #X obj 67 480 jl/ms2lr~;
 #X obj 52 40 bng 15 250 50 0 empty empty list_of_all_jl_objects 17
 7 0 10 -262144 -1 -1;
-#X obj 52 575 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 52 636 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 67 83 jl/feedfm~;
 #X obj 68 513 jl/mtosf;
@@ -33,4 +33,8 @@
 #X obj 67 145 jl/gflow~;
 #X obj 67 177 jl/gdelay~;
 #X obj 67 209 jl/stut~;
+#X obj 68 576 jl/tonnetz;
+#X text 143 576 tonnetz navigator \, scales generator;
+#X obj 68 606 jl/pulse;
+#X text 130 606 metro acting more like an oscillator;
 #X connect 9 0 10 0;

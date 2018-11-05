@@ -1,8 +1,12 @@
 # jl.pd.lib
 
-#### a collection of externals and abstractions for pure-data vanilla
+### a collection of externals and abstractions for pure-data vanilla
 
-To install the library on your machine, first clone this repository :
+This library is available as `jl` via pd vanilla's integrated package manager `deken`.
+
+#### building
+
+To build and install the library on your machine, first clone this repository :
 
 `git clone --recursive https://github.com/josephlarralde/jl.pd.lib.git`
 
@@ -12,6 +16,7 @@ By default this creates a `build/<your_platform>/jl` directory at the root of th
 Or you can specify your own install location by changing the `PDLIBDIR` var in
 `Makefile`.
 
-This library should be available soon via pd's integrated package manager `deken`.
+#### notes
 
-Note : the `make source` command creates a `build/source/jl` directory containing a copy of all the abstractions and help files of the library, the c++ source for the externals and the `Makefile`, with all git related files and folders removed (used to generate a source-only package with `deken`).
+The `make source` command creates a `build/source/jl` directory containing a copy of all the abstractions and help files of the library, the c++ source for the externals and the `Makefile`, with all git related files and folders removed (used to generate a source-only package with `deken`).
+

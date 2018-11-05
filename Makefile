@@ -19,6 +19,7 @@ tonnetz.class.sources = $(EXT)/tonnetz.cpp
 
 # all extra files to be included in binary distribution of the library
 datafiles = \
+$(ABS)/jl-meta.pd \
 $(ABS)/jl-objects.pd \
 $(HLP)/gbend~-help.pd \
 $(HLP)/stut~-help.pd \
@@ -48,7 +49,7 @@ $(ABS)/gflow-unit~.pd \
 $(ABS)/gflow~.pd \
 $(HLP)/gflow~-help.pd \
 $(ABS)/pulse.pd \
-# $(HLP)/pulse-help.pd \
+$(HLP)/pulse-help.pd \
 # $(ABS)/symcat.pd \
 # $(ABS)/keynote.pd \
 # $(HLP)/keynote-help.pd \

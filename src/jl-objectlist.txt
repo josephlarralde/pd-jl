@@ -9,6 +9,7 @@ map	interval mapper with transfer functions
 merge~	mix two input signals with approximate constant power
 ms2lr~	mid-side to left-right signal decoding
 mtosf	MIDI offset to playing speed factor converter
+pulse	metro acting more like an oscillator
 rmetro	metro wrapped with randomness
 sidechain~	sidechain component to build dynamic range compressors
 split~	pan an input signal to a stereo output with approximate constant power
