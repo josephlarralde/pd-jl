@@ -20,3 +20,4 @@ Or you can specify your own install location by changing the `PDLIBDIR` var in
 
 The `make source` command creates a `build/source/jl` directory containing a copy of all the abstractions and help files of the library, the c++ source for the externals and the `Makefile`, with all git related files and folders removed (used to generate a source-only package with `deken`).
 
+For windows compilation, I found some useful info [here](https://github.com/pure-data/pd-lib-builder/issues/47).
