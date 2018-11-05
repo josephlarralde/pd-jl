@@ -27,6 +27,7 @@ $(HLP)/sidechain~-help.pd \
 $(HLP)/flatten~-help.pd \
 $(HLP)/map-help.pd \
 $(HLP)/magnetize-help.pd \
+$(HLP)/tonnetz-help.pd \
 $(ABS)/split~.pd \
 $(HLP)/split~-help.pd \
 $(ABS)/merge~.pd \
