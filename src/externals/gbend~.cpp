@@ -101,17 +101,31 @@ void gbend_tilde_set(t_gbend_tilde *x, t_symbol *s, t_floatarg f) {
   x->x_arrayname = s;
   x->x_arraysr = (f > 0) ? f : sys_getsr();
   t_garray *a;
+  t_word *vec;
+  int vecsize;
 
   if (!(a = (t_garray *)pd_findbyclass(x->x_arrayname, garray_class))) {
     if (*s->s_name) {
       pd_error(x, "gbend~: %s: no such array", x->x_arrayname->s_name);
     }
+    delete[] x->x_next_vec;
     x->x_next_vec = 0;
-  } else if (!garray_getfloatarray(a, &x->x_next_npoints, &x->x_next_vec)) {
+    x->x_next_npoints = 0;
+  } else if (!garray_getfloatwords(a, &vecsize, &vec)) {
     pd_error(x, "%s: bad template for gbend~", x->x_arrayname->s_name);
+    delete[] x->x_next_vec;
     x->x_next_vec = 0;
+    x->x_next_npoints = 0;
   } else {
     garray_usedindsp(a);
+    if(x->x_next_npoints != vecsize) {
+      delete[] x->x_next_vec;
+      x->x_next_npoints = vecsize;
+      x->x_next_vec = new float[x->x_next_npoints];
+    }
+    for(int i=0; i<vecsize; i++) {
+      x->x_next_vec[i] = vec[i].w_float;
+    }
     x->player->setBuffer(x->x_next_vec, x->x_next_npoints, x->x_arraysr);
   }
 }
@@ -222,6 +236,10 @@ void *gbend_tilde_new(t_symbol *s) {
 
 void gbend_tilde_free(t_gbend_tilde *x) {
   delete x->player;
+  delete[] x->x_next_vec;
+  x->x_next_vec = 0;
+  x->x_next_npoints = 0;
+
   outlet_free(x->x_out);
   outlet_free(x->f_out);
 }

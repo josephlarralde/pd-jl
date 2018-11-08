@@ -145,7 +145,7 @@ fade value to zero (but then a lot of clicks and pops will occur).
 #X msg 718 349 read -resize \$1 ccc;
 #X msg 571 159 ccc;
 #X obj 815 520 table ccc;
-#X text 49 60 However \, if gbend~ is already playing a sample from
+#X text 49 70 However \, if gbend~ is already playing a sample from
 some table and receives a set message \, it will not brutally switch
 to the new table while blindly moving its playback position forward
 as if nothing happened (which would generate discontinuities in the
@@ -155,25 +155,25 @@ make sure to perform the switch at a moment between some fade-out and
 some fade-in. This means that if gbend~ is looping and receives a set
 message \, it will keep playing the old sound in loop until it receives
 a stop message or a bang.;
-#X obj 64 413 soundfiler;
-#X obj 64 372 openpanel;
-#X obj 64 353 bng 15 250 50 0 empty empty load_sample_in_table_aaa
+#X obj 64 450 soundfiler;
+#X obj 64 409 openpanel;
+#X obj 64 390 bng 15 250 50 0 empty empty load_sample_in_table_aaa
 0 -8 0 10 -262144 -1 -1;
-#X obj 121 475 expr $f1 * 0.001;
-#X obj 64 502 /;
-#X obj 121 451 t f f;
-#X msg 121 432 \$1;
-#X obj 64 575 s duration;
-#X obj 64 529 f;
-#X obj 133 529 f;
-#X msg 64 392 read -resize \$1 aaa;
-#X msg 133 554 set aaa \$1;
-#X obj 133 500 bng 15 250 50 0 empty empty <_click_here_to_set_table_with_samplerate
+#X obj 121 512 expr $f1 * 0.001;
+#X obj 64 539 /;
+#X obj 121 488 t f f;
+#X msg 121 469 \$1;
+#X obj 64 612 s duration;
+#X obj 64 566 f;
+#X obj 133 566 f;
+#X msg 64 429 read -resize \$1 aaa;
+#X msg 133 591 set aaa \$1;
+#X obj 133 537 bng 15 250 50 0 empty empty <_click_here_to_set_table_with_samplerate
 22 7 0 10 -262144 -1 -1;
 #X obj 533 570 s to-gbend;
-#X obj 133 575 s to-gbend;
+#X obj 133 612 s to-gbend;
 #X obj 815 496 table bbb;
-#X text 49 300 Below is an example of how to load samples properly
+#X text 49 337 Below is an example of how to load samples properly
 \, taking their samplerate into account :;
 #X obj 470 600 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -187,13 +187,14 @@ of the selection bounds sliders in the main patch.;
 hacking this help patch with metros and randoms.;
 #X text 49 37 The set message allows to change the reference to the
 table containing the sound to play at any moment.;
-#X text 49 191 An optional second value can be specified with the set
+#X text 49 218 An optional second value can be specified with the set
 message : the samplerate of the sound loaded into the table. As the
 table object doesn't include much information about the sound \, the
 samplerate has to be forwarded from the soundfiler object. When this
 value is not specified \, the object assumes the sound has the same
 samplerate as pure data's actual one. In practice \, this is very convenient
 because a value of 44100 is used everywhere most of the time.;
+#X obj 533 526 symbol;
 #X connect 0 0 3 0;
 #X connect 0 1 4 0;
 #X connect 1 0 18 0;
@@ -209,9 +210,9 @@ because a value of 44100 is used everywhere most of the time.;
 #X connect 10 0 9 1;
 #X connect 11 0 13 0;
 #X connect 12 0 13 0;
-#X connect 14 0 5 0;
+#X connect 14 0 47 0;
 #X connect 14 1 11 0;
-#X connect 15 0 5 0;
+#X connect 15 0 47 0;
 #X connect 15 1 12 0;
 #X connect 17 0 14 0;
 #X connect 18 0 0 0;
@@ -232,6 +233,7 @@ because a value of 44100 is used everywhere most of the time.;
 #X connect 34 0 37 0;
 #X connect 35 0 32 0;
 #X connect 41 0 40 0;
+#X connect 47 0 5 0;
 #X restore 595 647 pd about-tables-and-samplerates;
 #X obj 43 143 metro 120;
 #X obj 43 124 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
