@@ -194,6 +194,7 @@ samplerate has to be forwarded from the soundfiler object. When this
 value is not specified \, the object assumes the sound has the same
 samplerate as pure data's actual one. In practice \, this is very convenient
 because a value of 44100 is used everywhere most of the time.;
+#X obj 533 526 symbol;
 #X connect 0 0 3 0;
 #X connect 0 1 4 0;
 #X connect 1 0 18 0;
@@ -209,9 +210,9 @@ because a value of 44100 is used everywhere most of the time.;
 #X connect 10 0 9 1;
 #X connect 11 0 13 0;
 #X connect 12 0 13 0;
-#X connect 14 0 5 0;
+#X connect 14 0 47 0;
 #X connect 14 1 11 0;
-#X connect 15 0 5 0;
+#X connect 15 0 47 0;
 #X connect 15 1 12 0;
 #X connect 17 0 14 0;
 #X connect 18 0 0 0;
@@ -232,6 +233,7 @@ because a value of 44100 is used everywhere most of the time.;
 #X connect 34 0 37 0;
 #X connect 35 0 32 0;
 #X connect 41 0 40 0;
+#X connect 47 0 5 0;
 #X restore 595 647 pd about-tables-and-samplerates;
 #X obj 43 143 metro 120;
 #X obj 43 124 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
