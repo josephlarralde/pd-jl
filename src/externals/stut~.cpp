@@ -87,7 +87,7 @@ void stut_tilde_stop(t_stut_tilde *x) {
 //=========================== PARAMETER SETTERS ==============================//
 
 void stut_tilde_slice_duration(t_stut_tilde *x, t_floatarg f) {
-  x->stutter->setSliceDuration(f);
+  x->stutter->setSliceDuration(static_cast<float>(f));
 }
 
 void stut_tilde_slices(t_stut_tilde *x, t_floatarg f) {
@@ -95,27 +95,27 @@ void stut_tilde_slices(t_stut_tilde *x, t_floatarg f) {
 }
 
 void stut_tilde_fade(t_stut_tilde *x, t_floatarg f) {
-  x->stutter->setFades(f);
+  x->stutter->setFades(static_cast<float>(f));
 }
 
 void stut_tilde_fadi(t_stut_tilde *x, t_floatarg f) {
-  x->stutter->setFadeIn(f);
+  x->stutter->setFadeIn(static_cast<float>(f));
 }
 
 void stut_tilde_fado(t_stut_tilde *x, t_floatarg f) {
-  x->stutter->setFadeOut(f);
+  x->stutter->setFadeOut(static_cast<float>(f));
 }
 
 void stut_tilde_interrupt(t_stut_tilde *x, t_floatarg f) {
-  x->stutter->setInterrupt(f);
+  x->stutter->setInterrupt(static_cast<float>(f));
 }
 
 void stut_tilde_release(t_stut_tilde *x, t_floatarg f) {
-  x->stutter->setRelease(f);
+  x->stutter->setRelease(static_cast<float>(f));
 }
 
 void stut_tilde_setsr(t_stut_tilde *x, t_floatarg f) {
-  x->stutter->setSamplingRate(f);
+  x->stutter->setSamplingRate(static_cast<float>(f));
 }
 
 //============================ DSP OPERATIONS ================================//
@@ -126,8 +126,8 @@ t_int *stut_tilde_perform(t_int *w) {
   t_sample *out = (t_sample *)(w[3]);
   int n = (int)(w[4]);
 
-  float **ins = &in;
-  float **outs = &out;
+  jl::sample **ins = (jl::sample **)(&in);
+  jl::sample **outs = (jl::sample **)(&out);
 
   x->stutter->process(ins, outs, n);
 

@@ -46,7 +46,7 @@ static t_class *map_class;
 
 typedef struct _map {
   t_object x_obj;
-  t_float lastValueIn;
+  float lastValueIn;
 
   PdIntervalMap *map;
   t_outlet *f_out;
@@ -70,7 +70,7 @@ public:
 //----------------------------------------------------------------------------//
 
 void map_float(t_map *x, t_floatarg f) {
-  x->lastValueIn = f;
+  x->lastValueIn = static_cast<float>(f);
   outlet_float(x->f_out, x->map->process(x->lastValueIn));
 }
 
@@ -79,27 +79,27 @@ void map_bang(t_map *x) {
 }
 
 void map_inputmin(t_map *x, t_floatarg f) {
-  x->map->setInputMin(f);
+  x->map->setInputMin(static_cast<float>(f));
 }
 
 void map_inputmax(t_map *x, t_floatarg f) {
-  x->map->setInputMax(f);
+  x->map->setInputMax(static_cast<float>(f));
 }
 
 void map_outputmin(t_map *x, t_floatarg f) {
-  x->map->setOutputMin(f);
+  x->map->setOutputMin(static_cast<float>(f));
 }
 
 void map_outputmax(t_map *x, t_floatarg f) {
-  x->map->setOutputMax(f);
+  x->map->setOutputMax(static_cast<float>(f));
 }
 
 void map_xfactor(t_map *x, t_floatarg f) {
-  x->map->setXFactor(f);
+  x->map->setXFactor(static_cast<float>(f));
 }
 
 void map_sfactor(t_map *x, t_floatarg f) {
-  x->map->setSFactor(JL_MAX(f, 0));
+  x->map->setSFactor(static_cast<float>(JL_MAX(f, 0)));
 }
 
 //----------------------------------------------------------------------------//
@@ -116,27 +116,27 @@ void *map_new(t_symbol *s, int argc, t_atom *argv) {
     case 0:
       break;
     case 1:
-      x->map->setInputMax(atom_getfloat(argv));
+      x->map->setInputMax(static_cast<float>(atom_getfloat(argv)));
       break;
     case 2:
-      x->map->setInputMin(atom_getfloat(argv));
-      x->map->setInputMax(atom_getfloat(argv + 1));
+      x->map->setInputMin(static_cast<float>(atom_getfloat(argv)));
+      x->map->setInputMax(static_cast<float>(atom_getfloat(argv + 1)));
       break;
     case 3:
-      x->map->setInputMin(atom_getfloat(argv));
-      x->map->setInputMax(atom_getfloat(argv + 1));
-      x->map->setOutputMax(atom_getfloat(argv + 2));
+      x->map->setInputMin(static_cast<float>(atom_getfloat(argv)));
+      x->map->setInputMax(static_cast<float>(atom_getfloat(argv + 1)));
+      x->map->setOutputMax(static_cast<float>(atom_getfloat(argv + 2)));
       break;
 
     case 6:
-      x->map->setSFactor(atom_getfloat(argv + 5));
+      x->map->setSFactor(static_cast<float>(atom_getfloat(argv + 5)));
     case 5:
-      x->map->setXFactor(atom_getfloat(argv + 4));
+      x->map->setXFactor(static_cast<float>(atom_getfloat(argv + 4)));
     case 4:
-      x->map->setInputMin(atom_getfloat(argv));
-      x->map->setInputMax(atom_getfloat(argv + 1));
-      x->map->setOutputMin(atom_getfloat(argv + 2));
-      x->map->setOutputMax(atom_getfloat(argv + 3));
+      x->map->setInputMin(static_cast<float>(atom_getfloat(argv)));
+      x->map->setInputMax(static_cast<float>(atom_getfloat(argv + 1)));
+      x->map->setOutputMin(static_cast<float>(atom_getfloat(argv + 2)));
+      x->map->setOutputMax(static_cast<float>(atom_getfloat(argv + 3)));
       break;
   }
 

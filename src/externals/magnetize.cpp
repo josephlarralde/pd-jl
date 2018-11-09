@@ -46,7 +46,7 @@ static t_class *magnetize_class;
 
 typedef struct _magnetize {
   t_object x_obj;
-  t_float lastValueIn;
+  float lastValueIn;
 
   PdPatternMap *map;
   unsigned int pattern[JL_MAX_PATTERN_MAP_LENGTH];  
@@ -71,7 +71,7 @@ public:
 //----------------------------------------------------------------------------//
 
 void magnetize_float(t_magnetize *x, t_floatarg f) {
-  x->lastValueIn = f;
+  x->lastValueIn = static_cast<float>(f);
   outlet_float(x->f_out, x->map->process(x->lastValueIn));
 }
 
@@ -80,11 +80,11 @@ void magnetize_bang(t_magnetize *x) {
 }
 
 void magnetize_root(t_magnetize *x, t_floatarg f) {
-  x->map->setRoot(f);
+  x->map->setRoot(static_cast<float>(f));
 }
 
 void magnetize_factor(t_magnetize *x, t_floatarg f) {
-  x->map->setFactor(f);
+  x->map->setFactor(static_cast<float>(f));
 }
 
 void magnetize_pattern(t_magnetize *x, t_symbol *s, int argc, t_atom *argv) {

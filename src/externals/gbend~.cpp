@@ -51,11 +51,11 @@ typedef struct _gbend_tilde {
   float x_arraysr;
 
   int x_npoints; // samples in buffer
-  float *x_vec; // ref on the actual buffer (null if 0)
+  t_word *x_vec;
 
   // trying to handle 2 buffers in the same object
   int x_next_npoints;
-  float *x_next_vec;
+  t_word *x_next_vec;
 
   float x_f; // this is used in setup function for signal inlet
 
@@ -108,25 +108,17 @@ void gbend_tilde_set(t_gbend_tilde *x, t_symbol *s, t_floatarg f) {
     if (*s->s_name) {
       pd_error(x, "gbend~: %s: no such array", x->x_arrayname->s_name);
     }
-    delete[] x->x_next_vec;
     x->x_next_vec = 0;
     x->x_next_npoints = 0;
-  } else if (!garray_getfloatwords(a, &vecsize, &vec)) {
+  } else if (!garray_getfloatwords(a, &x->x_next_npoints, &x->x_next_vec)) {
     pd_error(x, "%s: bad template for gbend~", x->x_arrayname->s_name);
-    delete[] x->x_next_vec;
     x->x_next_vec = 0;
     x->x_next_npoints = 0;
   } else {
     garray_usedindsp(a);
-    if(x->x_next_npoints != vecsize) {
-      delete[] x->x_next_vec;
-      x->x_next_npoints = vecsize;
-      x->x_next_vec = new float[x->x_next_npoints];
-    }
-    for(int i=0; i<vecsize; i++) {
-      x->x_next_vec[i] = vec[i].w_float;
-    }
-    x->player->setBuffer(x->x_next_vec, x->x_next_npoints, x->x_arraysr);
+    // this is normal, we just want to pass the address and parse the content
+    x->player->setBufferStride(reinterpret_cast<jl::sample *>(x->x_next_vec),
+                               x->x_next_npoints, x->x_arraysr, 1, sizeof(t_word));
   }
 }
 
@@ -142,31 +134,31 @@ void gbend_tilde_stop(t_gbend_tilde *x) {
 //=========================== PARAMETER SETTERS ==============================//
 
 void gbend_tilde_pitch(t_gbend_tilde *x, t_floatarg f) {
-  x->player->setPitch(f);
+  x->player->setPitch(static_cast<float>(f));
 }
 
 void gbend_tilde_fade(t_gbend_tilde *x, t_floatarg f) {
-  x->player->setFades(f);
+  x->player->setFades(static_cast<float>(f));
 }
 
 void gbend_tilde_fadi(t_gbend_tilde *x, t_floatarg f) {
-  x->player->setFadeIn(f);
+  x->player->setFadeIn(static_cast<float>(f));
 }
 
 void gbend_tilde_fado(t_gbend_tilde *x, t_floatarg f) {
-  x->player->setFadeOut(f);
+  x->player->setFadeOut(static_cast<float>(f));
 }
 
 void gbend_tilde_interrupt(t_gbend_tilde *x, t_floatarg f) {
-  x->player->setInterrupt(f);
+  x->player->setInterrupt(static_cast<float>(f));
 }
 
 void gbend_tilde_beg(t_gbend_tilde *x, t_floatarg f) {
-  x->player->setBegin(f);
+  x->player->setBegin(static_cast<float>(f));
 }
 
 void gbend_tilde_end(t_gbend_tilde *x, t_floatarg f) {
-  x->player->setEnd(f);
+  x->player->setEnd(static_cast<float>(f));
 }
 
 void gbend_tilde_loop(t_gbend_tilde *x, t_floatarg f) {
@@ -178,7 +170,7 @@ void gbend_tilde_rvs(t_gbend_tilde *x, t_floatarg f) {
 }
 
 void gbend_tilde_setsr(t_gbend_tilde *x, t_floatarg f) {
-  x->player->setSamplingRate(f);
+  x->player->setSamplingRate(static_cast<float>(f));
 }
 
 //============================ DSP OPERATIONS ================================//
@@ -189,9 +181,9 @@ t_int *gbend_tilde_perform(t_int *w) {
   t_sample *out = (t_sample *)(w[3]);
   int n = (int)(w[4]); // VECTOR SIZE
 
-  float **outs = &out;
+  t_sample **outs = &out;
 
-  x->player->process((float *)in, outs, n);
+  x->player->process((jl::sample *)in, (jl::sample **)outs, n);
 
   return (w + 5);
 }
@@ -236,7 +228,7 @@ void *gbend_tilde_new(t_symbol *s) {
 
 void gbend_tilde_free(t_gbend_tilde *x) {
   delete x->player;
-  delete[] x->x_next_vec;
+  // delete[] x->x_next_vec;
   x->x_next_vec = 0;
   x->x_next_npoints = 0;
 

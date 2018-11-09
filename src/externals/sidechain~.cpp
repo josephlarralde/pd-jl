@@ -128,15 +128,16 @@ public:
     sc.setRelease(r);
   }
 
-  void process(float *in, float *out, unsigned int blockSize) {
+  void process(jl::sample *in, jl::sample *out, unsigned int blockSize) {
     jl::sample *m = rMakeUp.process(blockSize);
     jl::sample *t = rThreshold.process(blockSize);
     jl::sample *r = rRatio.process(blockSize);
     jl::sample *k = rKnee.process(blockSize);
 
     for (unsigned int i = 0; i < blockSize; ++i) {
-      jl::sample g = sc.process(static_cast<jl::sample>(in[i]), m[i], t[i], r[i], k[i]);
-      out[i] = static_cast<float>(g);
+      // jl::sample g = sc.process(static_cast<jl::sample>(in[i]), m[i], t[i], r[i], k[i]);
+      // out[i] = static_cast<float>(g);
+      out[i] = sc.process(in[i], m[i], t[i], r[i], k[i]);
     }
   }
 };
@@ -146,31 +147,31 @@ public:
 //============================================================================//
 
 void sidechain_tilde_makeup(t_sidechain_tilde *x, t_floatarg f) {
-  x->sidechain->setMakeUp(f);
+  x->sidechain->setMakeUp(static_cast<float>(f));
 }
 
 void sidechain_tilde_threshold(t_sidechain_tilde *x, t_floatarg f) {
-  x->sidechain->setThreshold(f);
+  x->sidechain->setThreshold(static_cast<float>(f));
 }
 
 void sidechain_tilde_ratio(t_sidechain_tilde *x, t_floatarg f) {
-  x->sidechain->setRatio(f);
+  x->sidechain->setRatio(static_cast<float>(f));
 }
 
 void sidechain_tilde_knee(t_sidechain_tilde *x, t_floatarg f) {
-  x->sidechain->setKnee(f);
+  x->sidechain->setKnee(static_cast<float>(f));
 }
 
 void sidechain_tilde_attack(t_sidechain_tilde *x, t_floatarg f) {
-  x->sidechain->setAttack(f);
+  x->sidechain->setAttack(static_cast<float>(f));
 }
 
 void sidechain_tilde_release(t_sidechain_tilde *x, t_floatarg f) {
-  x->sidechain->setRelease(f);
+  x->sidechain->setRelease(static_cast<float>(f));
 }
 
 void sidechain_tilde_setsr(t_sidechain_tilde *x, t_floatarg f) {
-  x->sidechain->setSamplingRate(f);
+  x->sidechain->setSamplingRate(static_cast<float>(f));
 }
 
 //============================ DSP OPERATIONS ================================//
@@ -181,7 +182,7 @@ t_int *sidechain_tilde_perform(t_int *w) {
   t_sample *out = (t_sample *)(w[3]);
   int n = (int)(w[4]); // VECTOR SIZE
 
-  x->sidechain->process(in, out, n);
+  x->sidechain->process((jl::sample *)in, (jl::sample *)out, n);
 
   return (w + 5);
 }

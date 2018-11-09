@@ -105,18 +105,15 @@ public:
   void setAttack(float a) { flattener.setAttack(a); }
   void setRelease(float r) { flattener.setRelease(r); }
 
-  void process(float *in1, float *in2, float *out, unsigned int blockSize) {
+  void process(jl::sample *in1, jl::sample *in2, jl::sample *out, unsigned int blockSize) {
     jl::sample *m = rMakeUp.process(blockSize);
     jl::sample *r = rRatio.process(blockSize);
     jl::sample *k = rKnee.process(blockSize);
 
     for (unsigned int i = 0; i < blockSize; ++i) {
-      jl::sample g = flattener.process(
-        static_cast<jl::sample>(in1[i]),
-        static_cast<jl::sample>(in2[i]),
-        m[i], r[i], k[i]
-      );
-      out[i] = static_cast<float>(g);
+      // jl::sample g = flattener.process(in1[i], in2[i], m[i], r[i], k[i]);
+      // out[i] = static_cast<float>(g);
+      out[i] = flattener.process(in1[i], in2[i], m[i], r[i], k[i]);
     }
   }
 };
@@ -126,27 +123,27 @@ public:
 //============================================================================//
 
 void flatten_tilde_makeup(t_flatten_tilde *x, t_floatarg f) {
-  x->flattener->setMakeUp(f);
+  x->flattener->setMakeUp(static_cast<float>(f));
 }
 
 void flatten_tilde_ratio(t_flatten_tilde *x, t_floatarg f) {
-  x->flattener->setRatio(f);
+  x->flattener->setRatio(static_cast<float>(f));
 }
 
 void flatten_tilde_knee(t_flatten_tilde *x, t_floatarg f) {
-  x->flattener->setKnee(f);
+  x->flattener->setKnee(static_cast<float>(f));
 }
 
 void flatten_tilde_attack(t_flatten_tilde *x, t_floatarg f) {
-  x->flattener->setAttack(f);
+  x->flattener->setAttack(static_cast<float>(f));
 }
 
 void flatten_tilde_release(t_flatten_tilde *x, t_floatarg f) {
-  x->flattener->setRelease(f);
+  x->flattener->setRelease(static_cast<float>(f));
 }
 
 void flatten_tilde_setsr(t_flatten_tilde *x, t_floatarg f) {
-  x->flattener->setSamplingRate(f);
+  x->flattener->setSamplingRate(static_cast<float>(f));
 }
 
 //============================ DSP OPERATIONS ================================//
@@ -158,7 +155,7 @@ t_int *flatten_tilde_perform(t_int *w) {
   t_sample *out = (t_sample *)(w[4]);
   int n = (int)(w[5]); // VECTOR SIZE
 
-  x->flattener->process(in1, in2, out, n);
+  x->flattener->process((jl::sample *)in1, (jl::sample *)in2, (jl::sample *)out, n);
 
   return (w + 6);
 }
