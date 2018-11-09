@@ -2,7 +2,9 @@
 
 ### a collection of externals and abstractions for pure-data vanilla
 
-This library is available as `jl` via pd vanilla's integrated package manager `deken`.
+This library is oriented towards musical creation, providing various audio synths and effects, as well as a bunch of utilities to manipulate rythms and scales.
+
+It is available as `jl` via pd vanilla's integrated package manager `deken`.
 
 #### building
 
@@ -12,7 +14,7 @@ To build and install the library on your machine, first clone this repository :
 
 Then run `make install`, and eventually `make clean`
 
-By default this creates a `build/<your_platform>/jl` directory at the root of this folder that you can copy somewhere and/or add to pd's paths list.
+By default this creates a `build/darwin/jl` directory at the root of this folder that you can copy somewhere and/or add to pd's paths list.
 Or you can specify your own install location by changing the `PDLIBDIR` var in
 `Makefile`.
 
