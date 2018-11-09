@@ -66,7 +66,7 @@ PDLIBDIR="./build/darwin"
 SRCOUT=./build/source/jl
 
 # this is needed for initializer lists
-cflags = -std=c++11
+cflags += -std=c++11
 
 # include Makefile.pdlibbuilder from submodule directory 'pd-lib-builder'
 # update path to reflect your environment
