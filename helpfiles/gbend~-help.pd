@@ -1,93 +1,92 @@
 #N canvas 0 23 1099 728 10;
-#X obj 143 392 *~;
-#X msg 204 184 loop \$1;
-#X obj 204 163 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 143 391 *~;
+#X msg 204 183 loop \$1;
+#X obj 204 162 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X obj 259 163 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 259 162 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X msg 259 184 rvs \$1;
-#X obj 43 163 bng 50 250 50 0 empty empty empty 17 7 0 10 -262144 -258113
+#X msg 259 183 rvs \$1;
+#X obj 43 162 bng 50 250 50 0 empty empty empty 17 7 0 10 -262144 -258113
 -1;
-#X msg 96 163 stop;
-#X obj 124 424 dac~ 1 2;
-#X obj 158 373 line~;
-#X msg 158 354 \$1 10;
-#X obj 161 336 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+#X msg 96 162 stop;
+#X obj 158 372 line~;
+#X msg 158 353 \$1 10;
+#X obj 161 335 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 0;
-#X msg 334 484 beg \$1;
-#X obj 334 465 *;
-#X obj 384 465 *;
-#X msg 384 484 end \$1;
-#X obj 337 369 hsl 128 15 0 1 0 0 empty empty begin 135 8 0 10 -262144
+#X msg 334 483 beg \$1;
+#X obj 334 464 *;
+#X obj 384 464 *;
+#X msg 384 483 end \$1;
+#X obj 337 368 hsl 128 15 0 1 0 0 empty empty begin 135 8 0 10 -262144
 -1 -1 0 0;
-#X obj 337 388 hsl 128 15 0 1 0 0 empty empty end 135 8 0 10 -262144
+#X obj 337 387 hsl 128 15 0 1 0 0 empty empty end 135 8 0 10 -262144
 -1 -1 12700 0;
-#X obj 372 426 t b f;
-#X floatatom 218 297 5 0 0 0 - - -, f 5;
-#X obj 218 315 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 372 425 t b f;
+#X floatatom 218 296 5 0 0 0 - - -, f 5;
+#X obj 218 314 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 311 604 fado \$1;
-#X floatatom 311 583 5 0 0 0 - - -, f 5;
-#X floatatom 257 583 5 0 0 0 - - -, f 5;
-#X msg 257 604 fadi \$1;
-#X floatatom 419 583 5 0 0 0 - - -, f 5;
-#X floatatom 365 583 5 0 0 0 - - -, f 5;
-#X msg 365 604 fade \$1;
-#X msg 419 604 interrupt \$1;
-#X floatatom 143 163 5 0 0 0 - - -, f 5;
-#X msg 143 184 pitch \$1;
-#X text 592 276 argument (optional) : table name;
-#X text 592 331 input messages :;
-#X text 598 351 - bang : trig sample playing using actual parameters
+#X msg 311 603 fado \$1;
+#X floatatom 311 582 5 0 0 0 - - -, f 5;
+#X floatatom 257 582 5 0 0 0 - - -, f 5;
+#X msg 257 603 fadi \$1;
+#X floatatom 419 582 5 0 0 0 - - -, f 5;
+#X floatatom 365 582 5 0 0 0 - - -, f 5;
+#X msg 365 603 fade \$1;
+#X msg 419 603 interrupt \$1;
+#X floatatom 143 162 5 0 0 0 - - -, f 5;
+#X msg 143 183 pitch \$1;
+#X text 592 275 argument (optional) : table name;
+#X text 592 330 input messages :;
+#X text 598 350 - bang : trig sample playing using actual parameters
 ;
-#X text 598 365 - stop : stop the player;
-#X text 598 393 - beg <selection beginning (ms)>;
-#X text 598 407 - end <selection end (ms)>;
-#X text 598 421 - pitch <constant detune (semitones)>;
-#X text 598 435 - loop <on/off (1/0)> : loop on selection;
-#X text 598 448 - rvs <on/off> (1/0)> : play in reverse;
-#X text 592 522 output signal : the sample being plaid;
-#X text 592 543 output value (right outlet) :;
-#X text 598 591 - 2 on sample looping after reaching selection end
+#X text 598 364 - stop : stop the player;
+#X text 598 392 - beg <selection beginning (ms)>;
+#X text 598 406 - end <selection end (ms)>;
+#X text 598 420 - pitch <constant detune (semitones)>;
+#X text 598 434 - loop <on/off (1/0)> : loop on selection;
+#X text 598 447 - rvs <on/off> (1/0)> : play in reverse;
+#X text 592 521 output signal : the sample being plaid;
+#X text 592 542 output value (right outlet) :;
+#X text 598 590 - 2 on sample looping after reaching selection end
 ;
-#X obj 372 407 r duration;
-#X text 352 344 selection bounds;
-#X obj 278 388 loadbang;
-#X msg 278 408 1;
-#X text 598 476 - fado <duration (ms)> : fade-out duration (default
+#X obj 372 406 r duration;
+#X text 352 343 selection bounds;
+#X obj 278 387 loadbang;
+#X msg 278 407 1;
+#X text 598 475 - fado <duration (ms)> : fade-out duration (default
 5ms);
-#X text 598 462 - fadi <duration (ms)> : fade-in duration (default
+#X text 598 461 - fadi <duration (ms)> : fade-in duration (default
 5ms);
-#X text 598 502 - interrupt <duration (ms)> : interrupt fade-out duration
+#X text 598 501 - interrupt <duration (ms)> : interrupt fade-out duration
 ;
-#X text 947 502 (default 5ms);
-#X text 314 559 fade values;
-#X obj 97 576 osc~;
-#X obj 97 596 *~;
-#X obj 97 616 +~;
-#X floatatom 97 505 5 0 0 2 frequency - -, f 5;
-#X floatatom 140 524 5 0 0 2 amplitude - -, f 5;
-#X floatatom 160 557 5 0 0 2 detune - -, f 5;
-#X obj 226 228 r to-gbend;
-#X obj 334 518 s to-gbend;
-#X obj 365 650 s to-gbend;
-#X obj 97 636 s~ to-gbend~;
-#X obj 226 247 r~ to-gbend~;
-#X text 77 46 gbend~ - joseph larralde \, 2018;
-#X obj 355 165 soundfiler;
-#X obj 355 124 openpanel;
-#X obj 355 102 bng 15 250 50 0 empty empty load_sample_in_table_aaa
+#X text 947 501 (default 5ms);
+#X text 314 558 fade values;
+#X obj 97 575 osc~;
+#X obj 97 595 *~;
+#X obj 97 615 +~;
+#X floatatom 97 504 5 0 0 2 frequency - -, f 5;
+#X floatatom 140 523 5 0 0 2 amplitude - -, f 5;
+#X floatatom 160 556 5 0 0 2 detune - -, f 5;
+#X obj 226 227 r to-gbend;
+#X obj 334 517 s to-gbend;
+#X obj 365 649 s to-gbend;
+#X obj 97 635 s~ to-gbend~;
+#X obj 226 246 r~ to-gbend~;
+#X text 77 45 gbend~ - joseph larralde \, 2018;
+#X obj 355 164 soundfiler;
+#X obj 355 123 openpanel;
+#X obj 355 101 bng 15 250 50 0 empty empty load_sample_in_table_aaa
 0 -8 0 10 -262144 -1 -1;
-#X obj 355 211 / 44.1;
-#X obj 412 184 expr $f1 * 0.001;
-#X msg 355 144 read -resize \$1 aaa;
-#X obj 355 231 s duration;
-#X text 598 379 - set <table name> <table samplerate (optional)> :
+#X obj 355 210 / 44.1;
+#X obj 412 183 expr $f1 * 0.001;
+#X msg 355 143 read -resize \$1 aaa;
+#X obj 355 230 s duration;
+#X text 598 378 - set <table name> <table samplerate (optional)> :
 ;
-#X obj 355 261 table aaa;
-#X obj 143 274 jl/gbend~ aaa;
-#X text 598 563 - 0 on sample stopping with the stop message;
-#X text 598 577 - 1 on sample reaching selection end and stopping;
+#X obj 355 260 table aaa;
+#X obj 143 273 jl/gbend~ aaa;
+#X text 598 562 - 0 on sample stopping with the stop message;
+#X text 598 576 - 1 on sample reaching selection end and stopping;
 #N canvas 330 48 444 485 about-fades 0;
 #X text 41 31 gbend~ has 3 distinct fade parameters to play with :
 ;
@@ -119,7 +118,7 @@ fade value to zero (but then a lot of clicks and pops will occur).
 #X text 41 52 - the fade-in duration (fadi);
 #X text 41 68 - the fade-out duration (fado);
 #X text 41 84 - the interrupt fade duration (interrupt);
-#X restore 799 647 pd about-fades;
+#X restore 799 646 pd about-fades;
 #N canvas 67 48 952 669 about-tables-and-samplerates 0;
 #X obj 691 220 soundfiler;
 #X obj 691 179 openpanel;
@@ -234,91 +233,92 @@ because a value of 44100 is used everywhere most of the time.;
 #X connect 35 0 32 0;
 #X connect 41 0 40 0;
 #X connect 47 0 5 0;
-#X restore 595 647 pd about-tables-and-samplerates;
-#X obj 43 143 metro 120;
-#X obj 43 124 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X restore 595 646 pd about-tables-and-samplerates;
+#X obj 43 142 metro 120;
+#X obj 43 123 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 543 26 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 543 25 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 543 677 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 543 676 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 354 48 cnv 15 130 25 empty empty 1_-_load_a_sample 5 12 0 12
+#X obj 354 47 cnv 15 130 25 empty empty 1_-_load_a_sample 5 12 0 12
 -233017 -66577 0;
-#X obj 43 86 cnv 15 70 25 empty empty 2_-_play 5 12 0 12 -233017 -66577
+#X obj 43 85 cnv 15 70 25 empty empty 2_-_play 5 12 0 12 -233017 -66577
 0;
-#X text 85 467 signal pitch control;
-#X text 905 379 change table to read from;
-#X obj 594 238 cnv 15 80 25 empty empty REFERENCE 5 12 0 12 -233017
+#X text 85 466 signal pitch control;
+#X text 905 378 change table to read from;
+#X obj 594 237 cnv 15 80 25 empty empty REFERENCE 5 12 0 12 -233017
 -66577 0;
-#X text 592 101 It embeds an envelope system that helps avoiding clicks
+#X text 592 100 It embeds an envelope system that helps avoiding clicks
 and pops when they are not desired \, and features an audiorate pitch
 control input to play with.;
-#X text 592 297 input signal :;
-#X text 681 297 real-time detuning in semitones (signal value;
-#X text 683 310 will be added to constant detune value);
-#X text 592 50 gbend~ is a short name for "grain (pitch) bender". It
+#X text 592 296 input signal :;
+#X text 681 296 real-time detuning in semitones (signal value;
+#X text 683 309 will be added to constant detune value);
+#X text 592 49 gbend~ is a short name for "grain (pitch) bender". It
 is a versatile monophonic sample player that can be used to build asynchronous
 granular synthesizers \, beatboxes \, beat slicers \, and so on.;
-#X text 592 144 The selection bounds and all the other non audio parameters
+#X text 592 143 The selection bounds and all the other non audio parameters
 are memorized by the object until it receives a bang or reaches the
 end of the selection while looping is enabled. Then \, gbend~ starts
 playing using the latest memorized parameter values.;
-#X text 598 489 - fade <duration (ms)> : shortcut for fadi AND fado
+#X text 598 488 - fade <duration (ms)> : shortcut for fadi AND fado
 ;
-#X floatatom 94 125 5 0 0 0 - - -, f 5;
-#X connect 0 0 7 0;
-#X connect 0 0 7 1;
-#X connect 1 0 72 0;
+#X floatatom 94 124 5 0 0 0 - - -, f 5;
+#X obj 124 423 dac~ 1 2;
+#X connect 0 0 93 0;
+#X connect 0 0 93 1;
+#X connect 1 0 71 0;
 #X connect 2 0 1 0;
 #X connect 3 0 4 0;
-#X connect 4 0 72 0;
-#X connect 5 0 72 0;
-#X connect 6 0 72 0;
-#X connect 8 0 0 1;
+#X connect 4 0 71 0;
+#X connect 5 0 71 0;
+#X connect 6 0 71 0;
+#X connect 7 0 0 1;
+#X connect 8 0 7 0;
 #X connect 9 0 8 0;
-#X connect 10 0 9 0;
-#X connect 11 0 58 0;
-#X connect 12 0 11 0;
-#X connect 13 0 14 0;
-#X connect 14 0 58 0;
+#X connect 10 0 57 0;
+#X connect 11 0 10 0;
+#X connect 12 0 13 0;
+#X connect 13 0 57 0;
+#X connect 14 0 11 0;
 #X connect 15 0 12 0;
-#X connect 16 0 13 0;
-#X connect 17 0 12 0;
-#X connect 17 0 13 0;
-#X connect 17 1 12 1;
-#X connect 17 1 13 1;
-#X connect 18 0 19 0;
-#X connect 20 0 59 0;
-#X connect 21 0 20 0;
-#X connect 22 0 23 0;
-#X connect 23 0 59 0;
-#X connect 24 0 27 0;
-#X connect 25 0 26 0;
-#X connect 26 0 59 0;
-#X connect 27 0 59 0;
-#X connect 28 0 29 0;
-#X connect 29 0 72 0;
-#X connect 42 0 17 0;
-#X connect 44 0 45 0;
-#X connect 45 0 16 0;
+#X connect 16 0 11 0;
+#X connect 16 0 12 0;
+#X connect 16 1 11 1;
+#X connect 16 1 12 1;
+#X connect 17 0 18 0;
+#X connect 19 0 58 0;
+#X connect 20 0 19 0;
+#X connect 21 0 22 0;
+#X connect 22 0 58 0;
+#X connect 23 0 26 0;
+#X connect 24 0 25 0;
+#X connect 25 0 58 0;
+#X connect 26 0 58 0;
+#X connect 27 0 28 0;
+#X connect 28 0 71 0;
+#X connect 41 0 16 0;
+#X connect 43 0 44 0;
+#X connect 44 0 15 0;
+#X connect 50 0 51 0;
 #X connect 51 0 52 0;
-#X connect 52 0 53 0;
-#X connect 53 0 60 0;
-#X connect 54 0 51 0;
+#X connect 52 0 59 0;
+#X connect 53 0 50 0;
+#X connect 54 0 51 1;
 #X connect 55 0 52 1;
-#X connect 56 0 53 1;
-#X connect 57 0 72 0;
-#X connect 61 0 72 0;
-#X connect 63 0 66 0;
-#X connect 63 1 67 0;
-#X connect 64 0 68 0;
-#X connect 65 0 64 0;
-#X connect 66 0 69 0;
-#X connect 67 0 66 1;
-#X connect 68 0 63 0;
-#X connect 72 0 0 0;
-#X connect 72 1 18 0;
-#X connect 77 0 5 0;
-#X connect 78 0 77 0;
-#X connect 79 0 80 0;
-#X connect 93 0 77 1;
+#X connect 56 0 71 0;
+#X connect 60 0 71 0;
+#X connect 62 0 65 0;
+#X connect 62 1 66 0;
+#X connect 63 0 67 0;
+#X connect 64 0 63 0;
+#X connect 65 0 68 0;
+#X connect 66 0 65 1;
+#X connect 67 0 62 0;
+#X connect 71 0 0 0;
+#X connect 71 1 17 0;
+#X connect 76 0 5 0;
+#X connect 77 0 76 0;
+#X connect 78 0 79 0;
+#X connect 92 0 76 1;
