@@ -1,8 +1,12 @@
+bibi~   biquad filter with intuitive control parameters
+envgen  generate messages for line objects to control trigged or adsr envelopes
 feedfm~	FM operator with one carrier and two modulator oscillators
 flatten~	compress a signal using another signal to drive the threshold
 gbend~	sample player utility
 gdelay~	granular delay
 gflow~	synchronous granular sample player
+keynote turn a computer keyboard key into a MIDI key
+keyboard    turn a computer keyboard into a MIDI keyboard
 lr2ms~	left-right to mid-side signal encoding
 magnetize	map an input value onto a repeating interval pattern
 map	interval mapper with transfer functions
