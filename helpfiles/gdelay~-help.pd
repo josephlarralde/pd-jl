@@ -26,12 +26,12 @@
 #X obj 88 597 dac~ 1 2;
 #X obj 340 390 s to-gdelay;
 #X msg 340 292 size \$1;
-#X floatatom 340 272 5 0 0 0 - - -, f 5;
-#X floatatom 393 272 5 0 0 0 - - -, f 5;
+#X floatatom 340 272 5 0 0 0 - - -;
+#X floatatom 393 272 5 0 0 0 - - -;
 #X msg 393 292 rsize \$1;
-#X floatatom 402 334 5 0 0 0 - - -, f 5;
+#X floatatom 402 334 5 0 0 0 - - -;
 #X msg 402 354 mindelay \$1;
-#X floatatom 480 334 5 0 0 0 - - -, f 5;
+#X floatatom 480 334 5 0 0 0 - - -;
 #X msg 480 354 maxdelay \$1;
 #X obj 373 471 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 1270 0;
@@ -118,10 +118,6 @@ from;
 from;
 #X text 661 510 output signal (stereo) : the granularized audio input
 ;
-#X text 660 55 gdelay~ is short for granular delay. It is based on
-a polyphony of granular delay lines (the gdelay-unit~.pd abstraction
-used in a clone object) \, and on a polyphony of grain panners (the
-gpan-unit~.pd abstraction also used in a clone object).;
 #N canvas 0 23 894 557 envelope-parameters 0;
 #X obj 169 290 clip~ 0 1;
 #X obj 169 350 cos~;
@@ -183,9 +179,9 @@ gpan-unit~.pd abstraction also used in a clone object).;
 #X restore 528 102 graph;
 #X obj 262 134 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X floatatom 169 49 5 0 0 0 - - -, f 5;
+#X floatatom 169 49 5 0 0 0 - - -;
 #X obj 392 107 / 10;
-#X floatatom 97 91 5 0 0 0 - - -, f 5;
+#X floatatom 97 91 5 0 0 0 - - -;
 #X msg 208 152 0;
 #X obj 97 50 loadbang;
 #X obj 262 114 loadbang;
@@ -247,9 +243,13 @@ factor;
 #X text 667 490 - drive <value [0 \, 1]> : grain envelope overdrive
 factor;
 #X text 661 123 This is a synchronous granular system. Each voice is
-played using two grains with a half phase overlae. The envelopes are
+played using two grains with a half phase overlap. The envelopes are
 hann windows that can be modified via the shorten and drive parameters
 :;
+#X text 660 55 [gdelay~] is short for granular delay. It is based on
+a polyphony of granular delay lines (the [gdelay-unit~] abstraction
+used in a [clone] object) \, and on a polyphony of grain panners (the
+[gpan-unit~] abstraction also used in a [clone] object).;
 #X connect 0 0 14 0;
 #X connect 0 1 18 0;
 #X connect 1 0 0 0;

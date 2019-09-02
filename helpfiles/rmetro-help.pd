@@ -6,11 +6,11 @@
 #X text 210 121 arguments : <base period (ms)> <max randomly added
 (ms)>;
 #X text 339 251 (the factor of a power function applied to;
-#X floatatom 83 128 5 0 0 0 - - -, f 5;
-#X floatatom 108 146 5 0 0 0 - - -, f 5;
-#X floatatom 133 164 5 0 0 0 - - -, f 5;
-#X floatatom 133 261 5 0 0 0 - - -, f 5;
-#X floatatom 95 285 5 0 0 0 - - -, f 5;
+#X floatatom 83 128 5 0 0 0 - - -;
+#X floatatom 108 146 5 0 0 0 - - -;
+#X floatatom 133 164 5 0 0 0 - - -;
+#X floatatom 133 261 5 0 0 0 - - -;
+#X floatatom 95 285 5 0 0 0 - - -;
 #X obj 58 321 bng 36 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X text 220 179 - leftmost inlet : on/off (0/1);
@@ -34,8 +34,8 @@ base;
 #X text 340 264 a normalized random value which is then;
 #X text 340 277 scaled to the [0 \, <max randomly added>];
 #X text 340 290 interval);
-#X text 210 70 rmetro (short for random metro) is based on the vanilla
-metro object \, providing additional "period randomness" and "period
+#X text 210 70 [rmetro] (short for random metro) is based on the vanilla
+[metro] object \, providing additional "period randomness" and "period
 randomness distribution" parameters.;
 #X connect 1 0 10 0;
 #X connect 1 1 9 0;

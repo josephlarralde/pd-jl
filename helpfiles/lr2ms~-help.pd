@@ -1,5 +1,5 @@
 #N canvas 0 23 486 688 10;
-#X floatatom 97 174 5 0 0 0 - - -, f 5;
+#X floatatom 97 174 5 0 0 0 - - -;
 #X obj 125 216 osc~;
 #X obj 121 457 *~;
 #X obj 172 457 *~;
@@ -12,12 +12,12 @@
 #X obj 121 333 *~;
 #X msg 164 265 \$1 10;
 #X obj 167 246 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 12669 0;
+-1 -1 0 0;
 #X obj 302 285 line~;
 #X obj 172 333 *~;
 #X msg 302 265 \$1 10;
 #X obj 305 246 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 12700 0;
+-1 -1 0 0;
 #X obj 259 136 snapshot~;
 #X obj 279 109 metro 10;
 #X obj 279 90 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -38,13 +38,13 @@
 #X obj 97 134 loadbang;
 #X msg 97 154 90;
 #X text 47 43 lr2ms~ - joseph larralde \, 2018;
-#X text 58 542 lr2ms~ and ms2lr~ respectively encode and decode a stereo
-signal to / from its mid-side representation.;
 #X text 58 576 This help patch decomposes a binaural beats signal \,
 allows to mix its mid and side components \, and encodes them back
 to stereo. Its goal is to make modifications of the mid-side representation
 of a signal as obvious as possible. When both gains equal 1 \, the
 output is exactly the same as the input.;
+#X text 58 542 [lr2ms~] and [ms2lr~] respectively encode and decode
+a stereo signal to / from its mid-side representation.;
 #X connect 0 0 28 0;
 #X connect 0 0 31 0;
 #X connect 1 0 29 1;

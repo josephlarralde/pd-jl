@@ -1,16 +1,16 @@
 #N canvas 0 23 852 489 10;
 #X text 44 29 feedfm~ - joseph larralde \, 2018;
-#X floatatom 65 94 5 0 0 2 frequency - -, f 5;
+#X floatatom 65 94 5 0 0 2 frequency - -;
 #X obj 148 352 *~;
 #X obj 169 329 line~;
 #X obj 172 290 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 0;
 #X msg 169 309 \$1 10;
 #X obj 131 386 dac~ 1 2;
-#X floatatom 65 125 5 0 0 2 carrier_ratio - -, f 5;
-#X floatatom 66 156 5 0 0 2 modulator_ratio - -, f 5;
-#X floatatom 233 94 5 0 0 2 fixed_modulator_frequency - -, f 5;
-#X floatatom 233 125 5 0 0 2 fixed_modulator_index - -, f 5;
+#X floatatom 65 125 5 0 0 2 carrier_ratio - -;
+#X floatatom 66 156 5 0 0 2 modulator_ratio - -;
+#X floatatom 233 94 5 0 0 2 fixed_modulator_frequency - -;
+#X floatatom 233 125 5 0 0 2 fixed_modulator_index - -;
 #X text 435 157 The 4 leftmost inlets \, from left to right \, correspond
 to the following DX7 operator parameters :;
 #X text 446 189 - leftmost inlet : base frequency;
@@ -24,17 +24,11 @@ parameters :;
 #X text 446 304 - fifth inlet : fixed modulator frequency;
 #X text 446 320 - sixth inlet : fixed modulator index;
 #X obj 126 258 jl/feedfm~;
-#X floatatom 279 194 5 0 0 2 feedback - -, f 5;
-#X floatatom 67 187 5 0 0 2 modulation_index - -, f 5;
-#X text 435 74 feedfm~ (short for feedback frequency modulation) is
-a vanilla implementation of something in between a DX7 operator and
-a very basic frequency modulation synthesizer \, allowing to use all
-the parameters from both approaches on the same pair of oscillators
-\, e.g. using the modulator as timbre control and the fixed modulator
-as a vibrato.;
+#X floatatom 279 194 5 0 0 2 feedback - -;
+#X floatatom 67 187 5 0 0 2 modulation_index - -;
 #N canvas 159 48 546 366 wobble-example 0;
 #X msg 300 78 0.75;
-#X floatatom 239 59 5 0 0 0 - - -, f 5;
+#X floatatom 239 59 5 0 0 0 - - -;
 #X obj 239 98 *~ 0.5;
 #X obj 221 266 *~;
 #X obj 286 221 line~;
@@ -46,7 +40,7 @@ as a vibrato.;
 #X obj 98 84 loadbang;
 #X msg 98 116 1;
 #X msg 127 116 0.51;
-#X floatatom 69 153 5 0 0 0 - - -, f 5;
+#X floatatom 69 153 5 0 0 0 - - -;
 #X obj 239 78 osc~ 2.66;
 #X obj 239 118 +~ 0.5;
 #X msg 69 116 90;
@@ -81,6 +75,12 @@ as a vibrato.;
 #X text 436 341 The rightmost inlet is a feedback control inlet. It
 generates some unstable sounds \, and if set high enough will produce
 interesting white noises.;
+#X text 435 74 [feedfm~] (short for feedback frequency modulation)
+is a vanilla implementation of something in between a DX7 operator
+and a very basic frequency modulation synthesizer \, allowing to use
+all the parameters from both approaches on the same pair of oscillators
+\, e.g. using the modulator as timbre control and the fixed modulator
+as a vibrato.;
 #X connect 1 0 19 0;
 #X connect 2 0 6 0;
 #X connect 2 0 6 1;
@@ -94,4 +94,4 @@ interesting white noises.;
 #X connect 19 0 2 0;
 #X connect 20 0 19 6;
 #X connect 21 0 19 3;
-#X connect 24 0 25 0;
+#X connect 23 0 24 0;

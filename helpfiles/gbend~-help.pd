@@ -1,7 +1,7 @@
 #N canvas 0 23 1099 728 10;
 #X obj 143 391 *~;
 #X msg 204 183 loop \$1;
-#X obj 204 162 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 204 162 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 259 162 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
@@ -22,18 +22,18 @@
 #X obj 337 387 hsl 128 15 0 1 0 0 empty empty end 135 8 0 10 -262144
 -1 -1 12700 0;
 #X obj 372 425 t b f;
-#X floatatom 218 296 5 0 0 0 - - -, f 5;
+#X floatatom 218 296 5 0 0 0 - - -;
 #X obj 218 314 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 311 603 fado \$1;
-#X floatatom 311 582 5 0 0 0 - - -, f 5;
-#X floatatom 257 582 5 0 0 0 - - -, f 5;
+#X floatatom 311 582 5 0 0 0 - - -;
+#X floatatom 257 582 5 0 0 0 - - -;
 #X msg 257 603 fadi \$1;
-#X floatatom 419 582 5 0 0 0 - - -, f 5;
-#X floatatom 365 582 5 0 0 0 - - -, f 5;
+#X floatatom 419 582 5 0 0 0 - - -;
+#X floatatom 365 582 5 0 0 0 - - -;
 #X msg 365 603 fade \$1;
 #X msg 419 603 interrupt \$1;
-#X floatatom 143 162 5 0 0 0 - - -, f 5;
+#X floatatom 143 162 5 0 0 0 - - -;
 #X msg 143 183 pitch \$1;
 #X text 592 275 argument (optional) : table name;
 #X text 592 330 input messages :;
@@ -64,9 +64,9 @@
 #X obj 97 575 osc~;
 #X obj 97 595 *~;
 #X obj 97 615 +~;
-#X floatatom 97 504 5 0 0 2 frequency - -, f 5;
-#X floatatom 140 523 5 0 0 2 amplitude - -, f 5;
-#X floatatom 160 556 5 0 0 2 detune - -, f 5;
+#X floatatom 97 504 5 0 0 2 frequency - -;
+#X floatatom 140 523 5 0 0 2 amplitude - -;
+#X floatatom 160 556 5 0 0 2 detune - -;
 #X obj 226 227 r to-gbend;
 #X obj 334 517 s to-gbend;
 #X obj 365 649 s to-gbend;
@@ -88,8 +88,6 @@
 #X text 598 562 - 0 on sample stopping with the stop message;
 #X text 598 576 - 1 on sample reaching selection end and stopping;
 #N canvas 330 48 444 485 about-fades 0;
-#X text 41 31 gbend~ has 3 distinct fade parameters to play with :
-;
 #X text 41 108 All of them are expressed in milliseconds \, but the
 fade-in and fade-out durations are affected by the pitch as if they
 were part of the sample selection \, like a pre-calculated envelope
@@ -97,6 +95,11 @@ were part of the sample selection \, like a pre-calculated envelope
 scaled down (before any pitch is applied) if the sum of their values
 exceeds the selection's duration. When the stop message is received
 \, the fade-out duration is used to fade to silence.;
+#X text 41 52 - the fade-in duration (fadi);
+#X text 41 68 - the fade-out duration (fado);
+#X text 41 84 - the interrupt fade duration (interrupt);
+#X text 41 31 [gbend~] has 3 distinct fade parameters to play with
+:;
 #X text 41 211 The interrupt fade value is not affected by the pitch.
 Its purpose is to apply a quick fade-out anytime a bang message is
 received before starting to play the new selection \, to avoid discontinuities
@@ -109,15 +112,12 @@ default value of 5ms). More precisely \, the interrupt fade is plaid
 entirely anytime \, then the new fragment starts playing \, taking
 into account all the other parameters at this very precise sample-accurate
 moment. There is never any crossfading between successive fragments
-: when a gbend~ object starts interrupting itself \, it will ignore
+: when a [gbend~] object starts interrupting itself \, it will ignore
 other bangs until it leaves interrupting state to enter playing state.
 This means the higher the interrupt duration \, the lower the max trig
 frequency. This behaviour can be circumvented by setting the interrupt
 fade value to zero (but then a lot of clicks and pops will occur).
 ;
-#X text 41 52 - the fade-in duration (fadi);
-#X text 41 68 - the fade-out duration (fado);
-#X text 41 84 - the interrupt fade duration (interrupt);
 #X restore 799 646 pd about-fades;
 #N canvas 67 48 952 669 about-tables-and-samplerates 0;
 #X obj 691 220 soundfiler;
@@ -144,16 +144,6 @@ fade value to zero (but then a lot of clicks and pops will occur).
 #X msg 718 349 read -resize \$1 ccc;
 #X msg 571 159 ccc;
 #X obj 815 520 table ccc;
-#X text 49 70 However \, if gbend~ is already playing a sample from
-some table and receives a set message \, it will not brutally switch
-to the new table while blindly moving its playback position forward
-as if nothing happened (which would generate discontinuities in the
-output signal \, aka clicks and pops). It will rather take into account
-the new table reference \, but will wait for a new bang message to
-make sure to perform the switch at a moment between some fade-out and
-some fade-in. This means that if gbend~ is looping and receives a set
-message \, it will keep playing the old sound in loop until it receives
-a stop message or a bang.;
 #X obj 64 450 soundfiler;
 #X obj 64 409 openpanel;
 #X obj 64 390 bng 15 250 50 0 empty empty load_sample_in_table_aaa
@@ -194,13 +184,23 @@ value is not specified \, the object assumes the sound has the same
 samplerate as pure data's actual one. In practice \, this is very convenient
 because a value of 44100 is used everywhere most of the time.;
 #X obj 533 526 symbol;
+#X text 49 70 However \, if [gbend~] is already playing a sample from
+some table and receives a set message \, it will not brutally switch
+to the new table while blindly moving its playback position forward
+as if nothing happened (which would generate discontinuities in the
+output signal \, aka clicks and pops). It will rather take into account
+the new table reference \, but will wait for a new bang message to
+make sure to perform the switch at a moment between some fade-out and
+some fade-in. This means that if [gbend~] is looping and receives a
+set message \, it will keep playing the old sound in loop until it
+receives a stop message or a bang.;
 #X connect 0 0 3 0;
 #X connect 0 1 4 0;
 #X connect 1 0 18 0;
 #X connect 2 0 1 0;
 #X connect 3 0 11 0;
 #X connect 4 0 3 1;
-#X connect 5 0 36 0;
+#X connect 5 0 35 0;
 #X connect 6 0 19 0;
 #X connect 7 0 6 0;
 #X connect 8 0 9 0;
@@ -209,30 +209,30 @@ because a value of 44100 is used everywhere most of the time.;
 #X connect 10 0 9 1;
 #X connect 11 0 13 0;
 #X connect 12 0 13 0;
-#X connect 14 0 47 0;
+#X connect 14 0 46 0;
 #X connect 14 1 11 0;
-#X connect 15 0 47 0;
+#X connect 15 0 46 0;
 #X connect 15 1 12 0;
 #X connect 17 0 14 0;
 #X connect 18 0 0 0;
 #X connect 19 0 8 0;
 #X connect 20 0 15 0;
-#X connect 23 0 27 0;
-#X connect 23 1 29 0;
-#X connect 24 0 33 0;
-#X connect 25 0 24 0;
-#X connect 26 0 27 1;
-#X connect 27 0 31 0;
-#X connect 28 0 26 0;
-#X connect 28 1 32 1;
-#X connect 29 0 28 0;
-#X connect 31 0 30 0;
-#X connect 32 0 34 0;
-#X connect 33 0 23 0;
-#X connect 34 0 37 0;
-#X connect 35 0 32 0;
-#X connect 41 0 40 0;
-#X connect 47 0 5 0;
+#X connect 22 0 26 0;
+#X connect 22 1 28 0;
+#X connect 23 0 32 0;
+#X connect 24 0 23 0;
+#X connect 25 0 26 1;
+#X connect 26 0 30 0;
+#X connect 27 0 25 0;
+#X connect 27 1 31 1;
+#X connect 28 0 27 0;
+#X connect 30 0 29 0;
+#X connect 31 0 33 0;
+#X connect 32 0 22 0;
+#X connect 33 0 36 0;
+#X connect 34 0 31 0;
+#X connect 40 0 39 0;
+#X connect 46 0 5 0;
 #X restore 595 646 pd about-tables-and-samplerates;
 #X obj 43 142 metro 120;
 #X obj 43 123 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -255,19 +255,20 @@ control input to play with.;
 #X text 592 296 input signal :;
 #X text 681 296 real-time detuning in semitones (signal value;
 #X text 683 309 will be added to constant detune value);
-#X text 592 49 gbend~ is a short name for "grain (pitch) bender". It
-is a versatile monophonic sample player that can be used to build asynchronous
-granular synthesizers \, beatboxes \, beat slicers \, and so on.;
-#X text 592 143 The selection bounds and all the other non audio parameters
-are memorized by the object until it receives a bang or reaches the
-end of the selection while looping is enabled. Then \, gbend~ starts
-playing using the latest memorized parameter values.;
 #X text 598 488 - fade <duration (ms)> : shortcut for fadi AND fado
 ;
-#X floatatom 94 124 5 0 0 0 - - -, f 5;
+#X floatatom 94 124 5 0 0 0 - - -;
 #X obj 124 423 dac~ 1 2;
-#X connect 0 0 93 0;
-#X connect 0 0 93 1;
+#X text 592 49 [gbend~] is a short name for "grain (pitch) bender".
+It is a versatile monophonic sample player that can be used to build
+asynchronous granular synthesizers \, beatboxes \, beat slicers \,
+and so on.;
+#X text 592 143 The selection bounds and all the other non audio parameters
+are memorized by the object until it receives a bang or reaches the
+end of the selection while looping is enabled. Then \, [gbend~] starts
+playing using the latest memorized parameter values.;
+#X connect 0 0 91 0;
+#X connect 0 0 91 1;
 #X connect 1 0 71 0;
 #X connect 2 0 1 0;
 #X connect 3 0 4 0;
@@ -321,4 +322,4 @@ playing using the latest memorized parameter values.;
 #X connect 76 0 5 0;
 #X connect 77 0 76 0;
 #X connect 78 0 79 0;
-#X connect 92 0 76 1;
+#X connect 90 0 76 1;

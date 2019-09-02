@@ -25,8 +25,8 @@
 #X obj 64 226 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 64 332 t f f;
-#X floatatom 193 145 5 0 1e+12 0 - - -, f 5;
-#X floatatom 118 144 5 0 0 0 - - -, f 5;
+#X floatatom 193 145 5 0 1e+12 0 - - -;
+#X floatatom 118 144 5 0 0 0 - - -;
 #X obj 193 164 t b f;
 #X obj 118 164 t b f;
 #X msg 145 327 xfactor \$1;
@@ -35,7 +35,7 @@
 #X obj 146 506 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 0;
 #X obj 146 549 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 12700 0;
+-1 -1 0 0;
 #X obj 143 527 jl/map 0 127 127 0;
 #X text 100 478 input and output bounds can be inverted :;
 #X text 51 97 see how the xfactor and sfactor parameters affect the
@@ -47,10 +47,6 @@ transfer function :;
 -1;
 #X obj 419 609 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X text 458 39 map is similar to max's scale object. It maps an input
-interval to an output interval and provides two parameters that allow
-to reshape the transfer function \, which is linear when both parameters
-have a value of zero.;
 #X text 458 91 When the transfer function is linear \, the output value
 is not clipped if the input value goes out of the specified input bounds.
 However \, due to mathematical constraints \, if any of the reshaping
@@ -102,6 +98,10 @@ value;
 "S";
 #X text 710 557 "tamp" values left or right \,;
 #X text 458 506 outlet : mapped value;
+#X text 458 39 [map] is similar to max's [scale] object. It maps an
+input interval to an output interval and provides two parameters that
+allow to reshape the transfer function \, which is linear when both
+parameters have a value of zero.;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X connect 3 0 4 0;
@@ -111,7 +111,7 @@ value;
 #X connect 6 0 2 0;
 #X connect 6 1 5 0;
 #X connect 7 0 6 0;
-#X connect 8 0 31 0;
+#X connect 8 0 30 0;
 #X connect 8 1 15 1;
 #X connect 9 0 11 0;
 #X connect 10 0 12 0;
@@ -119,9 +119,9 @@ value;
 #X connect 11 1 14 0;
 #X connect 12 0 7 0;
 #X connect 12 1 13 0;
-#X connect 13 0 31 0;
-#X connect 14 0 31 0;
+#X connect 13 0 30 0;
+#X connect 14 0 30 0;
 #X connect 16 0 18 0;
 #X connect 18 0 17 0;
 #X connect 23 0 24 0;
-#X connect 31 0 15 0;
+#X connect 30 0 15 0;

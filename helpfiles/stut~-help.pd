@@ -1,7 +1,7 @@
 #N canvas 0 23 1099 728 10;
 #X text 592 331 input messages :;
-#X text 592 515 output value (right outlet) :;
-#X text 598 563 - 2 on sample looping after reaching selection end
+#X text 592 540 output value (right outlet) :;
+#X text 598 588 - 2 on sample looping after reaching selection end
 ;
 #X text 598 435 - fado <duration (ms)> : fade-out duration (default
 5ms);
@@ -10,8 +10,8 @@
 #X text 598 461 - interrupt <duration (ms)> : interrupt fade-out duration
 ;
 #X text 944 461 (default 5ms);
-#X text 598 535 - 0 on sample stopping with the stop message;
-#X text 598 549 - 1 on sample reaching selection end and stopping;
+#X text 598 560 - 0 on sample stopping with the stop message;
+#X text 598 574 - 1 on sample reaching selection end and stopping;
 #N canvas 330 48 441 311 about-fades 0;
 #X text 41 52 - the fade-in duration (fadi);
 #X text 41 68 - the fade-out duration (fado);
@@ -28,7 +28,8 @@ fading-in. In a complementary manner \, the release fade is applied
 whenever a looping slice stops and lets the audio input pass through
 again : right after the fade-out reaches zero \, the interrupt fade
 starts on the passed through input.;
-#X text 41 31 stut~ has 4 distinct fade parameters to play with :;
+#X text 41 31 [stut~] has 4 distinct fade parameters to play with :
+;
 #X restore 598 647 pd about-fades;
 #X obj 543 26 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -51,7 +52,7 @@ starts on the passed through input.;
 #X text 779 406 -1 means infinite slices;
 #X text 598 365 - stop : stop stutting and pass audio through;
 #X text 916 474 (default 5ms);
-#X text 592 494 output signal : the stutted or passed through audio
+#X text 592 519 output signal : the stutted or passed through audio
 input;
 #X text 598 474 - release <duration (ms)> : release fade-in duration
 ;
@@ -225,10 +226,10 @@ input;
 #X obj 188 224 t f f;
 #X obj 238 203 + 1;
 #X obj 188 203 % 16;
-#X floatatom 165 256 5 0 0 0 - - -, f 5;
+#X floatatom 165 256 5 0 0 0 - - -;
 #X obj 175 86 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X floatatom 244 86 5 0 0 0 - - -, f 5;
+#X floatatom 244 86 5 0 0 0 - - -;
 #X obj 113 346 % 8;
 #X obj 159 339 % 8;
 #X obj 159 321 + 4;
@@ -283,16 +284,16 @@ input;
 #X restore 87 179 pd sequencer;
 #X obj 71 117 tgl 35 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X floatatom 156 140 5 0 0 0 - - -, f 5;
+#X floatatom 156 140 5 0 0 0 - - -;
 #X msg 91 605 fadi \$1;
 #X msg 145 605 fado \$1;
 #X msg 199 605 fade \$1;
-#X floatatom 91 586 5 0 0 0 - - -, f 5;
-#X floatatom 145 586 5 0 0 0 - - -, f 5;
-#X floatatom 199 586 5 0 0 0 - - -, f 5;
-#X floatatom 265 586 5 0 0 0 - - -, f 5;
+#X floatatom 91 586 5 0 0 0 - - -;
+#X floatatom 145 586 5 0 0 0 - - -;
+#X floatatom 199 586 5 0 0 0 - - -;
+#X floatatom 265 586 5 0 0 0 - - -;
 #X msg 265 605 interrupt \$1;
-#X floatatom 349 586 5 0 0 0 - - -, f 5;
+#X floatatom 349 586 5 0 0 0 - - -;
 #X msg 349 605 release \$1;
 #X obj 145 650 s to-stut;
 #X msg 181 280 duration \$1 \, slices \$2 \, bang;
@@ -305,13 +306,6 @@ input;
 #X obj 369 389 * 200;
 #X obj 369 409 + 1;
 #X msg 317 477 0 1 0;
-#X text 592 50 stut~ is what is commonly named a stutter effect. It
-is very close to a looper effect (and could be used as such) \, but
-its purpose is to allow to "freeze" some audio signal in a short loop
-at any moment and play this loop for a specific number of times \,
-or loop until it gets stopped manually. The loop size can be changed
-dynamically. It is updated on first bang for the first loop \, then
-on each loop end for the next loop.;
 #X obj 317 496 s to-beatbox;
 #X text 199 558 all fade values;
 #N canvas 582 197 366 371 compute-params 0;
@@ -358,7 +352,7 @@ on each loop end for the next loop.;
 #X obj 245 307 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 0;
 #X obj 195 379 *~;
-#X obj 237 31 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 237 31 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 293 194 pack f f;
 #X obj 293 114 + 1;
@@ -419,6 +413,16 @@ slice must be determined before the bang message is sent. In the beatbox
 example on the left \, the pulsation's period is known in advance and
 is used to expand the rhythmic base with eighth-notes \, triplets \,
 etc.;
+#X text 592 50 [stut~] is what is commonly named a stutter effect.
+It is very close to a looper effect (and could be used as such) \,
+but its purpose is to allow to "freeze" some audio signal in a short
+loop at any moment and play this loop for a specific number of times
+\, or loop until it gets stopped manually. The loop size can be changed
+dynamically. It is updated on first bang for the first loop \, then
+on each loop end for the next loop.;
+#X text 921 489 (default 0);
+#X text 598 489 - mutefirstslice <on/on (1/0)> : mute the first slice
+;
 #X connect 10 0 11 0;
 #X connect 15 0 29 0;
 #X connect 28 0 15 0;
@@ -428,11 +432,11 @@ etc.;
 #X connect 32 0 31 0;
 #X connect 33 0 32 0;
 #X connect 34 0 27 0;
-#X connect 35 0 68 0;
+#X connect 35 0 67 0;
 #X connect 36 0 35 1;
 #X connect 37 0 62 0;
 #X connect 38 0 27 0;
-#X connect 39 0 73 0;
+#X connect 39 0 72 0;
 #X connect 40 0 15 0;
 #X connect 41 0 40 0;
 #X connect 41 0 59 0;
@@ -452,14 +456,14 @@ etc.;
 #X connect 55 0 15 0;
 #X connect 59 0 58 0;
 #X connect 60 0 41 1;
-#X connect 60 1 68 1;
+#X connect 60 1 67 1;
 #X connect 61 0 27 0;
 #X connect 62 0 63 0;
 #X connect 63 0 38 0;
-#X connect 64 0 66 0;
-#X connect 68 0 55 0;
-#X connect 69 0 40 0;
-#X connect 70 0 71 0;
-#X connect 71 0 43 0;
-#X connect 73 0 64 0;
-#X connect 73 1 61 0;
+#X connect 64 0 65 0;
+#X connect 67 0 55 0;
+#X connect 68 0 40 0;
+#X connect 69 0 70 0;
+#X connect 70 0 43 0;
+#X connect 72 0 64 0;
+#X connect 72 1 61 0;

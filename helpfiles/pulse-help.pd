@@ -1,4 +1,4 @@
-#N canvas 0 23 665 428 10;
+#N canvas 0 23 877 450 10;
 #X obj 114 208 jl/pulse 500;
 #X obj 86 116 tgl 32 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
@@ -11,25 +11,74 @@
 #X obj 114 330 timer;
 #X obj 114 310 t b b;
 #X obj 117 350 hsl 128 15 0 999 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 1271 1;
+-1 -1 0 1;
 #X msg 183 173 1000;
 #X msg 153 173 100;
-#X text 61 40 pulse - joseph larralde \, 2018;
-#X text 220 239 same as metro \, but the next bang is rescheduled anytime
-the right input value changes \, according to the "phase" of the moment
-of the value change (between previous and next bang).;
-#X text 220 281 by acting like a pulse oscillator \, this alternative
-to metro allows to pass immediately from a very slow frequency to a
-fast one \, avoiding the need to wait for the next bang for the period
-to be updated \, as is the case with metro.;
+#X text 43 43 pulse - joseph larralde \, 2018;
 #X obj 268 172 hsl 128 15 0 999 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 12689 1;
+-1 -1 0 1;
 #X obj 265 150 jl/map -1 1 10 999;
 #X obj 265 82 osc~ 0.1;
+#X obj 419 21 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 419 391 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 459 174 cnv 15 80 25 empty empty REFERENCE 5 12 0 12 -233017
+-66577 0;
+#X text 456 227 inlets (from left to right) :;
+#X text 464 256 - pulse period in milliseconds;
+#X text 457 273 outlets (from left to right) :;
+#X text 457 210 arguments : default pulse period in milliseconds (default
+1);
+#X text 464 243 - 1/0 (on/off);
+#X text 465 290 - float sent on each new pulse \, giving the duration
+until next pulse in milliseconds;
+#X text 465 315 - float sent when pulse period is changed from right
+inlet \, giving the updated duration until next pulse in milliseconds
+;
+#X text 456 100 by acting like a pulse oscillator \, this alternative
+to [metro] allows to pass immediately from a very slow frequency to
+a fast one \, avoiding the need to wait for the next bang for the period
+to be updated \, as is the case with [metro].;
+#N canvas 180 47 513 416 how-to-use-the-right-outlet 0;
+#X obj 159 217 random 1000;
+#X obj 186 280 pack f f;
+#X obj 186 303 line 0;
+#X obj 159 238 / 999;
+#X obj 248 224 t b f;
+#X obj 159 193 t b f;
+#X obj 159 171 jl/pulse;
+#X obj 159 138 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 204 138 5 0 0 0 - - -;
+#X obj 189 326 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X text 79 43 the updated period between outputs from the left outlet
+sent from the right outlet allows to control [line] and [line~] objects
+with no interruptions or discontinuities in the output values. this
+is how the randomness of the grain position is driven in the [jl/gflow~]
+abstraction :;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X connect 2 0 9 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 0;
+#X connect 4 1 1 1;
+#X connect 5 0 0 0;
+#X connect 5 1 1 1;
+#X connect 6 0 5 0;
+#X connect 6 1 4 0;
+#X connect 7 0 6 0;
+#X connect 8 0 6 1;
+#X restore 459 364 pd how-to-use-the-right-outlet;
+#X text 456 48 [pulse] is similar to [metro] \, but the next bang is
+rescheduled anytime the right input value changes \, according to the
+"phase" of the moment of the value change (between previous and next
+bang).;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 2 0 7 0;
-#X connect 3 0 15 0;
+#X connect 3 0 13 0;
 #X connect 4 0 3 0;
 #X connect 5 0 4 0;
 #X connect 6 0 8 0;
@@ -37,6 +86,7 @@ to be updated \, as is the case with metro.;
 #X connect 7 1 6 1;
 #X connect 9 0 0 1;
 #X connect 10 0 0 1;
-#X connect 15 0 0 1;
-#X connect 15 0 14 0;
-#X connect 16 0 3 0;
+#X connect 13 0 0 1;
+#X connect 13 0 12 0;
+#X connect 14 0 3 0;
+#X connect 15 0 16 0;

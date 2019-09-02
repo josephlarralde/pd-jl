@@ -16,7 +16,7 @@
 #X obj 268 421 line~;
 #X msg 268 401 \$1 3;
 #X obj 271 382 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 5100 0;
+-1 -1 0 0;
 #N canvas 0 23 450 390 tone-generator 0;
 #X obj 241 224 line~;
 #X obj 241 142 t b b;
@@ -51,17 +51,17 @@
 #X connect 13 0 0 0;
 #X restore 158 421 pd tone-generator;
 #X obj 137 509 dac~ 1 2;
-#X obj 51 280 + 48;
-#X obj 75 204 metro 120;
-#X obj 75 184 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 61 280 + 48;
+#X obj 85 204 metro 120;
+#X obj 85 184 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 35 184 bng 36 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 45 184 bng 36 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X msg 553 68 scale;
 #X msg 175 369 magnetism \$1;
 #X obj 178 351 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 12700 0;
-#X obj 51 240 random 48;
+#X obj 61 240 random 48;
 #X obj 175 313 loadbang;
 #X msg 175 332 1;
 #X obj 158 113 loadbang;
@@ -72,8 +72,8 @@
 #X msg 477 282 backwards;
 #X obj 237 218 list prepend set;
 #X obj 237 238 list trim;
-#X msg 237 258 1;
-#X floatatom 185 259 5 0 0 0 - - -, f 5;
+#X msg 237 258 4 3 5;
+#X floatatom 185 259 5 0 0 0 - - -;
 #X obj 185 198 route root pattern;
 #X obj 158 176 t a a;
 #X obj 168 135 r to-tonnetz;
@@ -81,13 +81,13 @@
 #X obj 436 251 s to-tonnetz;
 #X obj 436 347 s to-tonnetz;
 #X msg 437 400 root \$1;
-#X floatatom 437 380 5 0 0 0 - - -, f 5;
+#X floatatom 437 380 5 0 0 0 - - -;
 #X msg 491 400 major \$1;
 #X obj 491 380 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X floatatom 491 426 5 0 0 0 - - -, f 5;
+#X floatatom 491 426 5 0 0 0 - - -;
 #X msg 491 446 interval \$1;
-#X floatatom 491 467 5 0 0 0 - - -, f 5;
+#X floatatom 491 467 5 0 0 0 - - -;
 #X msg 491 487 transpose \$1;
 #X obj 437 517 s to-tonnetz;
 #X text 35 30 tonnetz - joseph larralde \, 2018;

@@ -1,15 +1,15 @@
 #N canvas 0 23 1059 568 10;
 #X msg 345 190 attack \$1;
-#X floatatom 345 170 5 0 0 0 - - -, f 5;
-#X floatatom 411 170 5 0 0 0 - - -, f 5;
+#X floatatom 345 170 5 0 0 0 - - -;
+#X floatatom 411 170 5 0 0 0 - - -;
 #X msg 411 190 release \$1;
-#X floatatom 197 170 5 0 0 0 - - -, f 5;
-#X floatatom 282 170 5 0 0 0 - - -, f 5;
+#X floatatom 197 170 5 0 0 0 - - -;
+#X floatatom 282 170 5 0 0 0 - - -;
 #X msg 197 190 threshold \$1;
 #X msg 282 190 ratio \$1;
-#X floatatom 414 243 5 0 0 0 - - -, f 5;
+#X floatatom 414 243 5 0 0 0 - - -;
 #X msg 414 263 knee \$1;
-#X floatatom 346 243 5 0 0 0 - - -, f 5;
+#X floatatom 346 243 5 0 0 0 - - -;
 #X msg 346 263 makeup \$1;
 #X obj 282 105 loadbang;
 #X msg 282 140 2;
@@ -26,7 +26,7 @@
 #X msg 345 140 1;
 #X obj 298 431 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 12700 0;
-#X floatatom 295 413 5 0 0 0 - - -, f 5;
+#X floatatom 295 413 5 0 0 0 - - -;
 #X obj 98 337 osc~ 120;
 #X msg 197 140 -32;
 #X msg 411 140 200;
@@ -35,10 +35,6 @@
 #X obj 532 521 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X text 54 44 sidechain~ - joseph larralde \, 2018;
-#X text 576 64 sidechain~ is a side chain component that helps for
-the design of a variety of dynamic audio compressors. In the patch
-on the left \, it implements a ducking effect \, making a (very rough)
-bassline "pump" according to the beatbox's amplitude.;
 #X obj 708 200 jl/sidechain~;
 #X obj 693 223 *~;
 #X obj 693 172 *~ 1;
@@ -122,8 +118,6 @@ bassline "pump" according to the beatbox's amplitude.;
 #X connect 6 0 4 0;
 #X restore 78 140 pd beatbox;
 #X text 90 317 a "bassline";
-#X text 576 129 To implement a classical feedforward compressor \,
-simply connect the sidechain~ object like this :;
 #X obj 578 269 cnv 15 80 25 empty empty REFERENCE 5 12 0 12 -233017
 -66577 0;
 #X text 576 310 input signal :;
@@ -141,13 +135,14 @@ ratio;
 #X text 677 441 the amplitude factor to apply to the source to compress
 ;
 #N canvas 309 47 450 300 about 0;
-#X text 49 29 The algorithm used in sidechain~ is based on the article
+#X text 49 29 The algorithm used in [sidechain~] is based on the article
 : "Digital Dynamic Range Compressor Design - A Tutorial and Analysis"
 \, by DIMITRIOS GIANNOULIS \, MICHAEL MASSBERG \, AND JOSHUA D. REISS
 \, Queen Mary University of London;
 #X text 51 83 In this article \, several sidechain designs are suggested
 \, among which the "log domain decoupled smoothed peak detector" has
-been retained for the implementation of the sidechain~ external.;
+been retained for the implementation of the [sidechain~] external.
+;
 #X restore 578 491 pd about;
 #N canvas 0 23 450 300 snapshot 0;
 #X obj 111 136 snapshot~;
@@ -167,6 +162,12 @@ been retained for the implementation of the sidechain~ external.;
 #X restore 295 394 pd snapshot;
 #X text 576 330 input messages (the same as in any compression plugin)
 :;
+#X text 576 64 [sidechain~] is a side chain component that helps for
+the design of a variety of dynamic audio compressors. In the patch
+on the left \, it implements a ducking effect \, making a (very rough)
+bassline "pump" according to the beatbox's amplitude.;
+#X text 576 129 To implement a classical feedforward compressor \,
+simply connect the [sidechain~] object like this :;
 #X connect 0 0 14 0;
 #X connect 1 0 0 0;
 #X connect 2 0 3 0;
@@ -185,8 +186,8 @@ been retained for the implementation of the sidechain~ external.;
 #X connect 12 0 27 0;
 #X connect 13 0 5 0;
 #X connect 14 0 16 1;
-#X connect 14 0 51 0;
-#X connect 15 0 35 0;
+#X connect 14 0 49 0;
+#X connect 15 0 34 0;
 #X connect 16 0 17 0;
 #X connect 17 0 18 0;
 #X connect 17 0 18 1;
@@ -199,9 +200,9 @@ been retained for the implementation of the sidechain~ external.;
 #X connect 26 0 4 0;
 #X connect 27 0 2 0;
 #X connect 28 0 29 0;
-#X connect 32 0 33 1;
-#X connect 34 0 32 0;
-#X connect 34 0 33 0;
-#X connect 35 0 14 0;
-#X connect 35 0 17 0;
-#X connect 51 0 24 0;
+#X connect 31 0 32 1;
+#X connect 33 0 31 0;
+#X connect 33 0 32 0;
+#X connect 34 0 14 0;
+#X connect 34 0 17 0;
+#X connect 49 0 24 0;

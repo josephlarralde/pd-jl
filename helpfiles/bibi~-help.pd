@@ -1,0 +1,74 @@
+#N canvas 0 23 830 521 10;
+#X msg 129 266 cutoff \$1;
+#X floatatom 129 248 5 0 0 0 - - -;
+#X floatatom 195 244 5 0 0 0 - - -;
+#X msg 195 266 Q \$1;
+#X obj 102 142 list prepend mode;
+#X obj 102 162 list trim;
+#X obj 102 416 *~;
+#X obj 135 389 line~;
+#X msg 135 370 \$1 10;
+#X obj 138 352 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#X obj 102 445 dac~ 1 2;
+#X msg 49 107 lowpass;
+#X msg 102 107 highpass;
+#X msg 161 107 bandpass;
+#X msg 231 266 reset;
+#X obj 44 218 noise~;
+#X obj 102 312 jl/bibi~ bandpass 1000 100;
+#X obj 129 229 mtof;
+#X floatatom 129 211 5 0 0 0 - - -;
+#X obj 364 21 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 364 463 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 404 169 cnv 15 80 25 empty empty REFERENCE 5 12 0 12 -233017
+-66577 0;
+#X text 43 43 bibi~ - joseph larralde \, 2018;
+#X text 401 278 inlet :;
+#X text 402 311 outlet :;
+#X text 410 328 - filtered input signal;
+#X text 410 293 - input signal to be filtered and biquad messages;
+#X msg 259 107 allpass;
+#X msg 219 107 notch;
+#X text 410 222 - mode <"lowpass"/"highpass"/"bandpass"/"notch"/"allpass">
+(default "lowpass");
+#X text 410 245 - cutoff frequency <float (Hz)> (default 100);
+#X text 410 259 - Q (resonance) <float> (default 0);
+#X text 402 206 arguments :;
+#X text 410 362 - mode <symbol>;
+#X text 410 375 - cutoff <float>;
+#X text 402 345 messages (see arguments above) :;
+#X text 410 388 - Q <float>;
+#X text 410 401 - reset : resets internal filter state;
+#X text 401 50 biquad filter external with more intuitive parameters
+than just the raw coefficients. the cutoff and Q parameters are control-rate
+parameters but are interpolated internally at signal-rate with a 5ms
+ramp to avoid clicks and pops.;
+#X obj 44 252 lop~ 1000;
+#X text 401 109 completely based on the famous https://www.musicdsp.org/en/latest/_downloads/Audio-EQ-Cookbook.txt
+;
+#X connect 0 0 16 0;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 3 0 16 0;
+#X connect 4 0 5 0;
+#X connect 5 0 16 0;
+#X connect 6 0 10 0;
+#X connect 6 0 10 1;
+#X connect 7 0 6 1;
+#X connect 8 0 7 0;
+#X connect 9 0 8 0;
+#X connect 11 0 4 0;
+#X connect 12 0 4 0;
+#X connect 13 0 4 0;
+#X connect 14 0 16 0;
+#X connect 15 0 39 0;
+#X connect 16 0 6 0;
+#X connect 17 0 1 0;
+#X connect 18 0 17 0;
+#X connect 19 0 20 0;
+#X connect 27 0 4 0;
+#X connect 28 0 4 0;
+#X connect 39 0 16 0;

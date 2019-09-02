@@ -7,9 +7,9 @@
 #X obj 89 538 *~;
 #X obj 44 563 dac~ 1 2;
 #X msg 351 97 size \$1;
-#X floatatom 351 79 5 0 0 0 - - -, f 5;
-#X floatatom 351 125 5 0 0 0 - - -, f 5;
-#X floatatom 351 171 5 0 0 0 - - -, f 5;
+#X floatatom 351 79 5 0 0 0 - - -;
+#X floatatom 351 125 5 0 0 0 - - -;
+#X floatatom 351 171 5 0 0 0 - - -;
 #X obj 364 353 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 1270 0;
 #X obj 364 392 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
@@ -65,30 +65,17 @@
 #X obj 361 283 jl/map 0 1 1 100 1.5;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array gflow-env-params 128 float 3;
-#A 0 0 0.000602365 0.00240791 0.0054121 0.00960785 0.014985 0.0215306
-0.0292289 0.0380613 0.0480065 0.0590407 0.0711372 0.0842669 0.0983981
-0.113497 0.129527 0.146449 0.164223 0.182806 0.202153 0.222218 0.242952
-0.264305 0.286226 0.308662 0.331559 0.354861 0.378514 0.402459 0.426639
-0.450996 0.47547 0.500004 0.524538 0.549013 0.57337 0.59755 0.621495
-0.645147 0.668449 0.691346 0.713782 0.735703 0.757056 0.777789 0.797854
-0.817201 0.835783 0.853557 0.870479 0.886509 0.901607 0.915738 0.928867
-0.940963 0.951997 0.961942 0.970774 0.978472 0.985017 0.990394 0.994589
-0.997593 0.999398 1 0.999398 0.997592 0.994588 0.990393 0.985016 0.97847
-0.970772 0.96194 0.951995 0.940961 0.928864 0.915735 0.901604 0.886506
-0.870476 0.853554 0.83578 0.817197 0.79785 0.777786 0.757052 0.735699
-0.713778 0.691342 0.668445 0.645143 0.62149 0.597546 0.573365 0.549009
-0.524534 0.5 0.475466 0.450991 0.426635 0.402455 0.37851 0.354857 0.331555
-0.308658 0.286222 0.264301 0.242948 0.222214 0.20215 0.182803 0.16422
-0.146446 0.129524 0.113494 0.0983955 0.0842644 0.0711349 0.0590386
-0.0480047 0.0380596 0.0292274 0.0215293 0.0149839 0.00960696 0.00541145
-0.00240743 0.000602126;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #X coords 0 1 128 -1 200 140 1 0 0;
 #X restore 528 102 graph;
 #X obj 262 134 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X floatatom 169 49 5 0 0 0 - - -, f 5;
+#X floatatom 169 49 5 0 0 0 - - -;
 #X obj 392 107 / 10;
-#X floatatom 97 91 5 0 0 0 - - -, f 5;
+#X floatatom 97 91 5 0 0 0 - - -;
 #X msg 208 152 0;
 #X obj 97 50 loadbang;
 #X obj 262 114 loadbang;
@@ -151,10 +138,6 @@ are hann windows that can be modified via the shorten and drive parameters
 -1 -1 254 0;
 #X msg 361 283 beg \$1;
 #X msg 361 322 len \$1;
-#X text 659 55 gflow~ is short for granular flow. It is based on a
-polyphony of granular synthesis units (the gflow-unit~.pd abstraction
-used in a clone object) \, and on a polyphony of grain panners (the
-gpan-unit~.pd abstraction also used in a clone object).;
 #X obj 319 218 s to-gflow;
 #X obj 311 526 s to-gflow;
 #X obj 43 207 soundfiler;
@@ -217,62 +200,66 @@ randomly;
 new;
 #X text 823 443 values between beg and (beg + len);
 #X obj 128 435 hsl 128 15 0 1 0 0 empty empty real-time_grain_position
--2 -8 0 10 -262144 -1 -1 213 0;
+-2 -8 0 10 -262144 -1 -1 172 0;
 #X text 188 265 scroll through the sample >;
+#X text 659 55 [gflow~] is short for granular flow. It is based on
+a polyphony of granular synthesis units (the gflow-unit~.pd abstraction
+used in a clone object) \, and on a polyphony of grain panners (the
+gpan-unit~.pd abstraction also used in a clone object).;
 #X connect 0 0 5 0;
 #X connect 1 0 0 1;
 #X connect 1 0 4 1;
 #X connect 2 0 1 0;
 #X connect 3 0 2 0;
 #X connect 4 0 5 1;
-#X connect 6 0 31 0;
+#X connect 6 0 30 0;
 #X connect 7 0 6 0;
 #X connect 8 0 24 0;
 #X connect 9 0 25 0;
 #X connect 10 0 12 0;
 #X connect 11 0 13 0;
-#X connect 12 0 32 0;
-#X connect 13 0 32 0;
+#X connect 12 0 31 0;
+#X connect 13 0 31 0;
 #X connect 14 0 11 0;
 #X connect 16 0 15 0;
-#X connect 22 0 39 0;
-#X connect 24 0 31 0;
-#X connect 25 0 31 0;
+#X connect 22 0 38 0;
+#X connect 24 0 30 0;
+#X connect 25 0 30 0;
 #X connect 26 0 28 0;
 #X connect 27 0 29 0;
-#X connect 28 0 32 0;
-#X connect 29 0 32 0;
-#X connect 33 0 45 0;
-#X connect 34 0 37 0;
-#X connect 35 0 34 0;
-#X connect 37 0 33 0;
-#X connect 39 0 0 0;
-#X connect 39 1 4 0;
-#X connect 39 2 76 0;
-#X connect 41 0 8 0;
-#X connect 42 0 7 0;
-#X connect 43 0 9 0;
-#X connect 44 0 46 0;
-#X connect 45 0 44 0;
-#X connect 47 0 27 0;
-#X connect 48 0 10 0;
-#X connect 49 0 26 0;
+#X connect 28 0 31 0;
+#X connect 29 0 31 0;
+#X connect 32 0 44 0;
+#X connect 33 0 36 0;
+#X connect 34 0 33 0;
+#X connect 36 0 32 0;
+#X connect 38 0 0 0;
+#X connect 38 1 4 0;
+#X connect 38 2 75 0;
+#X connect 40 0 8 0;
+#X connect 41 0 7 0;
+#X connect 42 0 9 0;
+#X connect 43 0 45 0;
+#X connect 44 0 43 0;
+#X connect 46 0 27 0;
+#X connect 47 0 10 0;
+#X connect 48 0 26 0;
+#X connect 49 0 51 0;
 #X connect 50 0 52 0;
-#X connect 51 0 53 0;
-#X connect 52 0 32 0;
-#X connect 53 0 32 0;
+#X connect 51 0 31 0;
+#X connect 52 0 31 0;
+#X connect 53 0 49 0;
 #X connect 54 0 50 0;
-#X connect 55 0 51 0;
-#X connect 56 0 49 0;
-#X connect 56 0 47 0;
-#X connect 56 0 48 0;
-#X connect 56 0 14 0;
-#X connect 56 0 54 0;
-#X connect 56 0 55 0;
-#X connect 57 0 42 0;
-#X connect 57 0 41 0;
-#X connect 57 0 43 0;
-#X connect 58 0 66 0;
-#X connect 65 0 58 0;
-#X connect 66 0 57 0;
-#X connect 66 1 56 0;
+#X connect 55 0 48 0;
+#X connect 55 0 46 0;
+#X connect 55 0 47 0;
+#X connect 55 0 14 0;
+#X connect 55 0 53 0;
+#X connect 55 0 54 0;
+#X connect 56 0 41 0;
+#X connect 56 0 40 0;
+#X connect 56 0 42 0;
+#X connect 57 0 65 0;
+#X connect 64 0 57 0;
+#X connect 65 0 56 0;
+#X connect 65 1 55 0;

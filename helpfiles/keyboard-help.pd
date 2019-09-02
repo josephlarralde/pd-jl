@@ -1,0 +1,166 @@
+#N canvas 0 23 778 557 10;
+#X obj 88 456 *~;
+#X obj 127 430 line~;
+#X msg 127 410 \$1 10;
+#X obj 88 492 dac~ 1 2;
+#X obj 130 391 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 0;
+#N canvas 0 23 450 300 voice 0;
+#X obj 108 133 phasor~ 60;
+#X obj 108 113 mtof;
+#X obj 119 75 unpack f f;
+#X obj 187 155 jl/envgen 10 50 300 0 1 0.5 1;
+#X obj 187 133 > 0;
+#X obj 187 174 line~;
+#X obj 129 209 *~;
+#X obj 108 175 *~ 0.2;
+#X obj 119 55 inlet;
+#X obj 129 229 outlet~;
+#X connect 0 0 7 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 2 1 4 0;
+#X connect 3 0 5 0;
+#X connect 4 0 3 0;
+#X connect 5 0 6 1;
+#X connect 6 0 9 0;
+#X connect 7 0 6 0;
+#X connect 8 0 2 0;
+#X restore 88 282 pd voice;
+#N canvas 0 23 450 300 voice 0;
+#X obj 108 133 phasor~ 60;
+#X obj 108 113 mtof;
+#X obj 119 75 unpack f f;
+#X obj 187 155 jl/envgen 10 50 300 0 1 0.5 1;
+#X obj 187 133 > 0;
+#X obj 187 174 line~;
+#X obj 129 209 *~;
+#X obj 108 175 *~ 0.2;
+#X obj 119 55 inlet;
+#X obj 129 229 outlet~;
+#X connect 0 0 7 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 2 1 4 0;
+#X connect 3 0 5 0;
+#X connect 4 0 3 0;
+#X connect 5 0 6 1;
+#X connect 6 0 9 0;
+#X connect 7 0 6 0;
+#X connect 8 0 2 0;
+#X restore 106 301 pd voice;
+#N canvas 0 23 450 300 voice 0;
+#X obj 108 133 phasor~ 60;
+#X obj 108 113 mtof;
+#X obj 119 75 unpack f f;
+#X obj 187 155 jl/envgen 10 50 300 0 1 0.5 1;
+#X obj 187 133 > 0;
+#X obj 187 174 line~;
+#X obj 129 209 *~;
+#X obj 108 175 *~ 0.2;
+#X obj 119 55 inlet;
+#X obj 129 229 outlet~;
+#X connect 0 0 7 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 2 1 4 0;
+#X connect 3 0 5 0;
+#X connect 4 0 3 0;
+#X connect 5 0 6 1;
+#X connect 6 0 9 0;
+#X connect 7 0 6 0;
+#X connect 8 0 2 0;
+#X restore 125 320 pd voice;
+#N canvas 0 23 450 300 voice 0;
+#X obj 108 133 phasor~ 60;
+#X obj 108 113 mtof;
+#X obj 119 75 unpack f f;
+#X obj 187 155 jl/envgen 10 50 300 0 1 0.5 1;
+#X obj 187 133 > 0;
+#X obj 187 174 line~;
+#X obj 129 209 *~;
+#X obj 108 175 *~ 0.2;
+#X obj 119 55 inlet;
+#X obj 129 229 outlet~;
+#X connect 0 0 7 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 2 1 4 0;
+#X connect 3 0 5 0;
+#X connect 4 0 3 0;
+#X connect 5 0 6 1;
+#X connect 6 0 9 0;
+#X connect 7 0 6 0;
+#X connect 8 0 2 0;
+#X restore 144 339 pd voice;
+#X obj 88 392 *~ 1;
+#X obj 88 258 route 1 2 3 4;
+#X obj 88 196 poly 4 1;
+#X obj 88 220 pack 0 0 0;
+#X obj 88 163 jl/keyboard 60 127 1;
+#X floatatom 88 145 5 0 0 0 - - -;
+#X floatatom 146 145 5 0 0 0 - - -;
+#X obj 205 145 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 146 96 loadbang;
+#X msg 88 126 60;
+#X msg 146 126 127;
+#X msg 205 126 1;
+#X text 54 35 keyboard - joseph larralde \, 2019;
+#X obj 318 74 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 318 506 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 361 95 [keyboard] turns your computer keyboard into a MIDI
+keyboard. The "white" keys are in the middle letters line \, and the
+"black" keys are in the upper letter line.;
+#X text 365 459 The example on the left maps an azerty keyboard to
+notes from 60 to 76 with velocity 127;
+#X obj 367 240 cnv 15 80 25 empty empty REFERENCE 5 12 0 12 -233017
+-66577 0;
+#X text 365 277 arguments :;
+#X text 373 308 - global note velocity (default 127) <float>;
+#X text 373 322 - qwerty / azerty mode (default qwerty) <float (0 /
+1)>;
+#X text 373 337 - filter note off events if != 0 (default 0) <float>
+;
+#X text 373 293 - global note offset (default 0) <float (semitones)>
+;
+#X text 365 358 inlets (from left to right) : global note offset \,
+global note velocity \, qwerty / azerty mode;
+#X text 365 386 outlet : <float (note)> <float (velocity)>;
+#X text 362 137 It has qwerty and azerty modes \, providing a key mapping
+from C0 to E1 \, starting from the "a"/"q" key to the " \;;
+#X text 362 149 Luckily \, it turns out that the "f" and "g" keys correspond
+to the actual F and G notes in both modes. The sharp / flat keys are
+"w"/"z" \, "e" \, "t" \, "y" \, "u" \, "o" and "p".;
+#X text 657 148 "/"m" key.;
+#X connect 0 0 3 0;
+#X connect 0 0 3 1;
+#X connect 1 0 0 1;
+#X connect 2 0 1 0;
+#X connect 4 0 2 0;
+#X connect 5 0 9 0;
+#X connect 6 0 9 0;
+#X connect 7 0 9 0;
+#X connect 8 0 9 0;
+#X connect 9 0 0 0;
+#X connect 10 0 5 0;
+#X connect 10 1 6 0;
+#X connect 10 2 7 0;
+#X connect 10 3 8 0;
+#X connect 11 0 12 0;
+#X connect 11 1 12 1;
+#X connect 11 2 12 2;
+#X connect 12 0 10 0;
+#X connect 13 0 11 0;
+#X connect 14 0 13 0;
+#X connect 15 0 13 1;
+#X connect 16 0 13 2;
+#X connect 17 0 19 0;
+#X connect 17 0 20 0;
+#X connect 17 0 18 0;
+#X connect 18 0 14 0;
+#X connect 19 0 15 0;
+#X connect 20 0 16 0;
+#X connect 22 0 23 0;

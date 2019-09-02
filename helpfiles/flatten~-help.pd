@@ -1,13 +1,13 @@
 #N canvas 0 23 1119 651 10;
 #X msg 377 487 attack \$1;
-#X floatatom 377 467 5 0 0 0 - - -, f 5;
-#X floatatom 443 467 5 0 0 0 - - -, f 5;
+#X floatatom 377 467 5 0 0 0 - - -;
+#X floatatom 443 467 5 0 0 0 - - -;
 #X msg 443 487 release \$1;
-#X floatatom 314 467 5 0 0 0 - - -, f 5;
+#X floatatom 314 467 5 0 0 0 - - -;
 #X msg 314 487 ratio \$1;
-#X floatatom 480 512 5 0 0 0 - - -, f 5;
+#X floatatom 480 512 5 0 0 0 - - -;
 #X msg 480 532 knee \$1;
-#X floatatom 412 512 5 0 0 0 - - -, f 5;
+#X floatatom 412 512 5 0 0 0 - - -;
 #X msg 412 532 makeup \$1;
 #X obj 377 407 loadbang;
 #X msg 314 437 2;
@@ -16,7 +16,7 @@
 #X obj 128 298 jl/flatten~;
 #X obj 150 361 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 0;
-#X floatatom 147 343 5 0 0 0 - - -, f 5;
+#X floatatom 147 343 5 0 0 0 - - -;
 #N canvas 0 23 450 300 snapshot 0;
 #X obj 111 136 snapshot~;
 #X obj 181 100 metro 10;
@@ -137,10 +137,10 @@ ratio;
 #X obj 426 244 loadbang;
 #X text 646 181 For more details about the compression algorithm used
 in flatten~ \, see :;
-#X text 645 59 flatten~ is similar to sidechain~ \, except the threshold
-parameter which is instead computed internally at the audio rate from
-a master signal. A slave signal is then fed into an internal side chain
-to get the desired amplitude value.;
+#X text 645 59 [flatten~] is similar to [sidechain~] \, except the
+threshold parameter which is instead computed internally at the audio
+rate from a master signal. A slave signal is then fed into an internal
+side chain to get the desired amplitude value.;
 #X connect 0 0 25 0;
 #X connect 1 0 0 0;
 #X connect 2 0 3 0;

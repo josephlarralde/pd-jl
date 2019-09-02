@@ -1,0 +1,22 @@
+#N canvas 0 23 590 461 10;
+#X text 38 34 keynote - joseph larralde \, 2019;
+#X obj 80 193 jl/keynote 97 60 127;
+#X obj 80 214 unpack 0 0;
+#X floatatom 80 241 5 0 0 0 - - -;
+#X floatatom 137 240 5 0 0 0 - - -;
+#X text 77 290 - leftmost inlet : change the tracked key code;
+#X text 77 349 - outlet : <MIDI note> <MIDI velocity>;
+#X text 77 304 - center inlet : change the output note;
+#X text 77 319 - rightmost inlet : change the output velocity;
+#X text 78 168 example :;
+#X text 210 193 < turn the "a" key into a MIDI C4 with max MIDI velocity
+;
+#X text 357 388 see also :;
+#X text 77 85 [keynote] uses the [key] and [keyup] objects to make
+a key of the computer's keyboard act as a MIDI key with a constant
+velocity. The note and velocity outputs can be set to any float value
+\, they don't need to be valid MIDI values.;
+#X obj 428 388 jl/keyboard;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 4 0;
