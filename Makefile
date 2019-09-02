@@ -9,6 +9,7 @@ HLP=helpfiles
 # input source files
 # aaosc~.class.sources = $(EXT)/aaosc~.cpp $(DEP)/jl.cpp.lib/dsp/synthesis/Oscillator.cpp
 # hann~.class.sources = $(EXT)/hann~.cpp $(DEP)/jl.cpp.lib/dsp/synthesis/Oscillator.cpp
+bibi~.class.sources = $(EXT)/bibi~.cpp
 gbend~.class.sources = $(EXT)/gbend~.cpp $(DEP)/jl.cpp.lib/dsp/sampler/Gbend.cpp
 stut~.class.sources = $(EXT)/stut~.cpp $(DEP)/jl.cpp.lib/dsp/effects/Stut.cpp
 sidechain~.class.sources = $(EXT)/sidechain~.cpp $(DEP)/jl.cpp.lib/dsp/effects/Compress.cpp
@@ -25,6 +26,7 @@ $(HLP)/gbend~-help.pd \
 $(HLP)/stut~-help.pd \
 $(HLP)/sidechain~-help.pd \
 $(HLP)/flatten~-help.pd \
+$(HLP)/bibi~-help.pd \
 $(HLP)/map-help.pd \
 $(HLP)/magnetize-help.pd \
 $(HLP)/tonnetz-help.pd \
@@ -51,11 +53,12 @@ $(ABS)/gflow~.pd \
 $(HLP)/gflow~-help.pd \
 $(ABS)/pulse.pd \
 $(HLP)/pulse-help.pd \
-# $(ABS)/symcat.pd \
-# $(ABS)/keynote.pd \
-# $(HLP)/keynote-help.pd \
-# $(ABS)/q-keyboard.pd \
-# $(HLP)/q-keyboard-help.pd \
+$(ABS)/keynote.pd \
+$(HLP)/keynote-help.pd \
+$(ABS)/keyboard.pd \
+$(HLP)/keyboard-help.pd \
+$(ABS)/envgen.pd \
+$(HLP)/envgen-help.pd \
 
 # update path to reflect your environment
 # PDLIBDIR="/Users/larralde/Documents/Pd/externals"
@@ -67,6 +70,7 @@ SRCOUT=./build/source/jl
 
 # this is needed for initializer lists
 cflags += -std=c++11
+cflags += -mmacosx-version-min=10.9
 
 # include Makefile.pdlibbuilder from submodule directory 'pd-lib-builder'
 # update path to reflect your environment
