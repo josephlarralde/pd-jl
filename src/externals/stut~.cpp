@@ -114,6 +114,10 @@ void stut_tilde_release(t_stut_tilde *x, t_floatarg f) {
   x->stutter->setRelease(static_cast<float>(f));
 }
 
+void stut_tilde_mutefirstslice(t_stut_tilde *x, t_floatarg f) {
+  x->stutter->setMuteFirstSlice(static_cast<unsigned int>(f) > 0);
+}
+
 void stut_tilde_setsr(t_stut_tilde *x, t_floatarg f) {
   x->stutter->setSamplingRate(static_cast<float>(f));
 }
@@ -156,6 +160,10 @@ void *stut_tilde_new(t_symbol *s, int argc, t_atom *argv) {
   x->stutter = new PdStut(bufferDuration, 1);
   x->stutter->setObject(x);
 
+  if (argc > 1 && static_cast<unsigned int>(atom_getfloat(argv + 1)) > 0) {
+    x->stutter->setMuteFirstSlice(true); 
+  }
+
   stut_tilde_setsr(x, sys_getsr());
 
   x->x_out = outlet_new(&x->x_obj, &s_signal);
@@ -193,6 +201,7 @@ void stut_tilde_setup(void) {
   class_addmethod(stut_tilde_class, (t_method)stut_tilde_fado, gensym("fado"), A_DEFFLOAT, 0);
   class_addmethod(stut_tilde_class, (t_method)stut_tilde_interrupt, gensym("interrupt"), A_DEFFLOAT, 0);
   class_addmethod(stut_tilde_class, (t_method)stut_tilde_release, gensym("release"), A_DEFFLOAT, 0);
+  class_addmethod(stut_tilde_class, (t_method)stut_tilde_mutefirstslice, gensym("mutefirstslice"), A_DEFFLOAT, 0);
   class_addmethod(stut_tilde_class, (t_method)stut_tilde_setsr, gensym("setsr"), A_DEFFLOAT, 0);
 
   CLASS_MAINSIGNALIN(stut_tilde_class, t_stut_tilde, x_f);
