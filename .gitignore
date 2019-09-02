@@ -5,7 +5,8 @@
 build/
 jl/
 
-helpfiles/tests/*
+helpfiles/tests/
+old_useful_stuff/
 
 *.pd_darwin
 *.pd_linux
