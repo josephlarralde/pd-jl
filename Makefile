@@ -70,6 +70,7 @@ SRCOUT=./build/source/jl
 
 # this is needed for initializer lists
 cflags += -std=c++11
+# this is needed for use of <vector> (!?)
 cflags += -mmacosx-version-min=10.9
 
 # include Makefile.pdlibbuilder from submodule directory 'pd-lib-builder'
