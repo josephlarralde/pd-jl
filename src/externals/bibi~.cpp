@@ -99,6 +99,7 @@ public:
   void setMode(jl::BiquadMode m) { b.setMode(m); }
   void setF(float f) { rF.ramp(JL_MAX(f, 1e-3), rampSamples); }
   void setQ(float q) { rQ.ramp(JL_MAX(q, 1e-3) , rampSamples); }
+  void reset() { b.reset(); }
 
   jl::sample process(jl::sample in) {
     b.setF(*(rF.process(1)));
