@@ -137,6 +137,10 @@ void bibi_tilde_q(t_bibi_tilde *x, t_floatarg f) {
   x->biquad->setQ(static_cast<float>(f));
 }
 
+void bibi_tilde_reset(t_bibi_tilde *x) {
+  x->biquad->reset();
+}
+
 void bibi_tilde_setsr(t_bibi_tilde *x, t_floatarg f) {
   x->biquad->setSamplingRate(static_cast<float>(f));
 }
@@ -227,6 +231,7 @@ void bibi_tilde_setup(void) {
   class_addmethod(bibi_tilde_class, (t_method)bibi_tilde_mode, gensym("mode"), A_DEFSYM, 0);
   class_addmethod(bibi_tilde_class, (t_method)bibi_tilde_cutoff, gensym("cutoff"), A_DEFFLOAT, 0);
   class_addmethod(bibi_tilde_class, (t_method)bibi_tilde_q, gensym("Q"), A_DEFFLOAT, 0);
+  class_addmethod(bibi_tilde_class, (t_method)bibi_tilde_reset, gensym("reset"), A_NULL);  
   class_addmethod(bibi_tilde_class, (t_method)bibi_tilde_setsr, gensym("setsr"), A_DEFFLOAT, 0);
 
   CLASS_MAINSIGNALIN(bibi_tilde_class, t_bibi_tilde, x_f);
