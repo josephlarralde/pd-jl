@@ -62,16 +62,28 @@ $(HLP)/envgen-help.pd \
 
 # update path to reflect your environment
 # PDLIBDIR="/Users/larralde/Documents/Pd/externals"
-PDLIBDIR="./build/darwin"
-# PDLIBDIR="./build/win32"
-# PDLIBDIR="."
+
+UNAME := $(shell uname -s)
+
+ifeq ($(UNAME),Darwin)
+	PDLIBDIR="./build/darwin"
+endif
+ifeq ($(UNAME),Linux)
+	PDLIBDIR="/usr/local/lib/pd-externals"
+endif
+ifeq (MINGW,$(findstring MINGW,$(UNAME)))
+	PDLIBDIR="./build/win32"
+endif
 
 SRCOUT=./build/source/jl
 
 # this is needed for initializer lists
 cflags += -std=c++11
-# this is needed for use of <vector> (!?)
-cflags += -mmacosx-version-min=10.9
+
+ifeq ($(UNAME),Darwin)
+	# this is needed for use of <vector> (!?)
+	cflags += -mmacosx-version-min=10.9
+endif
 
 # include Makefile.pdlibbuilder from submodule directory 'pd-lib-builder'
 # update path to reflect your environment
