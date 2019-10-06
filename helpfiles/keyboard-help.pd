@@ -131,7 +131,7 @@ global note velocity \, qwerty / azerty mode;
 #X text 365 386 outlet : <float (note)> <float (velocity)>;
 #X text 362 137 It has qwerty and azerty modes \, providing a key mapping
 from C0 to E1 \, starting from the "a"/"q" key to the " \;;
-#X text 362 149 Luckily \, it turns out that the "f" and "g" keys correspond
+#X text 362 160 Luckily \, it turns out that the "f" and "g" keys correspond
 to the actual F and G notes in both modes. The sharp / flat keys are
 "w"/"z" \, "e" \, "t" \, "y" \, "u" \, "o" and "p".;
 #X text 657 148 "/"m" key.;

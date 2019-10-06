@@ -420,8 +420,8 @@ loop at any moment and play this loop for a specific number of times
 \, or loop until it gets stopped manually. The loop size can be changed
 dynamically. It is updated on first bang for the first loop \, then
 on each loop end for the next loop.;
-#X text 921 489 (default 0);
-#X text 598 489 - mutefirstslice <on/on (1/0)> : mute the first slice
+#X text 927 489 (default 0);
+#X text 598 489 - mutefirstslice <on/off (1/0)> : mute the first slice
 ;
 #X connect 10 0 11 0;
 #X connect 15 0 29 0;
