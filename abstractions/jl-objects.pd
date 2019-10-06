@@ -22,8 +22,6 @@
 #X text 158 433 equal gain mixer;
 #X text 158 403 equal gain splitter (aka panner);
 #X text 578 145 compute speed rate from relative semitone value;
-#X obj 67 145 jl/gflow~;
-#X obj 67 242 jl/gdelay~;
 #X obj 67 273 jl/stut~;
 #X obj 493 114 jl/tonnetz;
 #X obj 493 242 jl/pulse;
@@ -52,4 +50,6 @@
 #X text 578 347 envelope messages generator for [line(~)] objects;
 #X obj 493 409 jl/keyboard;
 #X text 578 409 turn a computer keyboard into a MIDI keyboard;
-#X connect 35 0 36 0;
+#X obj 67 145 jl/gflow~ 1;
+#X obj 67 242 jl/gdelay~ 1;
+#X connect 33 0 34 0;
