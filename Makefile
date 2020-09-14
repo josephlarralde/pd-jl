@@ -51,6 +51,7 @@ $(HLP)/gdelay~-help.pd \
 $(ABS)/gflow-unit~.pd \
 $(ABS)/gflow~.pd \
 $(HLP)/gflow~-help.pd \
+$(ABS)/guzi-unit~.pd \
 $(ABS)/pulse.pd \
 $(HLP)/pulse-help.pd \
 $(ABS)/keynote.pd \
@@ -60,7 +61,10 @@ $(HLP)/keyboard-help.pd \
 $(ABS)/envgen.pd \
 $(HLP)/envgen-help.pd \
 $(ABS)/bitcrush~.pd \
+$(HLP)/bitcrush~-help.pd \
 $(ABS)/decimate~.pd \
+$(HLP)/decimate~-help.pd \
+$(ABS)/logdelay-unit~.pd \
 # $(HLP)/bitcrush~-help.pd \
 # $(HLP)/decimate~-help.pd \
 
