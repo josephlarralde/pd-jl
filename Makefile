@@ -59,6 +59,10 @@ $(ABS)/keyboard.pd \
 $(HLP)/keyboard-help.pd \
 $(ABS)/envgen.pd \
 $(HLP)/envgen-help.pd \
+$(ABS)/bitcrush~.pd \
+$(ABS)/decimate~.pd \
+# $(HLP)/bitcrush~-help.pd \
+# $(HLP)/decimate~-help.pd \
 
 # update path to reflect your environment
 # PDLIBDIR="/Users/larralde/Documents/Pd/externals"

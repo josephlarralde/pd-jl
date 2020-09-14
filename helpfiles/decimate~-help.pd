@@ -1,0 +1,35 @@
+#N canvas 0 23 463 644 10;
+#X obj 59 278 *~;
+#X obj 127 237 line~;
+#X msg 127 217 \$1 3;
+#X obj 130 196 hsl 128 15 0 1 0 0 empty empty volume -2 -8 0 10 -262144
+-1 -1 3000 0;
+#X obj 59 313 dac~ 1 2;
+#X obj 58 457 cnv 15 80 25 empty empty REFERENCE 5 12 0 12 -233017
+-66577 0;
+#X obj 59 153 jl/decimate~;
+#X obj 59 112 adc~ 1;
+#X text 56 41 decimate~ - joseph larralde \, 2019;
+#X text 56 496 input signal (left inlet) : audio input to be decimated
+;
+#X text 57 549 output signal : the decimated audio input;
+#X obj 131 119 hsl 128 15 0 1 0 0 empty empty decimation -2 -8 0 10
+-262144 -1 -1 0 0;
+#X text 55 375 [decimate~] is a signal decimator.;
+#X text 56 399 It downsamples the input signal to a target frequency
+between half of pd's current sampling frequency (Nyquist frequency)
+and 0;
+#X text 56 517 input value (right inlet) : a value between 0 (Nyquist
+\, minimum decimation) and 1 (0 \, maximum decimation);
+#X obj 265 119 loadbang;
+#X msg 265 138 0;
+#X connect 0 0 4 0;
+#X connect 0 0 4 1;
+#X connect 1 0 0 1;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 6 0 0 0;
+#X connect 7 0 6 0;
+#X connect 11 0 6 1;
+#X connect 15 0 16 0;
+#X connect 16 0 11 0;
