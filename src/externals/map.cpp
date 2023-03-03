@@ -49,6 +49,12 @@ typedef struct _map {
   float lastValueIn;
 
   PdIntervalMap *map;
+
+  // t_inlet *f_in2;
+  // t_inlet *f_in3;
+  // t_inlet *f_in4;
+  // t_inlet *f_in5;
+
   t_outlet *f_out;
 } t_map;
 
@@ -140,6 +146,11 @@ void *map_new(t_symbol *s, int argc, t_atom *argv) {
       break;
   }
 
+  // x->f_in2 = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("inputmin"));
+  // x->f_in3 = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("inputmax"));
+  // x->f_in4 = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("outputmin"));
+  // x->f_in5 = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("outputmax"));
+
   inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("inputmin"));
   inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("inputmax"));
   inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("outputmin"));
@@ -152,8 +163,13 @@ void *map_new(t_symbol *s, int argc, t_atom *argv) {
   return (void *)x;
 }
 
-void *map_free(t_map *x) {
+void map_free(t_map *x) {
   delete x->map;
+
+  // inlet_free(x->f_in2);
+  // inlet_free(x->f_in3);
+  // inlet_free(x->f_in4);
+  // inlet_free(x->f_in5);
 }
 
 extern "C" {
