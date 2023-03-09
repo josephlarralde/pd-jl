@@ -114,7 +114,6 @@ void *magnetize_new(t_symbol *s, int argc, t_atom *argv) {
 
 void magnetize_free(t_magnetize *x) {
   delete x->map;
-  // outlet_free(x->f_out);
 }
 
 extern "C" {
