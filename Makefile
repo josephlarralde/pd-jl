@@ -81,12 +81,17 @@ ifeq ($(UNAME),Linux)
 endif
 ifeq (MINGW,$(findstring MINGW,$(UNAME)))
 	PDLIBDIR="./build/win32"
+	PDINCLUDEDIR="/c/Program\ Files/Pd/src"
+	PDBINDIR="/c/Program\ Files/Pd/bin"
 endif
+
 
 SRCOUT=./build/source/jl
 
 # this is needed for initializer lists
 cflags += -std=c++11
+
+CC=gcc
 
 ifeq ($(UNAME),Darwin)
 	# this is needed for use of <vector> (!?)
