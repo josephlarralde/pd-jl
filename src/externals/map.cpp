@@ -47,7 +47,6 @@ static t_class *map_class;
 typedef struct _map {
   t_object x_obj;
   float lastValueIn;
-
   PdIntervalMap *map;
   t_outlet *f_out;
 } t_map;
@@ -152,7 +151,7 @@ void *map_new(t_symbol *s, int argc, t_atom *argv) {
   return (void *)x;
 }
 
-void *map_free(t_map *x) {
+void map_free(t_map *x) {
   delete x->map;
 }
 

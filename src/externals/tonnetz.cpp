@@ -157,7 +157,7 @@ void *tonnetz_new(t_symbol *s, int argc, t_atom *argv) {
   return (void *)x;
 }
 
-void *tonnetz_free(t_tonnetz *x) {
+void tonnetz_free(t_tonnetz *x) {
   delete x->tonnetz;
 }
 
