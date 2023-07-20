@@ -44,6 +44,8 @@ $(ABS)/ms2lr~.pd \
 $(HLP)/ms2lr~-help.pd \
 $(ABS)/mtosf.pd \
 $(HLP)/mtosf-help.pd \
+$(ABS)/slideflute~.pd \
+$(HLP)/slideflute~-help.pd \
 $(ABS)/gpan-unit~.pd \
 $(ABS)/gdelay-unit~.pd \
 $(ABS)/gdelay~.pd \
@@ -52,6 +54,14 @@ $(ABS)/gflow-unit~.pd \
 $(ABS)/gflow~.pd \
 $(HLP)/gflow~-help.pd \
 $(ABS)/guzi-unit~.pd \
+$(ABS)/dirac~.pd \
+$(HLP)/dirac~-help.pd \
+$(ABS)/bitcrush~.pd \
+$(HLP)/bitcrush~-help.pd \
+$(ABS)/decimate~.pd \
+$(HLP)/decimate~-help.pd \
+$(ABS)/logdelay-unit~.pd \
+$(ABS)/logdelay~.pd \
 $(ABS)/pulse.pd \
 $(HLP)/pulse-help.pd \
 $(ABS)/keynote.pd \
@@ -60,13 +70,7 @@ $(ABS)/keyboard.pd \
 $(HLP)/keyboard-help.pd \
 $(ABS)/envgen.pd \
 $(HLP)/envgen-help.pd \
-$(ABS)/bitcrush~.pd \
-$(HLP)/bitcrush~-help.pd \
-$(ABS)/decimate~.pd \
-$(HLP)/decimate~-help.pd \
-$(ABS)/logdelay-unit~.pd \
-# $(HLP)/bitcrush~-help.pd \
-# $(HLP)/decimate~-help.pd \
+$(ABS)/switchcontrol.pd \
 
 # update path to reflect your environment
 # PDLIBDIR="/Users/larralde/Documents/Pd/externals"
