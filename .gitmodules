@@ -1,6 +1,6 @@
-[submodule "src/dependencies/jl.cpp.lib"]
-	path = src/dependencies/cpp-jl
-	url = https://github.com/josephlarralde/jl.cpp.lib.git
 [submodule "src/dependencies/pd-lib-builder"]
 	path = src/dependencies/pd-lib-builder
 	url = https://github.com/pure-data/pd-lib-builder.git
+[submodule "src/dependencies/cpp-jl"]
+	path = src/dependencies/cpp-jl
+	url = git@github.com:josephlarralde/cpp-jl.git
