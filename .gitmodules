@@ -1,5 +1,5 @@
 [submodule "src/dependencies/jl.cpp.lib"]
-	path = src/dependencies/jl.cpp.lib
+	path = src/dependencies/cpp-jl
 	url = https://github.com/josephlarralde/jl.cpp.lib.git
 [submodule "src/dependencies/pd-lib-builder"]
 	path = src/dependencies/pd-lib-builder
