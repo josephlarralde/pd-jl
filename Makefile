@@ -10,12 +10,14 @@ HLP=helpfiles
 # aaosc~.class.sources = $(EXT)/aaosc~.cpp $(DEP)/jl.cpp.lib/dsp/synthesis/Oscillator.cpp
 # hann~.class.sources = $(EXT)/hann~.cpp $(DEP)/jl.cpp.lib/dsp/synthesis/Oscillator.cpp
 bibi~.class.sources = $(EXT)/bibi~.cpp
-gbend~.class.sources = $(EXT)/gbend~.cpp $(DEP)/jl.cpp.lib/dsp/sampler/Gbend.cpp
-stut~.class.sources = $(EXT)/stut~.cpp $(DEP)/jl.cpp.lib/dsp/effects/Stut.cpp
-sidechain~.class.sources = $(EXT)/sidechain~.cpp $(DEP)/jl.cpp.lib/dsp/effects/Compress.cpp
-flatten~.class.sources = $(EXT)/flatten~.cpp $(DEP)/jl.cpp.lib/dsp/effects/Compress.cpp
+gbend~.class.sources = $(EXT)/gbend~.cpp $(DEP)/cpp-jl/src/dsp/sampler/Gbend.cpp
+stut~.class.sources = $(EXT)/stut~.cpp $(DEP)/cpp-jl/src/dsp/effects/temporal/Stut.cpp
+sidechain~.class.sources = $(EXT)/sidechain~.cpp $(DEP)/cpp-jl/src/dsp/effects/dynamics/Compress.cpp
+flatten~.class.sources = $(EXT)/flatten~.cpp $(DEP)/cpp-jl/src/dsp/effects/dynamics/Compress.cpp
+router~.class.sources = $(EXT)/router~.cpp
 map.class.sources = $(EXT)/map.cpp
 magnetize.class.sources = $(EXT)/magnetize.cpp
+routerctrl.class.sources = $(EXT)/routerctrl.cpp
 tonnetz.class.sources = $(EXT)/tonnetz.cpp
 
 # all extra files to be included in binary distribution of the library
@@ -46,6 +48,7 @@ $(ABS)/mtosf.pd \
 $(HLP)/mtosf-help.pd \
 $(ABS)/slideflute~.pd \
 $(HLP)/slideflute~-help.pd \
+$(ABS)/spitchshift~.pd \
 $(ABS)/gpan-unit~.pd \
 $(ABS)/gdelay-unit~.pd \
 $(ABS)/gdelay~.pd \
@@ -70,6 +73,7 @@ $(ABS)/keyboard.pd \
 $(HLP)/keyboard-help.pd \
 $(ABS)/envgen.pd \
 $(HLP)/envgen-help.pd \
+$(ABS)/routerctrl-ui.pd \
 $(ABS)/switchcontrol.pd \
 
 # update path to reflect your environment
@@ -93,14 +97,19 @@ endif
 SRCOUT=./build/source/jl
 
 # this is needed for initializer lists
-cflags += -std=c++11
+cflags += -std=gnu++20
+# cflags += -stdlib=libstdc++
 
-CC=gcc
+# CC=gcc
+# CC=clang++
+CC=g++
 
+# this is needed for use of <vector> (!?)
 ifeq ($(UNAME),Darwin)
-	# this is needed for use of <vector> (!?)
 	cflags += -mmacosx-version-min=10.9
 endif
+
+cflags += -c
 
 # include Makefile.pdlibbuilder from submodule directory 'pd-lib-builder'
 # update path to reflect your environment
