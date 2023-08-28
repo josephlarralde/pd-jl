@@ -35,9 +35,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "m_pd.h"
-#include "../dependencies/jl.cpp.lib/control/harmony/Tonnetz.h"
 #include <vector>
+#include "m_pd.h"
+#include "../dependencies/cpp-jl/src/control/harmony/Tonnetz.h"
 
 class PdTonnetz;
 

@@ -36,7 +36,7 @@
  */
 
 #include "m_pd.h"
-#include "../dependencies/jl.cpp.lib/control/harmony/PatternMap.h"
+#include "../dependencies/cpp-jl/src/control/harmony/PatternMap.h"
 
 class PdPatternMap;
 

@@ -36,7 +36,7 @@
  */
 
 #include "m_pd.h"
-#include "../dependencies/jl.cpp.lib/control/gesture/IntervalMap.h"
+#include "../dependencies/cpp-jl/src/control/utilities/IntervalMap.h"
 
 class PdIntervalMap;
 

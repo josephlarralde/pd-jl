@@ -36,7 +36,7 @@
  */
 
 #include "m_pd.h"
-#include "../dependencies/jl.cpp.lib/dsp/effects/Stut.h"
+#include "../dependencies/cpp-jl/src/dsp/effects/temporal/Stut.h"
 
 #define JL_STUT_DEFAULT_BUFFER_DURATION 1000
 

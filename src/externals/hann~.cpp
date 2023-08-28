@@ -39,7 +39,7 @@
 // as the same result can be achieved using vanilla objects
 
 #include "m_pd.h"
-#include "../dependencies/jl.cpp.lib/dsp/synthesis/Oscillator.h"
+#include "../dependencies/cpp-jl/src/dsp/synthesis/Oscillator.h"
 
 class PdHann;
 

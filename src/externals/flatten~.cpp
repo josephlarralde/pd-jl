@@ -36,7 +36,7 @@
  */
 
 #include "m_pd.h"
-#include "../dependencies/jl.cpp.lib/dsp/effects/Compress.h"
+#include "../dependencies/cpp-jl/src/dsp/effects/dynamics/Compress.h"
 
 class PdFlattener;
 

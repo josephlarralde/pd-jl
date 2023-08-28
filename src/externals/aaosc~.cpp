@@ -39,7 +39,7 @@
 // kept here for reference, not included in jl.pd.lib
 
 #include "m_pd.h"
-#include "../dependencies/jl.cpp.lib/dsp/synthesis/Oscillator.h"
+#include "../dependencies/cpp-jl/dsp/synthesis/Oscillator.h"
 
 class PdOsc;
 

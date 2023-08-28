@@ -36,7 +36,7 @@
  */
 
 #include "m_pd.h"
-#include "../dependencies/jl.cpp.lib/dsp/sampler/Gbend.h"
+#include "../dependencies/cpp-jl/src/dsp/sampler/Gbend.h"
 
 class PdGbend;
 
@@ -87,6 +87,12 @@ public:
 
   void endReachCallback(int endReachType) {
     outlet_float(x->f_out, endReachType);
+  }
+
+  void getPositionCallback(float position) {
+    t_atom outv;
+    SETFLOAT((t_atom *) &outv, position);
+    outlet_anything(x->f_out, gensym("position"), 1, (t_atom *)(&outv));
   }
 
   void bufUpdatedCallback() {
@@ -169,6 +175,10 @@ void gbend_tilde_rvs(t_gbend_tilde *x, t_floatarg f) {
   x->player->setRvs(f != 0);
 }
 
+void gbend_tilde_get_position(t_gbend_tilde *x) {
+  x->player->getPosition();
+}
+
 void gbend_tilde_setsr(t_gbend_tilde *x, t_floatarg f) {
   x->player->setSamplingRate(static_cast<float>(f));
 }
@@ -221,7 +231,7 @@ void *gbend_tilde_new(t_symbol *s) {
   gbend_tilde_set(x, x->x_arrayname, x->x_arraysr);
 
   x->x_out = outlet_new(&x->x_obj, &s_signal);
-  x->f_out = outlet_new(&x->x_obj, &s_float);
+  x->f_out = outlet_new(&x->x_obj, &s_anything);
 
   return (void *)x;
 }
@@ -258,6 +268,7 @@ void gbend_tilde_setup(void) {
   class_addmethod(gbend_tilde_class, (t_method)gbend_tilde_dsp, gensym("dsp"), A_NULL);
   class_addmethod(gbend_tilde_class, (t_method)gbend_tilde_set, gensym("set"), A_DEFSYM, A_DEFFLOAT, 0);
   class_addmethod(gbend_tilde_class, (t_method)gbend_tilde_stop, gensym("stop"), A_NULL);
+  class_addmethod(gbend_tilde_class, (t_method)gbend_tilde_get_position, gensym("position"), A_NULL);
   class_addmethod(gbend_tilde_class, (t_method)gbend_tilde_pitch, gensym("pitch"), A_DEFFLOAT, 0);
   class_addmethod(gbend_tilde_class, (t_method)gbend_tilde_fade, gensym("fade"), A_DEFFLOAT, 0);
   class_addmethod(gbend_tilde_class, (t_method)gbend_tilde_fadi, gensym("fadi"), A_DEFFLOAT, 0);
