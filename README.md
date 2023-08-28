@@ -1,4 +1,4 @@
-# jl.pd.lib
+# pd-jl
 
 ### a collection of externals and abstractions for pure-data vanilla
 
@@ -10,7 +10,7 @@ It is available as `jl` via pd vanilla's integrated package manager `deken`.
 
 To build and install the library on your machine, first clone this repository :
 
-`git clone --recursive https://github.com/josephlarralde/jl.pd.lib.git`
+`git clone --recursive https://github.com/josephlarralde/pd-jl.git`
 
 Then run `make install`, and eventually `make clean`
 
