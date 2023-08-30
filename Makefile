@@ -57,6 +57,8 @@ $(ABS)/gflow-unit~.pd \
 $(ABS)/gflow~.pd \
 $(HLP)/gflow~-help.pd \
 $(ABS)/guzi-unit~.pd \
+$(ABS)/guzi~.pd \
+$(HLP)/guzi~-help.pd \
 $(ABS)/dirac~.pd \
 $(HLP)/dirac~-help.pd \
 $(ABS)/bitcrush~.pd \
