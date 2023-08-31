@@ -3,4 +3,4 @@
 	url = https://github.com/pure-data/pd-lib-builder.git
 [submodule "src/dependencies/cpp-jl"]
 	path = src/dependencies/cpp-jl
-	url = git@github.com:josephlarralde/cpp-jl.git
+	url = https://github.com/josephlarralde/cpp-jl.git

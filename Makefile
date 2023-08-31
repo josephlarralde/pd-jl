@@ -99,7 +99,7 @@ endif
 SRCOUT=./build/source/jl
 
 # this is needed for initializer lists
-cflags += -std=gnu++20
+cflags += -std=c++2a
 # cflags += -stdlib=libstdc++
 
 # CC=gcc
